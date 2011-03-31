@@ -1,0 +1,204 @@
+<VSTemplate Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vstemplate/2005" Type="Project">
+  <TemplateData>
+    <Name>ExtendedClubSiteStarterKit</Name>
+    <Description>&lt;No description available&gt;</Description>
+    <ProjectType>Web</ProjectType>
+    <ProjectSubType>CSharp</ProjectSubType>
+    <SortOrder>1000</SortOrder>
+    <CreateNewFolder>true</CreateNewFolder>
+    <DefaultName>ExtendedClubSiteStarterKit</DefaultName>
+    <ProvideDefaultName>true</ProvideDefaultName>
+    <LocationField>Enabled</LocationField>
+    <EnableLocationBrowseButton>true</EnableLocationBrowseButton>
+    <Icon>__TemplateIcon.ico</Icon>
+  </TemplateData>
+  <TemplateContent>
+    <Project TargetFileName="ProjectName.webproj" File="ProjectName.webproj" ReplaceParameters="true">
+      <Folder Name="Admin" TargetFolderName="Admin">
+        <ProjectItem ReplaceParameters="true" TargetFileName="PageManagement.aspx">PageManagement.aspx</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="PageManagement.aspx.cs">PageManagement.aspx.cs</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="role_manage.aspx">role_manage.aspx</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="role_manage.aspx.cs">role_manage.aspx.cs</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="role_view.aspx">role_view.aspx</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="role_view.aspx.cs">role_view.aspx.cs</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="ThemeManagement.aspx">ThemeManagement.aspx</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="ThemeManagement.aspx.cs">ThemeManagement.aspx.cs</ProjectItem>
+      </Folder>
+      <Folder Name="App_Code" TargetFolderName="App_Code">
+        <ProjectItem ReplaceParameters="true" TargetFileName="DataSet.xsd">DataSet.xsd</ProjectItem>
+        <ProjectItem ReplaceParameters="false" TargetFileName="DataSet.xss">DataSet.xss</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="DatePicker.cs">DatePicker.cs</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="DevCowThemePage.cs">DevCowThemePage.cs</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="ImageHandling.cs">ImageHandling.cs</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="MemberDetails.cs">MemberDetails.cs</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="PageNumberer.cs">PageNumberer.cs</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="RolloverButtons.cs">RolloverButtons.cs</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="SharedRoutines.cs">SharedRoutines.cs</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="SiteSettings.cs">SiteSettings.cs</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="TimePicker.cs">TimePicker.cs</ProjectItem>
+      </Folder>
+      <Folder Name="App_Data" TargetFolderName="App_Data">
+        <ProjectItem ReplaceParameters="false" TargetFileName="ASPNETDB.MDF">ASPNETDB.MDF</ProjectItem>
+        <ProjectItem ReplaceParameters="false" TargetFileName="aspnetdb_log.ldf">aspnetdb_log.ldf</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="club-add.sql">club-add.sql</ProjectItem>
+        <ProjectItem ReplaceParameters="false" TargetFileName="Club.mdf">Club.mdf</ProjectItem>
+        <ProjectItem ReplaceParameters="false" TargetFileName="Club_log.LDF">Club_log.LDF</ProjectItem>
+        <ProjectItem ReplaceParameters="false" TargetFileName="Club.mdf.old.exclude">Club.mdf.old.exclude</ProjectItem>
+        <ProjectItem ReplaceParameters="false" TargetFileName="Club_log.LDF.old.exclude">Club_log.LDF.old.exclude</ProjectItem>
+      </Folder>
+      <Folder Name="App_Themes" TargetFolderName="App_Themes">
+        <Folder Name="Club" TargetFolderName="Club">
+          <ProjectItem ReplaceParameters="true" TargetFileName="clubsite.css">clubsite.css</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="clubsite.skin">clubsite.skin</ProjectItem>
+          <Folder Name="images" TargetFolderName="images">
+            <ProjectItem ReplaceParameters="false" TargetFileName="background_button_login-ovr.gif">background_button_login-ovr.gif</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="background_button_login.gif">background_button_login.gif</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="background_button_small-ovr.gif">background_button_small-ovr.gif</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="background_button_small.gif">background_button_small.gif</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="background_columnleft.gif">background_columnleft.gif</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="background_columnright.gif">background_columnright.gif</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="background_fullwidth.jpg">background_fullwidth.jpg</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="background_main.jpg">background_main.jpg</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="background_nav_main.gif">background_nav_main.gif</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="background_thumbnail.jpg">background_thumbnail.jpg</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="ball.jpg">ball.jpg</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="button_search-ovr.gif">button_search-ovr.gif</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="button_search.gif">button_search.gif</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="poster.jpg">poster.jpg</ProjectItem>
+          </Folder>
+        </Folder>
+        <Folder Name="CodeCamp" TargetFolderName="CodeCamp">
+          <ProjectItem ReplaceParameters="true" TargetFileName="codecamp.css">codecamp.css</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="CodeCamp.skin">CodeCamp.skin</ProjectItem>
+          <Folder Name="images" TargetFolderName="images">
+            <ProjectItem ReplaceParameters="false" TargetFileName="background_button_login-ovr.gif">background_button_login-ovr.gif</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="background_button_login.gif">background_button_login.gif</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="background_button_small-ovr.gif">background_button_small-ovr.gif</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="background_button_small.gif">background_button_small.gif</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="banner.gif">banner.gif</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="banner.jpg">banner.jpg</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="button_search-ovr.gif">button_search-ovr.gif</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="button_search.gif">button_search.gif</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="nav_Location.jpg">nav_Location.jpg</ProjectItem>
+          </Folder>
+        </Folder>
+        <Folder Name="DevCow" TargetFolderName="DevCow">
+          <ProjectItem ReplaceParameters="true" TargetFileName="devcow.css">devcow.css</ProjectItem>
+          <ProjectItem ReplaceParameters="true" TargetFileName="DevCow.skin">DevCow.skin</ProjectItem>
+          <Folder Name="images" TargetFolderName="images">
+            <ProjectItem ReplaceParameters="false" TargetFileName="background_button_login-ovr.gif">background_button_login-ovr.gif</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="background_button_login.gif">background_button_login.gif</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="background_button_small-ovr.gif">background_button_small-ovr.gif</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="background_button_small.gif">background_button_small.gif</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="background_nav_main.gif">background_nav_main.gif</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="background_thumbnail.jpg">background_thumbnail.jpg</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="button_search-ovr.gif">button_search-ovr.gif</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="button_search.gif">button_search.gif</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="devcow.com.gif">devcow.com.gif</ProjectItem>
+            <ProjectItem ReplaceParameters="false" TargetFileName="devcow.com.jpg">devcow.com.jpg</ProjectItem>
+          </Folder>
+        </Folder>
+      </Folder>
+      <ProjectItem ReplaceParameters="true" TargetFileName="AvatarImageFetch.ashx">AvatarImageFetch.ashx</ProjectItem>
+      <Folder Name="bin" TargetFolderName="bin">
+        <ProjectItem ReplaceParameters="false" TargetFileName="EventCalendar.dll">EventCalendar.dll</ProjectItem>
+      </Folder>
+      <ProjectItem ReplaceParameters="true" TargetFileName="Contact.aspx">Contact.aspx</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="Contact.aspx.cs">Contact.aspx.cs</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="DateAndTimePicker.ascx">DateAndTimePicker.ascx</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="DateAndTimePicker.ascx.cs">DateAndTimePicker.ascx.cs</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="Default.aspx">Default.aspx</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="Default.aspx.cs">Default.aspx.cs</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="Default.master">Default.master</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="Default.master.cs">Default.master.cs</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="DurationPicker.ascx">DurationPicker.ascx</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="DurationPicker.ascx.cs">DurationPicker.ascx.cs</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="ErrorPage.htm">ErrorPage.htm</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="EULA.txt">EULA.txt</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="Events_Calendar.aspx">Events_Calendar.aspx</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="Events_Calendar.aspx.cs">Events_Calendar.aspx.cs</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="Events_Download.ashx">Events_Download.ashx</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="Events_Edit.aspx">Events_Edit.aspx</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="Events_Edit.aspx.cs">Events_Edit.aspx.cs</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="Events_List.aspx">Events_List.aspx</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="Events_List.aspx.cs">Events_List.aspx.cs</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="Events_View.aspx">Events_View.aspx</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="Events_View.aspx.cs">Events_View.aspx.cs</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="Global.asax">Global.asax</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="ImageFetch.ashx">ImageFetch.ashx</ProjectItem>
+      <Folder Name="images" TargetFolderName="images">
+        <ProjectItem ReplaceParameters="false" TargetFileName="ball.jpg">ball.jpg</ProjectItem>
+        <ProjectItem ReplaceParameters="false" TargetFileName="calendar.jpg">calendar.jpg</ProjectItem>
+        <ProjectItem ReplaceParameters="false" TargetFileName="Dropdownbtn.gif">Dropdownbtn.gif</ProjectItem>
+        <ProjectItem ReplaceParameters="false" TargetFileName="icon_download_event-ovr.gif">icon_download_event-ovr.gif</ProjectItem>
+        <ProjectItem ReplaceParameters="false" TargetFileName="icon_download_event.gif">icon_download_event.gif</ProjectItem>
+        <ProjectItem ReplaceParameters="false" TargetFileName="icon_event.gif">icon_event.gif</ProjectItem>
+        <ProjectItem ReplaceParameters="false" TargetFileName="map.jpg">map.jpg</ProjectItem>
+        <ProjectItem ReplaceParameters="false" TargetFileName="news.jpg">news.jpg</ProjectItem>
+        <ProjectItem ReplaceParameters="false" TargetFileName="nophoto.gif">nophoto.gif</ProjectItem>
+        <ProjectItem ReplaceParameters="false" TargetFileName="oldnophoto.gif">oldnophoto.gif</ProjectItem>
+        <ProjectItem ReplaceParameters="false" TargetFileName="photo_event_01.jpg">photo_event_01.jpg</ProjectItem>
+        <ProjectItem ReplaceParameters="false" TargetFileName="photo_news_01.jpg">photo_news_01.jpg</ProjectItem>
+        <ProjectItem ReplaceParameters="false" TargetFileName="photo_news_02.jpg">photo_news_02.jpg</ProjectItem>
+        <ProjectItem ReplaceParameters="false" TargetFileName="photo_news_03.jpg">photo_news_03.jpg</ProjectItem>
+        <ProjectItem ReplaceParameters="false" TargetFileName="photo_news_04.jpg">photo_news_04.jpg</ProjectItem>
+        <ProjectItem ReplaceParameters="false" TargetFileName="photo_news_05.jpg">photo_news_05.jpg</ProjectItem>
+        <ProjectItem ReplaceParameters="false" TargetFileName="photo_news_06.jpg">photo_news_06.jpg</ProjectItem>
+      </Folder>
+      <ProjectItem ReplaceParameters="true" TargetFileName="ImageThumbnail.ascx">ImageThumbnail.ascx</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="ImageThumbnail.ascx.cs">ImageThumbnail.ascx.cs</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="Links.aspx">Links.aspx</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="Links.aspx.cs">Links.aspx.cs</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="Locations_Edit.aspx">Locations_Edit.aspx</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="Locations_Edit.aspx.cs">Locations_Edit.aspx.cs</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="Locations_List.aspx">Locations_List.aspx</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="Locations_List.aspx.cs">Locations_List.aspx.cs</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="Locations_View.aspx">Locations_View.aspx</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="Locations_View.aspx.cs">Locations_View.aspx.cs</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="LocationsPicker.ascx">LocationsPicker.ascx</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="LocationsPicker.ascx.cs">LocationsPicker.ascx.cs</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="Login.aspx">Login.aspx</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="Login.aspx.cs">Login.aspx.cs</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="LoginBanner.ascx">LoginBanner.ascx</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="LoginBanner.ascx.cs">LoginBanner.ascx.cs</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="Member_Details.aspx">Member_Details.aspx</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="Member_Details.aspx.cs">Member_Details.aspx.cs</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="Member_List.aspx">Member_List.aspx</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="Member_List.aspx.cs">Member_List.aspx.cs</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="Member_Redirect.aspx">Member_Redirect.aspx</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="Member_Redirect.aspx.cs">Member_Redirect.aspx.cs</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="Member_Register.aspx">Member_Register.aspx</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="Member_Register.aspx.cs">Member_Register.aspx.cs</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="News_Edit.aspx">News_Edit.aspx</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="News_Edit.aspx.cs">News_Edit.aspx.cs</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="News_List.aspx">News_List.aspx</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="News_List.aspx.cs">News_List.aspx.cs</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="News_View.aspx">News_View.aspx</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="News_View.aspx.cs">News_View.aspx.cs</ProjectItem>
+      <Folder Name="PhotoAlbum" TargetFolderName="PhotoAlbum" />
+      <ProjectItem ReplaceParameters="true" TargetFileName="PhotoAlbum_Contents.aspx">PhotoAlbum_Contents.aspx</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="PhotoAlbum_Contents.aspx.cs">PhotoAlbum_Contents.aspx.cs</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="PhotoAlbum_List.aspx">PhotoAlbum_List.aspx</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="PhotoAlbum_List.aspx.cs">PhotoAlbum_List.aspx.cs</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="PhotoAlbum_New.aspx">PhotoAlbum_New.aspx</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="PhotoAlbum_New.aspx.cs">PhotoAlbum_New.aspx.cs</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="PhotoAlbum_Picker.ascx">PhotoAlbum_Picker.ascx</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="PhotoAlbum_Picker.ascx.cs">PhotoAlbum_Picker.ascx.cs</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="Photos_FormPicker.ascx">Photos_FormPicker.ascx</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="Photos_FormPicker.ascx.cs">Photos_FormPicker.ascx.cs</ProjectItem>
+      <ProjectItem ReplaceParameters="true" TargetFileName="web.config">web.config</ProjectItem>
+      <ProjectItem ReplaceParameters="false" TargetFileName="Web.sitemap">Web.sitemap</ProjectItem>
+      <Folder Name="WebPartControls" TargetFolderName="WebPartControls">
+        <ProjectItem ReplaceParameters="true" TargetFileName="MemberLogin.ascx">MemberLogin.ascx</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="MemberLogin.ascx.cs">MemberLogin.ascx.cs</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="RecentNews.ascx">RecentNews.ascx</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="RecentNews.ascx.cs">RecentNews.ascx.cs</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="UpcomingEvents.ascx">UpcomingEvents.ascx</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="UpcomingEvents.ascx.cs">UpcomingEvents.ascx.cs</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="Welcome.ascx">Welcome.ascx</ProjectItem>
+        <ProjectItem ReplaceParameters="true" TargetFileName="Welcome.ascx.cs">Welcome.ascx.cs</ProjectItem>
+      </Folder>
+      <ProjectItem ReplaceParameters="true" TargetFileName="Welcome.html">Welcome.html</ProjectItem>
+    </Project>
+  </TemplateContent>
+</VSTemplate>

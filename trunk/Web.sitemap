@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0">
+  <siteMapNode url="/" title="top" description="top" roles="*">
+    <siteMapNode url="default.aspx" title="Home" description="Welcome page"></siteMapNode>
+    <siteMapNode url="events_calendar.aspx" title="Events" description="Calendar of events" />
+    <siteMapNode url="photoalbum_list.aspx" title="Photos" description="Photo album" />
+    <siteMapNode url="news_list.aspx" title="News" description="Recent News"></siteMapNode>
+    <siteMapNode url="member_redirect.aspx" title="Membership" description="Member registration"></siteMapNode>
+    <siteMapNode url="contact.aspx" title="Contact" description="How to contact the club leaders" />
+    <siteMapNode url="links.aspx" title="Links" description="Useful links" />
+    <siteMapNode url="Admin" title="Admin" description="Update Site">
+      <siteMapNode url="Admin/role_view.aspx" title="Manage Roles" description="Modify Roles" />
+      <siteMapNode url="Admin/PageManagement.aspx" title="Manage Pages" description="" />
+      <siteMapNode url="member_list.aspx" title="Members" description="Membership list and contact information" />
+      <siteMapNode url="Admin/ThemeManagement.aspx" title="Manage Themes" description="" />
+      <siteMapNode url="Admin/access/users.aspx" title="Manage Users" description="" />
+    </siteMapNode>
+  </siteMapNode>
+</siteMap>
