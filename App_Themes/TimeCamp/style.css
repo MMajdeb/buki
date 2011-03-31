@@ -1,0 +1,87 @@
+html, body { 
+margin : 0;
+padding : 0;
+} 
+body { 
+font : 73% Arial, "Trebuchet MS", Helvetica, Tahoma, sans-serif;
+background : #ccc;
+color : #555;
+} 
+
+/************************************************************************
+* 
+* Calendar specific formatting 
+*
+************************************************************************/
+
+/* Surrounds the calendar */
+.eventmonth
+{
+	border: 1px solid #DBDB79;
+	width: 694px;
+	margin-right: auto;
+	margin-left: auto;
+	background: lightgray;
+	margin-bottom: 10px;
+	padding-left: 15px;
+	padding-right: 15px;
+	padding-top: 10px;
+	text-align: center;
+}
+
+/* used as the cssclass of the actual calendar */
+.eventmonthtable
+{
+	width: 694px;
+	margin-right: auto;
+	margin-left: auto;
+	position: relative;
+	margin-bottom: 15px;
+	border-collapse: collapse;
+	border-right: navy 1px solid;
+	border-top: navy 1px solid;
+	border-left: navy 1px solid;
+	border-bottom: navy 1px solid;
+}
+
+
+.dayNumber
+{
+    float: right;
+    border-bottom: 1px solid #C7C272;
+    border-left: 1px solid #C7C272;
+    clear: none;
+    padding: 2px;
+}
+
+
+.calcurrentmonth
+{
+    /* no styles needed at this time */
+}
+.calothermonth
+{
+	background-color: #3366cc;
+}
+.calcurrentday
+{
+    background-color: #FFFFC1;
+}
+.calweekend
+{
+	background-color: paleturquoise; /*  width: 15%; */
+}
+
+.calcurrentmonth, .calcurrentmonth, .calothermonth, .calcurrentday, .calweekend
+{
+	text-align: left;
+	height: 60px;
+	vertical-align: top; /* needed for positioning the dayNumber part */
+	position: relative;
+	border-collapse: separate;
+	border-spacing: 5px;
+	border-right: navy 2px solid;
+	border-top: navy 2px solid;
+	border-left: navy 2px solid;
+	border-bottom: navy 2px solid;
+}

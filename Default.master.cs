@@ -3,7 +3,7 @@ using System.Web.UI.WebControls.WebParts;
 using System.Web.UI.WebControls;
 using System.Web;
 
-public partial class MasterPage : System.Web.UI.MasterPage
+public partial class MasterPage1 : System.Web.UI.MasterPage
 {
     protected void Page_Load(object sender, EventArgs e)
     {
