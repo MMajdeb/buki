@@ -1,11 +1,11 @@
-<%@ Master Language="C#" AutoEventWireup="true" CodeFile="Default.master.cs" Inherits="MasterPage" %>
+<%@ Master Language="C#" AutoEventWireup="true" CodeFile="Default.master.cs" Inherits="MasterPage1" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-	<title>My Club Site</title>
+	<title>בוקי</title>
 </head>
-<body>
+<body style="direction:rtl;">
 	<form id="form1" runat="server">
         <asp:WebPartManager ID="WebPartManager1" runat="server">
         </asp:WebPartManager>
@@ -15,21 +15,21 @@
         </div>
 		<div id="poster">
 			<h1>
-				<a runat="server" href="default.aspx">My User Group</a></h1>
+				<a runat="server" href="default.aspx">בוקי!</a></h1>
 			<h2>
-				My User Group tag line or slogan
+				בוקי - אתר בבניה
 			</h2>
 		</div>
 		<div class="none">
 			<a href="#content_start">Skip Repetitive Navigational Links</a></div>
 		<div id="navtop">
-			<asp:Menu runat="server" ID="ClubMenu" DataSourceID="SiteMapDataSource1">
+			<asp:Menu runat="server" ID="ClubMenu" CssSelectorClass="SimpleEntertainmentMenu" DataSourceID="SiteMapDataSource1">
 			</asp:Menu>
 		</div>
 		<asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
 		</asp:ContentPlaceHolder>
 		<div id="navbottom">
-			<asp:Menu runat="server" ID="Menu1" DataSourceID="SiteMapDataSource1">
+			<asp:Menu runat="server" ID="Menu1" CssSelectorClass="SimpleEntertainmentMenu" DataSourceID="SiteMapDataSource1">
 			</asp:Menu>
 		</div>
 		<div id="footer">
