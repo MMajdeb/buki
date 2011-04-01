@@ -15,7 +15,7 @@
     <table id="body" border="0">
         <tr>
             <td style="height: 15px" id="columnleft" valign="top">
-                <asp:WebPartZone ID="Left" runat="server" WebPartVerbRenderMode="TitleBar" Width="100%">
+                <asp:WebPartZone ID="Left" runat="server" WebPartVerbRenderMode="TitleBar" PartChromeType="None" Width="100%">
                     <ZoneTemplate>
                         <uc2:MemberLogin ID="MemberLogin1" runat="server" >
                         </uc2:MemberLogin>
@@ -24,7 +24,7 @@
                 </asp:WebPartZone>
             </td>
             <td style="height: 15px" valign="top" id="columnright">
-                <asp:WebPartZone ID="Right" runat="server" TitleBarVerbButtonType="Link" WebPartVerbRenderMode="TitleBar" Width="100%">
+                <asp:WebPartZone ID="Right" runat="server" TitleBarVerbButtonType="Link" WebPartVerbRenderMode="TitleBar" PartChromeType="None" Width="100%">
                     <ZoneTemplate>
                         <uc3:RecentNews ID="RecentNews1" runat="server" />
                         <uc4:UpcomingEvents ID="UpcomingEvents1" runat="server">
