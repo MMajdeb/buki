@@ -2,6 +2,7 @@
 <siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0">
   <siteMapNode url="/" title="top" description="top" roles="*">
     <siteMapNode url="default.aspx" title="Home" description="Welcome page"></siteMapNode>
+    <siteMapNode url="suppliers.aspx" title="Suppliers" description="Suppliers work"></siteMapNode>
     <siteMapNode url="events_calendar.aspx" title="Events" description="Calendar of events" />
     <siteMapNode url="photoalbum_list.aspx" title="Photos" description="Photo album" />
     <siteMapNode url="news_list.aspx" title="News" description="Recent News"></siteMapNode>
