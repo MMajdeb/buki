@@ -3,12 +3,14 @@
 
 <%@ Register TagPrefix="Club" TagName="ImageThumbnail" Src="ImageThumbnail.ascx" %>
 <%@ Register TagPrefix="Club" Namespace="ClubSite" %>
-<%@ Register TagPrefix="dxrp" Namespace="DevExpress.Web.ASPxRoundPanel" Assembly="DevExpress.Web.v10.2, Version=10.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" %>
-<%@ Register Assembly="DevExpress.Web.v10.2, Version=10.2.6.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" Namespace="DevExpress.Web.ASPxPanel" TagPrefix="dx" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
 	<table id="body" border="0">
 		<tr>
 		<td>
+		<div style="border: solid 1px gray">
+			<asp:Label runat="server" Text="Search"></asp:Label><asp:TextBox ID="TextBox1"
+				runat="server"></asp:TextBox>
+		</div>
 		</td>
 		</tr>
 		<tr>
@@ -20,7 +22,7 @@
 					</HeaderTemplate>
 					<ItemTemplate>
 						<li>
-							<asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl='<%# "Events_Calendar.aspx?supplier=" + Eval("CompanyName") %>' Text='<%# Eval("CompanyName") %>'></asp:HyperLink>-<%# Eval("CompanyName")%>
+							<asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl='<%# "Events_Calendar.aspx?supplierID=" + Eval("SupplierID")  %>' Text='<%# Eval("CompanyName") %>'></asp:HyperLink>-<%# Eval("CompanyName")%>
 						</li>
 					</ItemTemplate>
 					<FooterTemplate>
