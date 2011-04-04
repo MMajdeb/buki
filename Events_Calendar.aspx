@@ -25,9 +25,21 @@
 			</div>
 		</asp:Panel>
 		<div class="eventmonth">
-			<asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ClubSiteDB %>"
-				SelectCommand="SELECT [id], [starttime], [title], [description] FROM [Events]"></asp:SqlDataSource>
-			<ec:EventCalendar runat="server" ID="eventscalendar" DataSourceID="sqldatasource1"
+			<%--<asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ClubSiteDB %>"
+				SelectCommand="SELECT [id], [starttime], [title], [description] FROM [Events]"></asp:SqlDataSource>--%>
+			<asp:ObjectDataSource ID="ObjectDataSource1" runat="server" 
+				OldValuesParameterFormatString="original_{0}" 
+				SelectMethod="GetDataEventsSearch" 
+				TypeName="BukiDataViewsTableAdapters.EventsTableAdapter" 
+				onselecting="ObjectDataSource1_Selecting">
+				<SelectParameters>
+					<asp:QueryStringParameter Name="SupplierID" QueryStringField="supplierID" Type="Int32" />
+					<asp:QueryStringParameter Name="ProductID" QueryStringField="productID" Type="Int32" />						
+					<asp:Parameter Name="st" Type="DateTime" />
+					<asp:Parameter Name="et" Type="DateTime" />
+				</SelectParameters>
+			</asp:ObjectDataSource>				
+			<ec:EventCalendar runat="server" ID="eventscalendar" DataSourceID="ObjectDataSource1"
 				BorderWidth="0" DayField="starttime" ShowTitle="true" CssClass="eventmonthtable" 
 				FirstDayOfWeek="Sunday">
 				<DayHeaderStyle CssClass="caldays" />

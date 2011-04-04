@@ -1,0 +1,59 @@
+﻿using System;
+using System.Data;
+using System.Configuration;
+using System.Web;
+using System.Web.Security;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using System.Web.UI.WebControls.WebParts;
+using System.Web.UI.HtmlControls;
+using System.Data.SqlClient;
+using System.Collections.Generic;
+using Microsoft.Practices.EnterpriseLibrary.Data;
+
+namespace BukiDataSetTableAdapters
+{
+    public partial class EventsTableAdapter
+    {
+        public DataTable ExecuteSqlCommand(string sql, List<SqlParameter> paramLst)
+        {
+            System.Data.DataTable tbl;
+            SqlCommand cmd;
+            int i = 0;
+
+            cmd = new SqlCommand();
+            cmd.Connection = this.Connection;
+            cmd.CommandText = sql;
+            cmd.CommandType = CommandType.Text;
+
+            //For i = 0 To params.Count - 1
+            //    cmd.Parameters.Add(params(i))
+            //Next
+
+            // Iterate through a collection
+            foreach (SqlParameter prm in paramLst)
+            {                
+                cmd.Parameters.Add(prm);
+            }
+
+
+            this.Adapter.SelectCommand = cmd;
+            tbl = new System.Data.DataTable();
+            this.Adapter.Fill(tbl);
+
+            return tbl;
+        }
+
+        public System.Data.DataSet ExecuteSqlCommand(string sql, List<SqlParameter> paramLst)
+        {
+            Database db = null;
+            db = DatabaseFactory.CreateDatabase();
+
+            System.Data.DataSet ds = db.ExecuteDataSet(CommandType.Text, "SELECT * From Customers");
+
+            return ds;
+        }
+
+    }
+}
+
