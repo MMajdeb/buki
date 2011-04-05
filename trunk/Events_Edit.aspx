@@ -162,9 +162,10 @@
 	</div>
 	<asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ClubSiteDB %>"
 		SelectCommand="SELECT dbo.Events.id, dbo.Events.starttime, dbo.events.endtime, dbo.Events.title, dbo.Events.description, dbo.Events.staticURL, dbo.Events.photo,  dbo.Events.location, dbo.Locations.title AS locationname FROM  dbo.Events LEFT OUTER JOIN dbo.Locations ON dbo.Events.location = dbo.Locations.id where Events.id=@id"
-		InsertCommand="INSERT INTO Events(starttime, endtime, title, description, staticURL, location, photo) VALUES (@starttime, @endtime,  @title, @description, @staticURL, @location, @photo)"
+		InsertCommand="INSERT INTO Events(starttime, endtime, title, description, staticURL, location, photo) VALUES (@starttime, @endtime,  @title, @description, @staticURL, @location, @photo); SET @ident=SCOPE_IDENTITY();"
 		UpdateCommand="UPDATE Events SET starttime = @starttime, endtime=@endtime, title = @title, description = @description, staticURL = @staticURL, location = @location, photo = @photo WHERE (id = @id)"
-		DeleteCommand="DELETE Events WHERE id=@id" OldValuesParameterFormatString="{0}">
+		DeleteCommand="DELETE Events WHERE id=@id" 
+		oninserted="SqlDataSource1_Inserted">
 		<SelectParameters>
 			<asp:QueryStringParameter Name="id" QueryStringField="ID" />
 		</SelectParameters>
@@ -187,6 +188,7 @@
 			<asp:Parameter Name="location" />
 			<asp:Parameter Name="photo" />
 			<asp:Parameter Name="id" />
+			<asp:Parameter Name="ident" Direction="Output" DbType="Int32" />
 		</InsertParameters>
 		<DeleteParameters>
 			<asp:QueryStringParameter Name="id" QueryStringField="ID" />

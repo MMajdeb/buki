@@ -69,8 +69,8 @@
 					</div>
 				</HeaderTemplate>
 				<DayEventTemplate>
-					<div style="padding: 3px;">
-						<asp:HyperLink ID="HyperLink1" runat="server" Text='<%#Eval("title") %>' NavigateUrl='<%# "Events_view.aspx?Eventid=" + Convert.ToString(Eval("ID"))%>'
+					<div style="padding: 3px; white-space:nowrap">
+						<asp:HyperLink ID="HyperLink1" runat="server" Text='<%#Eval("title") + "&lt;br&gt;" + ((DateTime)Eval("starttime")).ToString("HH:mm") + "-" + ((DateTime)Eval("endtime")).ToString("HH:mm") %>' NavigateUrl='<%# "Events_view.aspx?Eventid=" + Convert.ToString(Eval("ID"))%>'
 							ToolTip='<%# SharedRoutines.truncate((string)Eval("description")) %>' /></div>
 				</DayEventTemplate>
 			</ec:EventCalendar>

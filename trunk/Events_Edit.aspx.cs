@@ -1,6 +1,8 @@
 using System;
 using System.Web.UI.WebControls;
 using DevCow.Web.UI;
+using System.Collections;
+using System.Web.Security;
 
 public partial class Events_Edit : DevCowThemePage
 {
@@ -54,6 +56,7 @@ public partial class Events_Edit : DevCowThemePage
 	{
 		Response.Redirect("events_list.aspx");
 	}
+
 	protected void CheckBox1_CheckedChanged(object sender, System.EventArgs e)
 	{
 		CheckBox cb = (CheckBox)(FormView1.FindControl("CheckBox1"));
@@ -67,4 +70,21 @@ public partial class Events_Edit : DevCowThemePage
 			surl.Enabled = false;
 		}
 	}
+
+    protected void SqlDataSource1_Inserted(object sender, SqlDataSourceStatusEventArgs e)
+    {
+        int ident = (int)e.Command.Parameters["@ident"].Value;
+        DateTime startTime = (DateTime)e.Command.Parameters["@starttime"].Value;
+        DateTime endTime = (DateTime)e.Command.Parameters["@endtime"].Value;
+
+        //add record in orders table
+        EventsOrdersBLL eoBll = new EventsOrdersBLL();
+        eoBll.AddNewEventOrder(ident, startTime,endTime);        
+
+        // Reference the values Dictionary style
+        //foreach (DictionaryEntry myDE in e.Values)
+        //{
+        //    Console.WriteLine(myDE.Value + " " + myDE.Key);
+        //}        
+    }
 }
