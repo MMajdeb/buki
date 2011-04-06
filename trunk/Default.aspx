@@ -14,7 +14,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
     <table id="body" border="0">
         <tr>
-            <td style="height: 15px" id="columnleft" valign="top">
+            <td style="height: 15px;" id="columnleftTD" valign="top">
                 <asp:WebPartZone ID="Left" runat="server" WebPartVerbRenderMode="TitleBar" PartChromeType="None" Width="100%">
                     <ZoneTemplate>
                         <uc2:MemberLogin ID="MemberLogin1" runat="server" >

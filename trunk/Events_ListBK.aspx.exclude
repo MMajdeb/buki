@@ -1,5 +1,5 @@
-<%@ Page Language="C#" MasterPageFile="~/Default.master" AutoEventWireup="true" CodeFile="Events_List.aspx.cs"
-	Inherits="Events_List" %>
+<%@ Page Language="C#" MasterPageFile="~/Default.master" AutoEventWireup="true" CodeFile="Events_ListBK.aspx.cs"
+	Inherits="Events_List" Title="Untitled Page" %>
 
 <%@ Register TagPrefix="Club" Namespace="ClubSite" %>
 <%@ Register TagPrefix="Club" TagName="LoginBanner" Src="LoginBanner.ascx" %>
@@ -41,43 +41,27 @@
 					Locations List</a>
 			</div>
 			<div class="rightblock">
-				<asp:ObjectDataSource ID="ObjectDataSourceEventsUpcoming" runat="server" OldValuesParameterFormatString="original_{0}"
-					SelectMethod="GetDataByEventsUpcommingUsers" TypeName="BukiDataViewsTableAdapters.EventsTableAdapter">
+				<asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:ClubSiteDB %>"
+					SelectCommand="PagedUpcommingEventList" SelectCommandType="StoredProcedure" OnSelected="SqlDataSource1_Selected">
 					<SelectParameters>
-						<asp:Parameter DbType="Guid" Name="UserID" />
+						<asp:ControlParameter Name="pageNum" ControlID="pn1" PropertyName="SelectedPage" />
+						<asp:Parameter DefaultValue="5" Name="pageSize" Type="Int32" />
+						<asp:Parameter Name="pageCount" Direction="ReturnValue" Type="Int32" />
 					</SelectParameters>
-				</asp:ObjectDataSource>
+				</asp:SqlDataSource>
 				<h2>
 					Upcomming events</h2>
 				<div class="dashedline">
 				</div>
+				<div class="newscrumbs">
+					Page:
+					<Club:PageNumberer ID="pn1" runat="server" SelectedPage="1" DisplayedPages="7" OnSelectedPageChanged="pn1_SelectedPageChanged"
+						CssClass="PageNumbers" />
+				</div>
+				<div class="dashedline">
+				</div>
 				<!-- begin news item -->
-				<asp:ListView ID="ListViewUpcoming" runat="server" DataSourceID="ObjectDataSourceEventsUpcoming">
-					<LayoutTemplate>
-						<div class="newscrumbs">
-							Page:
-							<asp:DataPager ID="DataPagerUpcoming1" PageSize="5" runat="server">
-								<Fields>
-									<asp:NumericPagerField />
-								</Fields>
-							</asp:DataPager>
-						</div>
-						<div class="dashedline">
-						</div>
-						<div id="itemPlaceholderContainer" runat="server" style="">
-							<span id="itemPlaceholder" runat="server" />
-						</div>
-						<div class="dashedline">
-						</div>
-						<div class="newscrumbs">
-							Page:
-							<asp:DataPager ID="DataPagerUpcoming2" PagedControlID="ListViewUpcoming" PageSize="5" runat="server">
-								<Fields>
-									<asp:NumericPagerField />
-								</Fields>
-							</asp:DataPager>
-						</div>
-					</LayoutTemplate>
+				<asp:Repeater ID="Repeater1" runat="server" DataSourceID="SqlDataSource1">
 					<ItemTemplate>
 						<div class="listitem">
 							<div class="thumbnail">
@@ -104,49 +88,37 @@
 							</div>
 						</div>
 					</ItemTemplate>
-					<EmptyDataTemplate>
-						<span>No data was returned.</span>
-					</EmptyDataTemplate>
-				</asp:ListView>
+				</asp:Repeater>
+				<div class="dashedline">
+				</div>
+				<div class="newscrumbs">
+					Page:
+					<Club:PageNumberer ID="pn2" runat="server" SelectedPage="1" DisplayedPages="7" CssClass="PageNumbers"
+						OnSelectedPageChanged="pn2_SelectedPageChanged" />
+				</div>
 			</div>
 			<div class="rightblock">
-				<asp:ObjectDataSource ID="ObjectDataSourceRecentUsers" runat="server" OldValuesParameterFormatString="original_{0}"
-					SelectMethod="GetDataByEventsRecentUsers" TypeName="BukiDataViewsTableAdapters.EventsTableAdapter">
-					<SelectParameters>
-						<asp:Parameter DbType="Guid" Name="UserID" />
-					</SelectParameters>
-				</asp:ObjectDataSource>
 				<h2>
 					Recent events</h2>
+				<asp:SqlDataSource ID="SqlDataSource2" runat="server" ConnectionString="<%$ ConnectionStrings:ClubSiteDB %>"
+					SelectCommand="PagedRecentEventList" SelectCommandType="StoredProcedure" OnSelected="SqlDataSource2_Selected">
+					<SelectParameters>
+						<asp:ControlParameter Name="pageNum" ControlID="pn3" PropertyName="SelectedPage" />
+						<asp:Parameter DefaultValue="5" Name="pageSize" Type="Int32" />
+						<asp:Parameter Name="pageCount" Direction="ReturnValue" Type="Int32" />
+					</SelectParameters>
+				</asp:SqlDataSource>
+				<div class="dashedline">
+				</div>
+				<div class="newscrumbs">
+					Page:
+					<Club:PageNumberer ID="pn3" runat="server" SelectedPage="1" DisplayedPages="7" CssClass="PageNumbers"
+						OnSelectedPageChanged="pn3_SelectedPageChanged" />
+				</div>
 				<div class="dashedline">
 				</div>
 				<!-- begin news item -->
-				<asp:ListView ID="ListViewRecent" runat="server" DataSourceID="ObjectDataSourceRecentUsers">
-					<LayoutTemplate>
-						<div class="newscrumbs">
-							Page:
-							<asp:DataPager ID="DataPagerRecent1" PagedControlID="ListViewRecent" PageSize="5" runat="server">
-								<Fields>
-									<asp:NumericPagerField />
-								</Fields>
-							</asp:DataPager>
-						</div>
-						<div class="dashedline">
-						</div>
-						<div id="itemPlaceholderContainer" runat="server" style="">
-							<span id="itemPlaceholder" runat="server" />
-						</div>
-						<div class="dashedline">
-						</div>
-						<div class="newscrumbs">
-							Page:
-							<asp:DataPager ID="DataPagerRecent2" PagedControlID="ListViewRecent" PageSize="5" runat="server">
-								<Fields>
-									<asp:NumericPagerField />
-								</Fields>
-							</asp:DataPager>
-						</div>
-					</LayoutTemplate>
+				<asp:Repeater ID="Repeater2" runat="server" DataSourceID="SqlDataSource2">
 					<ItemTemplate>
 						<div class="listitem">
 							<div class="thumbnail">
@@ -173,10 +145,14 @@
 							</div>
 						</div>
 					</ItemTemplate>
-					<EmptyDataTemplate>
-						<span>No data was returned.</span>
-					</EmptyDataTemplate>
-				</asp:ListView>
+				</asp:Repeater>
+				<div class="dashedline">
+				</div>
+				<div class="newscrumbs">
+					Page:
+					<Club:PageNumberer ID="pn4" runat="server" SelectedPage="1" DisplayedPages="7" CssClass="PageNumbers"
+						OnSelectedPageChanged="pn4_SelectedPageChanged" />
+				</div>
 			</div>
 		</div>
 		<div class="clear2column">

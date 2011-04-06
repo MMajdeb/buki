@@ -31,8 +31,10 @@
 				<div class="dashedline">
 				</div>
 				<asp:CreateUserWizard ID="CreateUserWizard1" runat="server" DisableCreatedUser="True"
-					OnFinishButtonClick="CreateUserFinished" FinishDestinationPageUrl="Default.aspx">
-					<WizardSteps>
+					OnFinishButtonClick="CreateUserFinished"  
+					onactivestepchanged="CreateUserWizard1_ActiveStepChanged" 
+					oncreateduser="CreateUserWizard1_CreatedUser" FinishDestinationPageUrl="Member_Register_Complete.aspx">
+					<WizardSteps>						
 						<asp:CreateUserWizardStep ID="CreateUserWizardStep1" runat="server">
 							<ContentTemplate>
 								<p>
@@ -103,6 +105,14 @@
 										</td>
 									</tr>
 									<tr>
+										<td class="formlabel">
+											<label for="Suplier">
+												register as supplier:</label></td>
+										<td>
+											<asp:CheckBox ID="Suplier" runat="server" />											
+										</td>
+									</tr>									
+									<tr>
 										<td align="center" colspan="2">
 											<asp:CompareValidator ID="PasswordCompare" runat="server" ControlToCompare="Password"
 												ControlToValidate="ConfirmPassword" Display="Dynamic" ErrorMessage="The Password and Confirmation Password must match."
@@ -115,9 +125,9 @@
 										</td>
 									</tr>
 								</table>
-							</ContentTemplate>
-							<CustomNavigationTemplate>
-								<Club:RolloverButton ID="cu" runat="server" CommandName="MoveNext" Text="Create User" />
+							</ContentTemplate>							
+							<CustomNavigationTemplate>								
+								<Club:RolloverButton ID="cu" runat="server" CommandName="MoveNext" ValidationGroup="CreateUserWizard1" Text="Create User" />								
 							</CustomNavigationTemplate>
 						</asp:CreateUserWizardStep>
 						<asp:WizardStep ID="WizardStep1" runat="server" Title="Contact details">
@@ -166,6 +176,130 @@
 								</tr>
 							</table>
 						</asp:WizardStep>
+						<asp:WizardStep ID="WizardStepSupplier" runat="server" Title="Supplier details">
+							<table>
+								<tr>
+									<td class="formlabel">
+										<label for="CompanyName">
+											Company Name:</label>
+									</td>
+									<td class="formvalue">
+										<asp:TextBox runat="server" ID="CompanyName" CssClass="txtfield" />
+										<asp:RequiredFieldValidator ControlToValidate="CompanyName" ErrorMessage="Company Name is required."
+											ID="RequiredFieldValidator3" runat="server" ToolTip="Company Name is required."
+											ValidationGroup="CreateUserSupplier">*</asp:RequiredFieldValidator>
+									</td>
+								</tr>
+								<tr>
+									<td class="formlabel">
+										<label for="ContactName">
+											Contact Name:</label>
+									</td>
+									<td class="formvalue">
+										<asp:TextBox runat="server" ID="ContactName" CssClass="txtfield" />
+										<asp:RequiredFieldValidator ControlToValidate="ContactName" ErrorMessage="Contact Name is required."
+											ID="RequiredFieldValidator4" runat="server" ToolTip="Contact Name is required."
+											ValidationGroup="CreateUserSupplier">*</asp:RequiredFieldValidator>
+									</td>
+								</tr>
+								<tr>
+									<td class="formlabel">
+										<label for="ContactTitle">
+											Contact Title:</label>
+									</td>
+									<td class="formvalue">
+										<asp:TextBox runat="server" ID="ContactTitle" CssClass="txtfield" />
+										<asp:RequiredFieldValidator ControlToValidate="ContactTitle" ErrorMessage="Contact Title is required."
+											ID="RequiredFieldValidator5" runat="server" ToolTip="Contact Title is required."
+											ValidationGroup="CreateUserSupplier">*</asp:RequiredFieldValidator>
+									</td>
+								</tr>								
+								<tr>
+									<td class="formlabel">
+										<label for="Address">
+											Address</label>
+									</td>
+									<td class="formvalue">
+										<asp:TextBox runat="server" ID="Address" Rows="3" TextMode="MultiLine" CssClass="txtblock" />
+									</td>
+								</tr>
+								<tr>
+									<td class="formlabel">
+										<label for="City">
+											City:</label>
+									</td>
+									<td class="formvalue">
+										<asp:TextBox runat="server" ID="City" CssClass="txtfield" />
+										<asp:RequiredFieldValidator ControlToValidate="City" ErrorMessage="City is required."
+											ID="RequiredFieldValidator6" runat="server" ToolTip="City is required."
+											ValidationGroup="CreateUserSupplier">*</asp:RequiredFieldValidator>
+									</td>
+								</tr>		
+								<tr>
+									<td class="formlabel">
+										<label for="Region">
+											Region:</label>
+									</td>
+									<td class="formvalue">
+										<asp:TextBox runat="server" ID="Region" CssClass="txtfield" />
+										<asp:RequiredFieldValidator ControlToValidate="Region" ErrorMessage="Region is required."
+											ID="RequiredFieldValidator7" runat="server" ToolTip="Region is required."
+											ValidationGroup="CreateUserSupplier">*</asp:RequiredFieldValidator>
+									</td>
+								</tr>														
+								<tr>
+									<td class="formlabel">
+										<label for="PostalCode">
+											Postal Code:</label>
+									</td>
+									<td class="formvalue">
+										<asp:TextBox runat="server" ID="PostalCode" CssClass="txtfield" />
+										<asp:RequiredFieldValidator ControlToValidate="PostalCode" ErrorMessage="Postal Code is required."
+											ID="RequiredFieldValidator8" runat="server" ToolTip="Postal Code is required."
+											ValidationGroup="CreateUserSupplier">*</asp:RequiredFieldValidator>
+									</td>
+								</tr>														
+								<tr>
+									<td class="formlabel">
+										<label for="Country">
+											Country:</label>
+									</td>
+									<td class="formvalue">
+										<asp:TextBox runat="server" ID="Country" CssClass="txtfield" />
+										<asp:RequiredFieldValidator ControlToValidate="Country" ErrorMessage="Country is required."
+											ID="RequiredFieldValidator9" runat="server" ToolTip="Country is required."
+											ValidationGroup="CreateUserSupplier">*</asp:RequiredFieldValidator>
+									</td>
+								</tr>																						
+								<tr>
+									<td class="formlabel">
+										<label for="Phone1">
+											Phone</label>
+									</td>
+									<td class="formvalue">
+										<asp:TextBox runat="server" ID="Phone1" CssClass="txtfield" />
+									</td>
+								</tr>
+								<tr>
+									<td class="formlabel">
+										<label for="Fax1">
+											Fax</label>
+									</td>
+									<td class="formvalue">
+										<asp:TextBox runat="server" ID="Fax1" CssClass="txtfield" />
+									</td>
+								</tr>								
+								<tr>
+									<td class="formlabel">
+										<label for="HomePage1">
+											Home Page</label>
+									</td>
+									<td class="formvalue">
+										<asp:TextBox runat="server" ID="HomePage1" CssClass="txtfield" />
+									</td>
+								</tr>								
+							</table>
+						</asp:WizardStep>
 						<asp:CompleteWizardStep ID="CompleteWizardStep1" runat="server">
 							<ContentTemplate>
 								<p>
@@ -178,8 +312,16 @@
 					<StepNavigationTemplate>
 						<Club:RolloverButton ID="StepPreviousButton" runat="server" CausesValidation="False"
 							CommandName="MovePrevious" Text="Previous" />
-						<Club:RolloverButton ID="StepNextButton" runat="server" CommandName="MoveNext" Text="Next" />
-					</StepNavigationTemplate>
+						<Club:RolloverButton ID="StepNextButton" runat="server" CommandName="MoveNext" Text="Next" />						
+					</StepNavigationTemplate>					
+					<FinishNavigationTemplate> 
+						<Club:RolloverButton ID="StepPreviousButton" runat="server" CausesValidation="False"
+							CommandName="MovePrevious" Text="Previous" />					
+						<%--<Club:RolloverButton ID="StepFinishButton" runat="server" CausesValidation="False"
+							CommandName="MoveFinish" Text="Finish" />--%>
+						<Club:RolloverButton ID="StepCompleteButton" runat="server" CausesValidation="False"
+							CommandName="MoveComplete" Text="Finish" />							
+					</FinishNavigationTemplate>							
 				</asp:CreateUserWizard>
 			</div>
 		</div>

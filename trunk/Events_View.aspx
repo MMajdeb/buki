@@ -1,5 +1,5 @@
 <%@ Page Language="C#" MasterPageFile="~/Default.master" AutoEventWireup="true" CodeFile="Events_View.aspx.cs"
-	Inherits="Events_View" Title="Untitled Page" %>
+	Inherits="Events_View" %>
 
 <%@ Register TagPrefix="Club" Namespace="ClubSite" %>
 <%@ Register TagPrefix="Club" TagName="LoginBanner" Src="LoginBanner.ascx" %>

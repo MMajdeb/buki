@@ -1,5 +1,6 @@
 using System;
 using DevCow.Web.UI;
+using System.Web.Security;
 
 public partial class Events_List : DevCowThemePage
 {
@@ -9,35 +10,10 @@ public partial class Events_List : DevCowThemePage
 	{
 		IsAdmin = User.IsInRole("Administrators");
 		panel1.Visible = IsAdmin;
+
+        //fill list by user
+        ObjectDataSourceEventsUpcoming.SelectParameters["UserID"].DefaultValue = Membership.GetUser().ProviderUserKey.ToString();
+        ObjectDataSourceRecentUsers.SelectParameters["UserID"].DefaultValue = Membership.GetUser().ProviderUserKey.ToString();
 	}
-	protected void SqlDataSource1_Selected(object sender, System.Web.UI.WebControls.SqlDataSourceStatusEventArgs e)
-	{
-		int pages;
-		pages = (int)e.Command.Parameters["@pageCount"].Value;
-		pn1.Count = pages;
-		pn2.Count = pages;
-	}
-	protected void SqlDataSource2_Selected(object sender, System.Web.UI.WebControls.SqlDataSourceStatusEventArgs e)
-	{
-		int pages;
-		pages = (int)e.Command.Parameters["@pageCount"].Value;
-		pn3.Count = pages;
-		pn4.Count = pages;
-	}
-	protected void pn1_SelectedPageChanged(object sender, System.EventArgs e)
-	{
-		pn2.SelectedPage = pn1.SelectedPage;
-	}
-	protected void pn2_SelectedPageChanged(object sender, System.EventArgs e)
-	{
-		pn1.SelectedPage = pn2.SelectedPage;
-	}
-	protected void pn3_SelectedPageChanged(object sender, System.EventArgs e)
-	{
-		pn4.SelectedPage = pn3.SelectedPage;
-	}
-	protected void pn4_SelectedPageChanged(object sender, System.EventArgs e)
-	{
-		pn3.SelectedPage = pn4.SelectedPage;
-	}
+
 }

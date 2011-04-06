@@ -1,5 +1,5 @@
 <%@ Page Language="C#" MasterPageFile="~/Default.master" AutoEventWireup="true" CodeFile="Events_Calendar.aspx.cs"
-	Inherits="Events_Calendar" Title="Untitled Page" %>
+	Inherits="Events_Calendar" %>
 
 <%@ Register TagPrefix="Club" Namespace="ClubSite" %>
 <%@ Register TagPrefix="Club" TagName="LoginBanner" Src="LoginBanner.ascx" %>
@@ -29,7 +29,7 @@
 				SelectCommand="SELECT [id], [starttime], [title], [description] FROM [Events]"></asp:SqlDataSource>--%>
 			<asp:ObjectDataSource ID="ObjectDataSource1" runat="server" 
 				OldValuesParameterFormatString="original_{0}" 
-				SelectMethod="GetDataEventsSearch" 
+				SelectMethod="GetDataEventsSupplierProductSearch" 
 				TypeName="BukiDataViewsTableAdapters.EventsTableAdapter" 
 				onselecting="ObjectDataSource1_Selecting">
 				<SelectParameters>
