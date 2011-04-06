@@ -9,7 +9,7 @@
     <siteMapNode url="member_redirect.aspx" title="Membership" description="Member registration"></siteMapNode>
     <siteMapNode url="contact.aspx" title="Contact" description="How to contact the club leaders" />
     <siteMapNode url="links.aspx" title="Links" description="Useful links" />
-    <siteMapNode url="Admin" title="Admin" description="Update Site">
+    <siteMapNode url="Admin/access/online_users.aspx" title="Admin" description="Update Site">
       <siteMapNode url="Admin/role_view.aspx" title="Manage Roles" description="Modify Roles" />
       <siteMapNode url="Admin/PageManagement.aspx" title="Manage Pages" description="" />
       <siteMapNode url="member_list.aspx" title="Members" description="Membership list and contact information" />

@@ -2,7 +2,7 @@
 {
     font-family: Tahoma, Verdana, Helvetica, Helvetica-Narrow, sans-serif;
     margin: 0px;
-    background: #FED36B url(images/background_main.jpg) repeat-y center top;
+    /*background: #FED36B url(images/background_main.jpg) repeat-y center top;*/
     font-size: 0.7em;
 }
 a:link
@@ -105,7 +105,7 @@ h1 a:link, h1 a:visited, h1 a:hover, h1 a:active
 /* Picture at the top of the site */
 #poster
 {
-    background: url(images/poster.jpg) no-repeat;
+    /*background: url(images/poster.jpg) no-repeat;*/
     margin-right: auto;
     margin-left: auto;
     width: 726px;
@@ -116,7 +116,8 @@ h1 a:link, h1 a:visited, h1 a:hover, h1 a:active
 /* Navigation strips */
 #navtop, #navbottom
 {
-    background: url(images/background_nav_main.gif) repeat-x;
+    /*background: url(images/background_nav_main.gif) repeat-x;*/
+    background-color:Gray;
     font-size: 11px;
     font-weight: bold;
     font-family: Verdana, Helvetica, Helvetica-Narrow, Tahoma, sans-serif;
@@ -196,6 +197,12 @@ h1 a:link, h1 a:visited, h1 a:hover, h1 a:active
     /*position: relative; */
 }
 
+#columnleftTD
+{    
+    width: 240px;
+    /*position: relative; */
+}
+
 #columnright
 {
     margin-left: 245px;
@@ -207,7 +214,7 @@ h1 a:link, h1 a:visited, h1 a:hover, h1 a:active
     border: 1px solid #DBDB79;
     padding: 15px;
     margin-bottom: 10px;
-    background: #FEFAAB url(images/background_columnleft.gif) repeat-y;
+    /*background: #FEFAAB url(images/background_columnleft.gif) repeat-y;*/
     vertical-align: top;
 }
 
@@ -216,7 +223,7 @@ h1 a:link, h1 a:visited, h1 a:hover, h1 a:active
     border: 1px solid #DBDB79;
     padding: 15px;
     margin-bottom: 10px;
-    background: #FEFFAB url(images/background_columnright.gif) repeat-y;
+    /*background: #FEFFAB url(images/background_columnright.gif) repeat-y;*/
     position: relative;
     width:446px;
 }
@@ -296,7 +303,7 @@ h1 a:link, h1 a:visited, h1 a:hover, h1 a:active
     width: 694px;
     margin-right: auto;
     margin-left: auto;
-    background: #FEFFAB url(images/background_fullwidth.jpg) repeat-y;
+    /*background: #FEFFAB url(images/background_fullwidth.jpg) repeat-y;*/
     margin-bottom: 10px;
     padding-left: 15px;
     padding-right: 15px;
@@ -581,6 +588,11 @@ fieldset
 .SimpleEntertainmentMenu ul.AspNet-Menu li
 {
     float:right;
+}
+
+.SimpleEntertainmentMenu .AspNet-Menu-WithChildren ul
+{
+    display:none;
 }
 
 /*

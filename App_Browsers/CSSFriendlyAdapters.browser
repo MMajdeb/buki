@@ -19,8 +19,8 @@
                adapterType="CSSFriendly.LoginAdapter" />
       <adapter controlType="System.Web.UI.WebControls.LoginStatus"
                adapterType="CSSFriendly.LoginStatusAdapter" />
-      <adapter controlType="System.Web.UI.WebControls.CreateUserWizard"
-               adapterType="CSSFriendly.CreateUserWizardAdapter" />
+      <!--<adapter controlType="System.Web.UI.WebControls.CreateUserWizard"
+               adapterType="CSSFriendly.CreateUserWizardAdapter" />-->
       <adapter controlType="System.Web.UI.WebControls.PasswordRecovery"
                adapterType="CSSFriendly.PasswordRecoveryAdapter" />
     </controlAdapters>
