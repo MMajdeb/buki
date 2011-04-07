@@ -19,7 +19,7 @@ public class DevCowSiteSettings
         m_SiteThemeID = 0;
     }
 
-    public DevCowSiteSettings(DataSet.SiteSettingsRow siteRow)
+    public DevCowSiteSettings(BukiDataSet.SiteSettingsRow siteRow)
     {
         m_SiteTheme = siteRow.Theme;
         m_SiteThemeID = siteRow.SiteThemeID;
@@ -45,8 +45,8 @@ public class DevCowSiteSettings
 
     public static DevCowSiteSettings GetSiteSettings()
     {
-        DataSetTableAdapters.SiteSettingsTableAdapter daSiteSettings = new DataSetTableAdapters.SiteSettingsTableAdapter();
-        DataSet.SiteSettingsDataTable sitesettings = daSiteSettings.GetSiteSettings();
+        BukiDataSetTableAdapters.SiteSettingsTableAdapter daSiteSettings = new BukiDataSetTableAdapters.SiteSettingsTableAdapter();
+        BukiDataSet.SiteSettingsDataTable sitesettings = daSiteSettings.GetSiteSettings();
         if (sitesettings.Count > 0)
         {
             return new DevCowSiteSettings(sitesettings[0]);
