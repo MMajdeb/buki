@@ -20,7 +20,7 @@ public partial class Member_Details : DevCowThemePage
 	protected void update_Click(object sender, System.EventArgs e)
 	{
 		MembershipUser user = Membership.GetUser();
-		DataSetTableAdapters.MemberInfoTableAdapter da = new DataSetTableAdapters.MemberInfoTableAdapter();
+        BukiDataSetTableAdapters.MemberInfoTableAdapter da = new BukiDataSetTableAdapters.MemberInfoTableAdapter();
 		if (Email.Text != user.Email)
 		{
 			user.Email = Email.Text;
@@ -40,11 +40,11 @@ public partial class Member_Details : DevCowThemePage
 	protected void InitPageData()
 	{
 		MembershipUser user = Membership.GetUser();
-		DataSetTableAdapters.MemberInfoTableAdapter da = new DataSetTableAdapters.MemberInfoTableAdapter();
-		DataSet.MemberInfoDataTable dt = da.GetMember((Guid)user.ProviderUserKey);
+        BukiDataSetTableAdapters.MemberInfoTableAdapter da = new BukiDataSetTableAdapters.MemberInfoTableAdapter();
+        BukiDataSet.MemberInfoDataTable dt = da.GetMember((Guid)user.ProviderUserKey);
 		if (dt.Rows.Count == 1)
 		{
-			DataSet.MemberInfoRow mr = dt[0];
+            BukiDataSet.MemberInfoRow mr = dt[0];
 			UserName.Text = user.UserName;
 			fname.Text = mr.firstname;
 			lname.Text = mr.lastname;
@@ -64,7 +64,7 @@ public partial class Member_Details : DevCowThemePage
 	protected void uploadimage_Click(object sender, System.EventArgs e)
 	{
 		byte[] thumbimage = ImageUtils.MakeThumb(newavatar.FileBytes, 69, 69);
-		DataSetTableAdapters.MemberInfo1TableAdapter m = new DataSetTableAdapters.MemberInfo1TableAdapter();
+        BukiDataSetTableAdapters.MemberInfo1TableAdapter m = new BukiDataSetTableAdapters.MemberInfo1TableAdapter();
 		Guid memberid = (Guid)(Membership.GetUser().ProviderUserKey);
 		Guid origid = memberid;
 		m.Update(memberid, thumbimage, origid);
@@ -72,7 +72,7 @@ public partial class Member_Details : DevCowThemePage
 	}
 	protected void clearimage_Click(object sender, System.EventArgs e)
 	{
-		DataSetTableAdapters.MemberInfo1TableAdapter m = new DataSetTableAdapters.MemberInfo1TableAdapter();
+        BukiDataSetTableAdapters.MemberInfo1TableAdapter m = new BukiDataSetTableAdapters.MemberInfo1TableAdapter();
 		Guid memberid = ((Guid)(Membership.GetUser().ProviderUserKey));
 		Guid origid = memberid;
 		m.Update(memberid, null, origid);

@@ -11,12 +11,12 @@ public class MemberDetails
     {
 
         List<MemberDetails> mlist = new List<MemberDetails>();
-        DataSetTableAdapters.MemberInfoTableAdapter da= new DataSetTableAdapters.MemberInfoTableAdapter();
-        DataSet.MemberInfoDataTable members = da.GetMemberList();
+        BukiDataSetTableAdapters.MemberInfoTableAdapter da = new BukiDataSetTableAdapters.MemberInfoTableAdapter();
+        BukiDataSet.MemberInfoDataTable members = da.GetMemberList();
 
         foreach (MembershipUser user in Membership.GetAllUsers())
         {
-            DataSet.MemberInfoRow member;
+            BukiDataSet.MemberInfoRow member;
             member = members.FindBymemberid((Guid)user.ProviderUserKey);
             if (member !=null)
             {
@@ -33,14 +33,14 @@ public class MemberDetails
     {
 
         List<MemberDetails> mlist = new List<MemberDetails>();
-        DataSetTableAdapters.MemberInfoTableAdapter da = new DataSetTableAdapters.MemberInfoTableAdapter();
-        DataSet.MemberInfoDataTable members = da.GetMemberList();
+        BukiDataSetTableAdapters.MemberInfoTableAdapter da = new BukiDataSetTableAdapters.MemberInfoTableAdapter();
+        BukiDataSet.MemberInfoDataTable members = da.GetMemberList();
 
         foreach (MembershipUser user in Membership.GetAllUsers())
         {
             if (Roles.IsUserInRole(user.UserName, rolename))
             {
-                DataSet.MemberInfoRow member;
+                BukiDataSet.MemberInfoRow member;
                 member = members.FindBymemberid((Guid)user.ProviderUserKey);
                 if (member != null)
                 {
@@ -54,7 +54,7 @@ public class MemberDetails
         return mlist;
     }
 
-    private MemberDetails(MembershipUser user, DataSet.MemberInfoRow member)
+    private MemberDetails(MembershipUser user, BukiDataSet.MemberInfoRow member)
     {
         m_UserName = user.UserName;
         m_Email = user.Email;

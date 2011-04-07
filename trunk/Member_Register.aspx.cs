@@ -5,33 +5,37 @@ using System.Web.UI.WebControls;
 
 public partial class Member_Register : DevCowThemePage
 {
-	protected void Page_Load(object sender, EventArgs e)
-	{
-        
-	}
-	protected void CreateUserFinished(object sender, System.Web.UI.WebControls.WizardNavigationEventArgs e)
-	{
-		try
-		{
-			DataSetTableAdapters.MemberInfoTableAdapter da = new DataSetTableAdapters.MemberInfoTableAdapter();
-			MembershipUser user = Membership.GetUser(CreateUserWizard1.UserName);
-			da.Insert(((Guid)(user.ProviderUserKey)), Addr.Text, Phone.Text, fname.Text, lname.Text);
+    protected void Page_Load(object sender, EventArgs e)
+    {
 
-            BukiDataSetTableAdapters.SuppliersTableAdapter sta = new BukiDataSetTableAdapters.SuppliersTableAdapter();
-            sta.Insert(CompanyName.Text,
-                ContactName.Text,
-                ContactTitle.Text,
-                Address.Text,
-                City.Text,
-                Region.Text,
-                PostalCode.Text,
-                Country.Text,
-                Phone1.Text,
-                Fax1.Text,
-                HomePage1.Text);
+    }
+    protected void CreateUserFinished(object sender, System.Web.UI.WebControls.WizardNavigationEventArgs e)
+    {
+        try
+        {
+            BukiDataSetTableAdapters.MemberInfoTableAdapter da = new BukiDataSetTableAdapters.MemberInfoTableAdapter();
+            MembershipUser user = Membership.GetUser(CreateUserWizard1.UserName);
+            da.Insert(((Guid)(user.ProviderUserKey)), Addr.Text, Phone.Text, fname.Text, lname.Text);
 
+            // insert into memeberinfo suppliers
+            CheckBox isSupplier = (CheckBox)CreateUserWizardStep1.ContentTemplateContainer.FindControl("Suplier");
+            if (isSupplier.Checked == true)
+            {
+                BukiDataSetTableAdapters.MemberInfoSuppliersTableAdapter mista = new BukiDataSetTableAdapters.MemberInfoSuppliersTableAdapter();
+                mista.Insert(((Guid)(user.ProviderUserKey)), CompanyName.Text,
+                    ContactName.Text,
+                    ContactTitle.Text,
+                    Address.Text,
+                    City.Text,
+                    Region.Text,
+                    PostalCode.Text,
+                    Country.Text,
+                    Phone1.Text,
+                    Fax1.Text,
+                    HomePage1.Text);
+            }
 
-			//user.IsApproved = true;
+            //user.IsApproved = true;
             if (Membership.GetAllUsers().Count == 1)
             {
                 // Validate "Administrator" role is avaliable
@@ -42,16 +46,16 @@ public partial class Member_Register : DevCowThemePage
                 // Add the user to the role
                 Roles.AddUserToRole(user.UserName, "Administrators");
             }
-			Membership.UpdateUser(user);
-			//FormsAuthentication.SetAuthCookie(CreateUserWizard1.UserName, false);
+            Membership.UpdateUser(user);
+            //FormsAuthentication.SetAuthCookie(CreateUserWizard1.UserName, false);
 
             // continue to complete
             //CreateUserWizard1.ActiveStepIndex = 4;
-		}
-		catch
-		{
-		}
-	}
+        }
+        catch
+        {
+        }
+    }
 
     protected void CreateUserWizard1_ActiveStepChanged(object sender, EventArgs e)
     {
@@ -71,7 +75,7 @@ public partial class Member_Register : DevCowThemePage
         if (isSupplier.Checked == false)
         {
             //CreateUserWizard1.WizardSteps.Remove(WizardStepSupplier);
-            WizardStep1.StepType = WizardStepType.Finish;            
+            WizardStep1.StepType = WizardStepType.Finish;
         }
     }
 }
