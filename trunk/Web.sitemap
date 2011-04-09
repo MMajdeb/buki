@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0">
   <siteMapNode url="/" title="top" description="top" roles="*">
-    <siteMapNode url="default.aspx" title="Home" description="Welcome page"></siteMapNode>
-    <siteMapNode url="suppliers.aspx" title="Suppliers" description="Suppliers work"></siteMapNode>
-    <siteMapNode url="events_calendar.aspx" title="Events" description="Calendar of events" />
-    <siteMapNode url="photoalbum_list.aspx" title="Photos" description="Photo album" />
-    <siteMapNode url="news_list.aspx" title="News" description="Recent News"></siteMapNode>
-    <siteMapNode url="member_redirect.aspx" title="Membership" description="Member registration"></siteMapNode>
-    <siteMapNode url="contact.aspx" title="Contact" description="How to contact the club leaders" />
-    <siteMapNode url="links.aspx" title="Links" description="Useful links" />
-    <siteMapNode url="Admin/access/online_users.aspx" title="Admin" description="Update Site">
+    <siteMapNode url="default.aspx" title="דף הבית" description="Welcome page"></siteMapNode>
+    <siteMapNode url="suppliers.aspx" title="ספקים" description="Suppliers work"></siteMapNode>
+    <siteMapNode url="events_calendar.aspx" title="אירועים" description="Calendar of events" />
+    <siteMapNode url="photoalbum_list.aspx" title="תמונות" description="Photo album" />
+    <siteMapNode url="news_list.aspx" title="חדשות" description="Recent News"></siteMapNode>
+    <siteMapNode url="member_redirect.aspx" title="חברות" description="Member registration"></siteMapNode>
+    <siteMapNode url="contact.aspx" title="צור קשר" description="How to contact the club leaders" />
+    <siteMapNode url="links.aspx" title="קישורים" description="Useful links" />
+    <siteMapNode url="Admin/access/online_users.aspx" title="ניהול" description="Update Site">
       <siteMapNode url="Admin/role_view.aspx" title="Manage Roles" description="Modify Roles" />
       <siteMapNode url="Admin/PageManagement.aspx" title="Manage Pages" description="" />
       <siteMapNode url="member_list.aspx" title="Members" description="Membership list and contact information" />

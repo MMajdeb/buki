@@ -21,7 +21,7 @@ public partial class Member_Register : DevCowThemePage
             CheckBox isSupplier = (CheckBox)CreateUserWizardStep1.ContentTemplateContainer.FindControl("Suplier");
             if (isSupplier.Checked == true)
             {
-                BukiDataSetTableAdapters.MemberInfoSuppliersTableAdapter mista = new BukiDataSetTableAdapters.MemberInfoSuppliersTableAdapter();
+                BukiDataSetTableAdapters.SupplierzTableAdapter mista = new BukiDataSetTableAdapters.SupplierzTableAdapter();
                 mista.Insert(((Guid)(user.ProviderUserKey)), CompanyName.Text,
                     ContactName.Text,
                     ContactTitle.Text,

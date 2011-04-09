@@ -161,7 +161,7 @@ h1 a:link, h1 a:visited, h1 a:hover, h1 a:active
 #navtop a:link, #navbottom a:link, #navtop a:visited, #navbottom a:visited
 {
     color: #FFFFFF;
-    text-decoration: none;
+    text-decoration: none;    
 }
 #navtop a:hover, #navbottom a:hover
 {
@@ -593,6 +593,11 @@ fieldset
 .SimpleEntertainmentMenu .AspNet-Menu-WithChildren ul
 {
     display:none;
+}
+
+.SimpleEntertainmentMenu .AspNet-Menu-Link, .SimpleEntertainmentMenu .AspNet-Menu-Selected
+{
+    white-space:nowrap !important;
 }
 
 /*
