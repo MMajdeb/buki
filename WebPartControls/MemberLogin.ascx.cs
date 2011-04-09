@@ -19,6 +19,8 @@ public partial class WebPartControls_MemberLogin : System.Web.UI.UserControl, Sy
     protected void logout_click(object sender, EventArgs e)
     {
         FormsAuthentication.SignOut();
+        Response.Redirect(Request.RawUrl);
+        //Server.Transfer(); 
 
     }
 

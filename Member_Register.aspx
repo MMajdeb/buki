@@ -87,10 +87,7 @@
 											<label for="Question">
 												Security Question:</label></td>
 										<td>
-											<asp:TextBox ID="Question" runat="server"></asp:TextBox>
-											<asp:RequiredFieldValidator ID="QuestionRequired" runat="server" ControlToValidate="Question"
-												ErrorMessage="Security question is required." ToolTip="Security question is required."
-												ValidationGroup="CreateUserWizard1">*</asp:RequiredFieldValidator>
+											<asp:TextBox ID="Question" runat="server"></asp:TextBox>											
 										</td>
 									</tr>
 									<tr>
@@ -98,10 +95,7 @@
 											<label for="Answer">
 												Security Answer:</label></td>
 										<td>
-											<asp:TextBox ID="Answer" runat="server"></asp:TextBox>
-											<asp:RequiredFieldValidator ID="AnswerRequired" runat="server" ControlToValidate="Answer"
-												ErrorMessage="Security answer is required." ToolTip="Security answer is required."
-												ValidationGroup="CreateUserWizard1">*</asp:RequiredFieldValidator>
+											<asp:TextBox ID="Answer" runat="server"></asp:TextBox>											
 										</td>
 									</tr>
 									<tr>
