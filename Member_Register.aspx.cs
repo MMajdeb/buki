@@ -12,13 +12,22 @@ public partial class Member_Register : DevCowThemePage
     protected void CreateUserFinished(object sender, System.Web.UI.WebControls.WizardNavigationEventArgs e)
     {
         try
-        {
+        {            
             BukiDataSetTableAdapters.MemberInfoTableAdapter da = new BukiDataSetTableAdapters.MemberInfoTableAdapter();
             MembershipUser user = Membership.GetUser(CreateUserWizard1.UserName);
-            da.Insert(((Guid)(user.ProviderUserKey)), Addr.Text, Phone.Text, fname.Text, lname.Text);
 
-            // insert into memeberinfo suppliers
+            //get the type of user
             CheckBox isSupplier = (CheckBox)CreateUserWizardStep1.ContentTemplateContainer.FindControl("Suplier");
+            byte userType = 0;
+
+            if (isSupplier.Checked)
+            {
+                userType = 1;
+            }
+
+            da.Insert(((Guid)(user.ProviderUserKey)), Addr.Text, Phone.Text, fname.Text, lname.Text, userType);
+
+            // insert into memeberinfo suppliers            
             if (isSupplier.Checked == true)
             {
                 BukiDataSetTableAdapters.SupplierzTableAdapter mista = new BukiDataSetTableAdapters.SupplierzTableAdapter();

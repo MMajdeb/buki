@@ -1,6 +1,8 @@
 <%@ Page Language="C#" MasterPageFile="~/Default.master" AutoEventWireup="true" CodeFile="Default.aspx.cs"
 	Inherits="_Default" Title="My User Group" %>
 
+<%@ Register Src="WebPartControls/MemberAppendingAprove.ascx" TagName="MemberAppendingAprove" TagPrefix="uc5" %>
+
 <%@ Register Src="WebPartControls/UpcomingEvents.ascx" TagName="UpcomingEvents" TagPrefix="uc4" %>
 
 <%@ Register Src="WebPartControls/RecentNews.ascx" TagName="RecentNews" TagPrefix="uc3" %>
@@ -19,6 +21,8 @@
                     <ZoneTemplate>
                         <uc2:MemberLogin ID="MemberLogin1" runat="server" >
                         </uc2:MemberLogin>
+						<uc5:MemberAppendingAprove ID="MemberAppendingAprove1" runat="server">
+                        </uc5:MemberAppendingAprove>
                         <uc1:Welcome ID="Welcome1" runat="server" />
                     </ZoneTemplate>
                 </asp:WebPartZone>
