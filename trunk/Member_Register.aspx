@@ -26,7 +26,7 @@
 		<div id="columnright">
 			<div class="rightblock">
 				<h2>
-					New user registration
+					רישום משתמש חדש
 				</h2>
 				<div class="dashedline">
 				</div>
@@ -38,54 +38,59 @@
 						<asp:CreateUserWizardStep ID="CreateUserWizardStep1" runat="server">
 							<ContentTemplate>
 								<p>
-									Sign Up for Your Membership to the club.
+									הירשם עבור חברות שלך לאתר
 								</p>
 								<table border="0">
 									<tr>
 										<td class="formlabel">
 											<label for="UserName">
-												User Name:</label></td>
+												שם משתמש:</label></td>
 										<td>
 											<asp:TextBox ID="UserName" runat="server"></asp:TextBox>
 											<asp:RequiredFieldValidator ID="UserNameRequired" runat="server" ControlToValidate="UserName"
-												ErrorMessage="User Name is required." ToolTip="User Name is required." ValidationGroup="CreateUserWizard1">*</asp:RequiredFieldValidator>
+												ErrorMessage="שם משתמש נדרש." ToolTip="שם משתמש נדרש." ValidationGroup="CreateUserWizard1">*</asp:RequiredFieldValidator>
+											<asp:RegularExpressionValidator ID="UserNameRegularExpression" runat="server" ErrorMessage="פורמט שם משתמש לא חוקי" ControlToValidate="UserName" ValidationExpression="^[a-zA-Z]+.*$" ValidationGroup="CreateUserWizard1"></asp:RegularExpressionValidator>												
 										</td>
 									</tr>
 									<tr>
 										<td class="formlabel">
 											<label for="Password">
-												Password:</label></td>
+												סיסמא:</label></td>
 										<td>
 											<asp:TextBox ID="Password" runat="server" TextMode="Password"></asp:TextBox>
 											<asp:RequiredFieldValidator ID="PasswordRequired" runat="server" ControlToValidate="Password"
-												ErrorMessage="Password is required." ToolTip="Password is required." ValidationGroup="CreateUserWizard1">*</asp:RequiredFieldValidator>
+												ErrorMessage="סיסמה נדרשת." ToolTip="סיסמה נדרשת." ValidationGroup="CreateUserWizard1">*</asp:RequiredFieldValidator>
 										</td>
 									</tr>
 									<tr>
 										<td class="formlabel">
 											<label for="ConfirmPassword">
-												Confirm Password:</label></td>
+												אימות סיסמא:</label></td>
 										<td>
 											<asp:TextBox ID="ConfirmPassword" runat="server" TextMode="Password"></asp:TextBox>
 											<asp:RequiredFieldValidator ID="ConfirmPasswordRequired" runat="server" ControlToValidate="ConfirmPassword"
-												ErrorMessage="Confirm Password is required." ToolTip="Confirm Password is required."
+												ErrorMessage="אשר סיסמה נדרשת." ToolTip="אשר סיסמה נדרשת."
 												ValidationGroup="CreateUserWizard1">*</asp:RequiredFieldValidator>
 										</td>
 									</tr>
 									<tr>
 										<td class="formlabel">
 											<label for="Email">
-												E-mail:</label></td>
+												דואר אלקטרוני:</label></td>
 										<td>
 											<asp:TextBox ID="Email" runat="server"></asp:TextBox>
 											<asp:RequiredFieldValidator ID="EmailRequired" runat="server" ControlToValidate="Email"
-												ErrorMessage="E-mail is required." ToolTip="E-mail is required." ValidationGroup="CreateUserWizard1">*</asp:RequiredFieldValidator>
+												ErrorMessage="דואר אלקטרוני הוא נדרש." ToolTip="דואר אלקטרוני הוא נדרש." ValidationGroup="CreateUserWizard1">*</asp:RequiredFieldValidator>
+											<asp:RegularExpressionValidator ID="EmailRegularExpression" runat="server" 
+												ErrorMessage="תבנית דואר אלקטרוני אינה חוקית" ControlToValidate="Email" 
+												ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" 
+												ValidationGroup="CreateUserWizard1"></asp:RegularExpressionValidator>
 										</td>
 									</tr>
 									<tr>
 										<td class="formlabel">
 											<label for="Question">
-												Security Question:</label></td>
+												שאלת אבטחה:</label></td>
 										<td>
 											<asp:TextBox ID="Question" runat="server"></asp:TextBox>											
 										</td>
@@ -93,7 +98,7 @@
 									<tr>
 										<td class="formlabel">
 											<label for="Answer">
-												Security Answer:</label></td>
+												תשובת אבטחה:</label></td>
 										<td>
 											<asp:TextBox ID="Answer" runat="server"></asp:TextBox>											
 										</td>
@@ -101,7 +106,7 @@
 									<tr>
 										<td class="formlabel">
 											<label for="Suplier">
-												register as supplier:</label></td>
+												הירשם כחברה/ספק:</label></td>
 										<td>
 											<asp:CheckBox ID="Suplier" runat="server" />											
 										</td>
@@ -109,7 +114,7 @@
 									<tr>
 										<td align="center" colspan="2">
 											<asp:CompareValidator ID="PasswordCompare" runat="server" ControlToCompare="Password"
-												ControlToValidate="ConfirmPassword" Display="Dynamic" ErrorMessage="The Password and Confirmation Password must match."
+												ControlToValidate="ConfirmPassword" Display="Dynamic" ErrorMessage="סיסמה ואישור סיסמה חייבים להתאים."
 												ValidationGroup="CreateUserWizard1"></asp:CompareValidator>
 										</td>
 									</tr>
@@ -121,7 +126,7 @@
 								</table>
 							</ContentTemplate>							
 							<CustomNavigationTemplate>								
-								<Club:RolloverButton ID="cu" runat="server" CommandName="MoveNext" ValidationGroup="CreateUserWizard1" Text="Create User" />								
+								<Club:RolloverButton ID="cu" runat="server" CommandName="MoveNext" ValidationGroup="CreateUserWizard1" Text="צור משתמש" />								
 							</CustomNavigationTemplate>
 						</asp:CreateUserWizardStep>
 						<asp:WizardStep ID="WizardStep1" runat="server" Title="Contact details">
@@ -129,31 +134,31 @@
 								<tr>
 									<td class="formlabel">
 										<label for="fname">
-											First Name:</label>
+											שם פרטי:</label>
 									</td>
 									<td class="formvalue">
 										<asp:TextBox runat="server" ID="fname" CssClass="txtfield" />
-										<asp:RequiredFieldValidator ControlToValidate="fname" ErrorMessage="First Name is required."
-											ID="RequiredFieldValidator1" runat="server" ToolTip="First Name is required."
+										<asp:RequiredFieldValidator ControlToValidate="fname" ErrorMessage="שם פרטי נדרש"
+											ID="RequiredFieldValidator1" runat="server" ToolTip="שם פרטי נדרש"
 											ValidationGroup="CreateUserForm">*</asp:RequiredFieldValidator>
 									</td>
 								</tr>
 								<tr>
 									<td class="formlabel">
 										<label for="lname">
-											Last Name:</label>
+											שם משפחה:</label>
 									</td>
 									<td class="formvalue">
 										<asp:TextBox runat="server" ID="lname" CssClass="txtfield" />
-										<asp:RequiredFieldValidator ControlToValidate="lname" ErrorMessage="Last Name is required."
-											ID="RequiredFieldValidator2" runat="server" ToolTip="Last Name is required."
+										<asp:RequiredFieldValidator ControlToValidate="lname" ErrorMessage="שם משפחה נדרש"
+											ID="RequiredFieldValidator2" runat="server" ToolTip="שם משפחה נדרש"
 											ValidationGroup="CreateUserForm">*</asp:RequiredFieldValidator>
 									</td>
 								</tr>
 								<tr>
 									<td class="formlabel">
 										<label for="Addr">
-											Address:</label>
+											כתובת:</label>
 									</td>
 									<td class="formvalue">
 										<asp:TextBox runat="server" ID="Addr" Rows="3" TextMode="MultiLine" CssClass="txtblock" />
@@ -162,7 +167,7 @@
 								<tr>
 									<td class="formlabel">
 										<label for="Phone">
-											Phone:</label>
+											טלפון:</label>
 									</td>
 									<td class="formvalue">
 										<asp:TextBox runat="server" ID="Phone" CssClass="txtfield" />
@@ -175,43 +180,43 @@
 								<tr>
 									<td class="formlabel">
 										<label for="CompanyName">
-											Company Name:</label>
+											שם חברה:</label>
 									</td>
 									<td class="formvalue">
 										<asp:TextBox runat="server" ID="CompanyName" CssClass="txtfield" />
-										<asp:RequiredFieldValidator ControlToValidate="CompanyName" ErrorMessage="Company Name is required."
-											ID="RequiredFieldValidator3" runat="server" ToolTip="Company Name is required."
+										<asp:RequiredFieldValidator ControlToValidate="CompanyName" ErrorMessage="שם החברה נדרש"
+											ID="RequiredFieldValidator3" runat="server" ToolTip="שם החברה נדרש"
 											ValidationGroup="CreateUserForm">*</asp:RequiredFieldValidator>
 									</td>
 								</tr>
 								<tr>
 									<td class="formlabel">
 										<label for="ContactName">
-											Contact Name:</label>
+											איש קשר:</label>
 									</td>
 									<td class="formvalue">
 										<asp:TextBox runat="server" ID="ContactName" CssClass="txtfield" />
-										<asp:RequiredFieldValidator ControlToValidate="ContactName" ErrorMessage="Contact Name is required."
-											ID="RequiredFieldValidator4" runat="server" ToolTip="Contact Name is required."
+										<asp:RequiredFieldValidator ControlToValidate="ContactName" ErrorMessage="שם איש קשר הוא נדרש."
+											ID="RequiredFieldValidator4" runat="server" ToolTip="שם איש קשר הוא נדרש."
 											ValidationGroup="CreateUserForm">*</asp:RequiredFieldValidator>
 									</td>
 								</tr>
 								<tr>
 									<td class="formlabel">
 										<label for="ContactTitle">
-											Contact Title:</label>
+											תיאור איש קשר:</label>
 									</td>
 									<td class="formvalue">
 										<asp:TextBox runat="server" ID="ContactTitle" CssClass="txtfield" />
-										<asp:RequiredFieldValidator ControlToValidate="ContactTitle" ErrorMessage="Contact Title is required."
-											ID="RequiredFieldValidator5" runat="server" ToolTip="Contact Title is required."
+										<asp:RequiredFieldValidator ControlToValidate="ContactTitle" ErrorMessage="תיאור איש קשר נדרש."
+											ID="RequiredFieldValidator5" runat="server" ToolTip="תיאור איש קשר נדרש."
 											ValidationGroup="CreateUserForm">*</asp:RequiredFieldValidator>
 									</td>
 								</tr>								
 								<tr>
 									<td class="formlabel">
 										<label for="Address">
-											Address</label>
+											כתובת</label>
 									</td>
 									<td class="formvalue">
 										<asp:TextBox runat="server" ID="Address" Rows="3" TextMode="MultiLine" CssClass="txtblock" />
@@ -220,64 +225,65 @@
 								<tr>
 									<td class="formlabel">
 										<label for="City">
-											City:</label>
+											עיר:</label>
 									</td>
 									<td class="formvalue">
 										<asp:TextBox runat="server" ID="City" CssClass="txtfield" />
-										<asp:RequiredFieldValidator ControlToValidate="City" ErrorMessage="City is required."
-											ID="RequiredFieldValidator6" runat="server" ToolTip="City is required."
+										<asp:RequiredFieldValidator ControlToValidate="City" ErrorMessage="עיר נדרש."
+											ID="RequiredFieldValidator6" runat="server" ToolTip="עיר נדרש."
 											ValidationGroup="CreateUserForm">*</asp:RequiredFieldValidator>
 									</td>
 								</tr>		
 								<tr>
 									<td class="formlabel">
 										<label for="Region">
-											Region:</label>
+											איזור:</label>
 									</td>
 									<td class="formvalue">
 										<asp:TextBox runat="server" ID="Region" CssClass="txtfield" />
-										<asp:RequiredFieldValidator ControlToValidate="Region" ErrorMessage="Region is required."
-											ID="RequiredFieldValidator7" runat="server" ToolTip="Region is required."
+										<asp:RequiredFieldValidator ControlToValidate="Region" ErrorMessage="איזור נדרש."
+											ID="RequiredFieldValidator7" runat="server" ToolTip="איזור נדרש."
 											ValidationGroup="CreateUserForm">*</asp:RequiredFieldValidator>
 									</td>
 								</tr>														
 								<tr>
 									<td class="formlabel">
 										<label for="PostalCode">
-											Postal Code:</label>
+											תיבת דואר:</label>
 									</td>
 									<td class="formvalue">
 										<asp:TextBox runat="server" ID="PostalCode" CssClass="txtfield" />
-										<asp:RequiredFieldValidator ControlToValidate="PostalCode" ErrorMessage="Postal Code is required."
-											ID="RequiredFieldValidator8" runat="server" ToolTip="Postal Code is required."
+										<asp:RequiredFieldValidator ControlToValidate="PostalCode" ErrorMessage="תיבת דואר נדרש."
+											ID="RequiredFieldValidator8" runat="server" ToolTip="תיבת דואר נדרש."
 											ValidationGroup="CreateUserForm">*</asp:RequiredFieldValidator>
 									</td>
 								</tr>														
 								<tr>
 									<td class="formlabel">
 										<label for="Country">
-											Country:</label>
+											ארץ:</label>
 									</td>
 									<td class="formvalue">
 										<asp:TextBox runat="server" ID="Country" CssClass="txtfield" />
-										<asp:RequiredFieldValidator ControlToValidate="Country" ErrorMessage="Country is required."
-											ID="RequiredFieldValidator9" runat="server" ToolTip="Country is required."
+										<asp:RequiredFieldValidator ControlToValidate="Country" ErrorMessage="מדינה נדרשת."
+											ID="RequiredFieldValidator9" runat="server" ToolTip="מדינה נדרשת."
 											ValidationGroup="CreateUserForm">*</asp:RequiredFieldValidator>
 									</td>
 								</tr>																						
 								<tr>
 									<td class="formlabel">
 										<label for="Phone1">
-											Phone</label>
+											טלפון</label>
 									</td>
 									<td class="formvalue">
 										<asp:TextBox runat="server" ID="Phone1" CssClass="txtfield" />
+										<asp:RegularExpressionValidator ID="Phone1RegularExpression" runat="server" ErrorMessage="פורמט טלפון הוא לא חוקי-דוגמה: 03-3333333,077-3333333" ValidationGroup="CreateUserForm" ControlToValidate="Phone1" ValidationExpression="(\d{2})|(\d{3})-(\d{7})"></asp:RegularExpressionValidator>
 									</td>
 								</tr>
 								<tr>
 									<td class="formlabel">
 										<label for="Fax1">
-											Fax</label>
+											פקס</label>
 									</td>
 									<td class="formvalue">
 										<asp:TextBox runat="server" ID="Fax1" CssClass="txtfield" />
@@ -286,7 +292,7 @@
 								<tr>
 									<td class="formlabel">
 										<label for="HomePage1">
-											Home Page</label>
+											דף בית</label>
 									</td>
 									<td class="formvalue">
 										<asp:TextBox runat="server" ID="HomePage1" CssClass="txtfield" />
@@ -297,24 +303,24 @@
 						<asp:CompleteWizardStep ID="CompleteWizardStep1" runat="server">
 							<ContentTemplate>
 								<p>
-									Your account has been successfully created.
+									החשבון שלך נוצר בהצלחה.
 								</p>
-								<Club:RolloverButton ID="ContinueButton" runat="server" CommandName="Continue" Text="Continue" />
+								<Club:RolloverButton ID="ContinueButton" runat="server" CommandName="Continue" Text="המשך" />
 							</ContentTemplate>
 						</asp:CompleteWizardStep>
 					</WizardSteps>
 					<StepNavigationTemplate>
 						<Club:RolloverButton ID="StepPreviousButton" runat="server" CausesValidation="False"
-							CommandName="MovePrevious" Text="Previous" />
-						<Club:RolloverButton ID="StepNextButton" runat="server" CommandName="MoveNext" Text="Next" CausesValidation="True" ValidationGroup="CreateUserForm" />						
+							CommandName="MovePrevious" Text="הקודם" />
+						<Club:RolloverButton ID="StepNextButton" runat="server" CommandName="MoveNext" Text="הבא" CausesValidation="True" ValidationGroup="CreateUserForm" />						
 					</StepNavigationTemplate>					
 					<FinishNavigationTemplate> 
 						<Club:RolloverButton ID="StepPreviousButton" runat="server" CausesValidation="False"
-							CommandName="MovePrevious" Text="Previous" />					
+							CommandName="MovePrevious" Text="הקודם" />					
 						<%--<Club:RolloverButton ID="StepFinishButton" runat="server" CausesValidation="False"
 							CommandName="MoveFinish" Text="Finish" />--%>
 						<Club:RolloverButton ID="StepCompleteButton" runat="server" CausesValidation="True" ValidationGroup="CreateUserForm"
-							CommandName="MoveComplete" Text="Finish" />							
+							CommandName="MoveComplete" Text="סיום" />							
 					</FinishNavigationTemplate>							
 				</asp:CreateUserWizard>
 			</div>

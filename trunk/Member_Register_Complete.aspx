@@ -26,7 +26,7 @@
 		<div id="columnright">
 			<div class="rightblock">
 				<h2>
-					New user registration
+					רישום משתמש חדש
 				</h2>
 				<div class="dashedline">
 				</div>
@@ -36,24 +36,24 @@
 						<asp:CompleteWizardStep ID="CompleteWizardStep1" runat="server">
 							<ContentTemplate>
 								<p>
-									Your account has been successfully created.
+									החשבון שלך נוצר בהצלחה.
 								</p>
-								<Club:RolloverButton ID="ContinueButton" runat="server" CommandName="MoveComplete" Text="Continue" />
+								<Club:RolloverButton ID="ContinueButton" runat="server" CommandName="MoveComplete" Text="המשך" />
 							</ContentTemplate>
 						</asp:CompleteWizardStep>
 					</WizardSteps>
 					<StepNavigationTemplate>
 						<Club:RolloverButton ID="StepPreviousButton" runat="server" CausesValidation="False"
-							CommandName="MovePrevious" Text="Previous" />
-						<Club:RolloverButton ID="StepNextButton" runat="server" CommandName="MoveNext" Text="Next" />						
+							CommandName="MovePrevious" Text="הקודם" />
+						<Club:RolloverButton ID="StepNextButton" runat="server" CommandName="MoveNext" Text="הבא" />						
 					</StepNavigationTemplate>					
 					<FinishNavigationTemplate> 
 						<Club:RolloverButton ID="StepPreviousButton" runat="server" CausesValidation="False"
-							CommandName="MovePrevious" Text="Previous" />					
+							CommandName="MovePrevious" Text="הקודם" />					
 						<%--<Club:RolloverButton ID="StepFinishButton" runat="server" CausesValidation="False"
 							CommandName="MoveFinish" Text="Finish" />--%>
 						<Club:RolloverButton ID="StepCompleteButton" runat="server" CausesValidation="False"
-							CommandName="MoveComplete" Text="Finish" />							
+							CommandName="MoveComplete" Text="סיום" />							
 					</FinishNavigationTemplate>							
 				</asp:CreateUserWizard>
 			</div>

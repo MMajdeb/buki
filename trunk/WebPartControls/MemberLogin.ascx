@@ -3,15 +3,15 @@
 <asp:LoginView ID="LoginControl" runat="server">
 					<AnonymousTemplate>
 						<h2>
-							Login</h2>
+							התחברות</h2>
 						<div class="dashedline">
 						</div>
 						<asp:Login ID="Login1" runat="server">
 							<LayoutTemplate>
 								<h3 class="none">
-									Log into My Club Site</h3>
+									התחברות לאתר</h3>
 								<fieldset>
-									<legend class="none">Log into My Club Site</legend>
+									<legend class="none">התחברות לאתר</legend>
 									<asp:Label runat="server" AssociatedControlID="UserName" ID="UserNameLabel">User name:</asp:Label>
 									<br />
 									<asp:TextBox runat="server" ID="UserName"></asp:TextBox>
