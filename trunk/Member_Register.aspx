@@ -181,7 +181,7 @@
 										<asp:TextBox runat="server" ID="CompanyName" CssClass="txtfield" />
 										<asp:RequiredFieldValidator ControlToValidate="CompanyName" ErrorMessage="Company Name is required."
 											ID="RequiredFieldValidator3" runat="server" ToolTip="Company Name is required."
-											ValidationGroup="CreateUserSupplier">*</asp:RequiredFieldValidator>
+											ValidationGroup="CreateUserForm">*</asp:RequiredFieldValidator>
 									</td>
 								</tr>
 								<tr>
@@ -193,7 +193,7 @@
 										<asp:TextBox runat="server" ID="ContactName" CssClass="txtfield" />
 										<asp:RequiredFieldValidator ControlToValidate="ContactName" ErrorMessage="Contact Name is required."
 											ID="RequiredFieldValidator4" runat="server" ToolTip="Contact Name is required."
-											ValidationGroup="CreateUserSupplier">*</asp:RequiredFieldValidator>
+											ValidationGroup="CreateUserForm">*</asp:RequiredFieldValidator>
 									</td>
 								</tr>
 								<tr>
@@ -205,7 +205,7 @@
 										<asp:TextBox runat="server" ID="ContactTitle" CssClass="txtfield" />
 										<asp:RequiredFieldValidator ControlToValidate="ContactTitle" ErrorMessage="Contact Title is required."
 											ID="RequiredFieldValidator5" runat="server" ToolTip="Contact Title is required."
-											ValidationGroup="CreateUserSupplier">*</asp:RequiredFieldValidator>
+											ValidationGroup="CreateUserForm">*</asp:RequiredFieldValidator>
 									</td>
 								</tr>								
 								<tr>
@@ -226,7 +226,7 @@
 										<asp:TextBox runat="server" ID="City" CssClass="txtfield" />
 										<asp:RequiredFieldValidator ControlToValidate="City" ErrorMessage="City is required."
 											ID="RequiredFieldValidator6" runat="server" ToolTip="City is required."
-											ValidationGroup="CreateUserSupplier">*</asp:RequiredFieldValidator>
+											ValidationGroup="CreateUserForm">*</asp:RequiredFieldValidator>
 									</td>
 								</tr>		
 								<tr>
@@ -238,7 +238,7 @@
 										<asp:TextBox runat="server" ID="Region" CssClass="txtfield" />
 										<asp:RequiredFieldValidator ControlToValidate="Region" ErrorMessage="Region is required."
 											ID="RequiredFieldValidator7" runat="server" ToolTip="Region is required."
-											ValidationGroup="CreateUserSupplier">*</asp:RequiredFieldValidator>
+											ValidationGroup="CreateUserForm">*</asp:RequiredFieldValidator>
 									</td>
 								</tr>														
 								<tr>
@@ -250,7 +250,7 @@
 										<asp:TextBox runat="server" ID="PostalCode" CssClass="txtfield" />
 										<asp:RequiredFieldValidator ControlToValidate="PostalCode" ErrorMessage="Postal Code is required."
 											ID="RequiredFieldValidator8" runat="server" ToolTip="Postal Code is required."
-											ValidationGroup="CreateUserSupplier">*</asp:RequiredFieldValidator>
+											ValidationGroup="CreateUserForm">*</asp:RequiredFieldValidator>
 									</td>
 								</tr>														
 								<tr>
@@ -262,7 +262,7 @@
 										<asp:TextBox runat="server" ID="Country" CssClass="txtfield" />
 										<asp:RequiredFieldValidator ControlToValidate="Country" ErrorMessage="Country is required."
 											ID="RequiredFieldValidator9" runat="server" ToolTip="Country is required."
-											ValidationGroup="CreateUserSupplier">*</asp:RequiredFieldValidator>
+											ValidationGroup="CreateUserForm">*</asp:RequiredFieldValidator>
 									</td>
 								</tr>																						
 								<tr>
@@ -306,14 +306,14 @@
 					<StepNavigationTemplate>
 						<Club:RolloverButton ID="StepPreviousButton" runat="server" CausesValidation="False"
 							CommandName="MovePrevious" Text="Previous" />
-						<Club:RolloverButton ID="StepNextButton" runat="server" CommandName="MoveNext" Text="Next" />						
+						<Club:RolloverButton ID="StepNextButton" runat="server" CommandName="MoveNext" Text="Next" CausesValidation="True" ValidationGroup="CreateUserForm" />						
 					</StepNavigationTemplate>					
 					<FinishNavigationTemplate> 
 						<Club:RolloverButton ID="StepPreviousButton" runat="server" CausesValidation="False"
 							CommandName="MovePrevious" Text="Previous" />					
 						<%--<Club:RolloverButton ID="StepFinishButton" runat="server" CausesValidation="False"
 							CommandName="MoveFinish" Text="Finish" />--%>
-						<Club:RolloverButton ID="StepCompleteButton" runat="server" CausesValidation="False"
+						<Club:RolloverButton ID="StepCompleteButton" runat="server" CausesValidation="True" ValidationGroup="CreateUserForm"
 							CommandName="MoveComplete" Text="Finish" />							
 					</FinishNavigationTemplate>							
 				</asp:CreateUserWizard>
