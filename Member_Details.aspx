@@ -10,7 +10,7 @@
 			<a name="content_start" id="content_start"></a>
 			<div class="leftblock">
 				<h2>
-					Membership Details for
+					חברות פרטים על
 					<asp:Label ID="UserName" runat="server" /></h2>
 				<p>
 					Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh
@@ -27,20 +27,19 @@
 		<div id="columnright">
 			<div class="rightblock">
 				<h2>
-					Modify Contact Details
+					שינוי פרטי קשר
 				</h2>
 				<div class="dashedline">
 				</div>
 				<p>
-					Use the form below to change your contact details. These values are used in the
-					members list, and for club leadership to contact you.
+					השתמש בטופס שלהלן כדי לשנות את פרטי הקשר שלך. ערכים אלה משמשים את רשימת חברים, ועל הנהלת האתר ליצור איתך קשר.
 				</p>
 				<asp:Label EnableViewState="False" ID="ContactStatus" runat="server" />
 				<table border="0">
 					<tr>
 						<td class="formlabel">
 							<label for="Email">
-								E-mail:</label></td>
+								דוא"ל:</label></td>
 						<td>
 							<asp:TextBox ID="Email" runat="server" CssClass="txtfield" />
 							<asp:RequiredFieldValidator ControlToValidate="Email" ErrorMessage="E-mail is required."
@@ -50,7 +49,7 @@
 					<tr>
 						<td class="formlabel">
 							<label for="fname">
-								First Name:</label>
+								שם פרטי:</label>
 						</td>
 						<td>
 							<asp:TextBox runat="server" ID="fname" CssClass="txtfield" />
@@ -62,7 +61,7 @@
 					<tr>
 						<td class="formlabel">
 							<label for="lname">
-								Last Name:</label>
+								שם משפחה:</label>
 						</td>
 						<td>
 							<asp:TextBox runat="server" ID="lname" CssClass="txtfield" />
@@ -74,7 +73,7 @@
 					<tr>
 						<td class="formlabel">
 							<label for="Addr">
-								Address:</label>
+								כתובת:</label>
 						</td>
 						<td>
 							<asp:TextBox runat="server" ID="Addr" Rows="3" TextMode="MultiLine" CssClass="txtblock" />
@@ -83,7 +82,7 @@
 					<tr>
 						<td class="formlabel">
 							<label for="Phone">
-								Phone:</label>
+								טלפון:</label>
 						</td>
 						<td>
 							<asp:TextBox runat="server" ID="Phone" CssClass="txtfield" />
@@ -91,18 +90,158 @@
 					</tr>
 				</table>
 				<p>
-					<Club:RolloverButton ID="update" runat="server" Text="Update Registration" OnClick="update_Click" />
+					<Club:RolloverButton ID="update" runat="server" Text="עדכן רישום" OnClick="update_Click" />
 				</p>
 			</div>
+			<asp:PlaceHolder runat="server" ID="phSuppliers" Visible="false">
 			<div class="rightblock">
 				<h2>
-					Avatar Image
+					שינוי פרטי ספק
 				</h2>
 				<div class="dashedline">
 				</div>
 				<p>
-					You can upload an avatar image that will be shown in the members list. Your current
-					image is:
+					השתמש בטופס שלהלן כדי לשנות את פרטי הקשר שלך. ערכים אלה משמשים את רשימת חברים, ועל הנהלת האתר ליצור איתך קשר.
+				</p>
+				<asp:Label EnableViewState="False" ID="Label1" runat="server" />
+				<table>
+					<tr>
+						<td class="formlabel">
+							<label for="CompanyName">
+								שם חברה:</label>
+						</td>
+						<td class="formvalue">
+							<asp:TextBox runat="server" ID="CompanyName" CssClass="txtfield" />
+							<asp:RequiredFieldValidator ControlToValidate="CompanyName" ErrorMessage="שם החברה נדרש"
+								ID="RequiredFieldValidator3" runat="server" ToolTip="שם החברה נדרש"
+								ValidationGroup="CreateUserForm">*</asp:RequiredFieldValidator>
+						</td>
+					</tr>
+					<tr>
+						<td class="formlabel">
+							<label for="ContactName">
+								איש קשר:</label>
+						</td>
+						<td class="formvalue">
+							<asp:TextBox runat="server" ID="ContactName" CssClass="txtfield" />
+							<asp:RequiredFieldValidator ControlToValidate="ContactName" ErrorMessage="שם איש קשר הוא נדרש."
+								ID="RequiredFieldValidator4" runat="server" ToolTip="שם איש קשר הוא נדרש."
+								ValidationGroup="CreateUserForm">*</asp:RequiredFieldValidator>
+						</td>
+					</tr>
+					<tr>
+						<td class="formlabel">
+							<label for="ContactTitle">
+								תיאור איש קשר:</label>
+						</td>
+						<td class="formvalue">
+							<asp:TextBox runat="server" ID="ContactTitle" CssClass="txtfield" />
+							<asp:RequiredFieldValidator ControlToValidate="ContactTitle" ErrorMessage="תיאור איש קשר נדרש."
+								ID="RequiredFieldValidator5" runat="server" ToolTip="תיאור איש קשר נדרש."
+								ValidationGroup="CreateUserForm">*</asp:RequiredFieldValidator>
+						</td>
+					</tr>								
+					<tr>
+						<td class="formlabel">
+							<label for="Address">
+								כתובת</label>
+						</td>
+						<td class="formvalue">
+							<asp:TextBox runat="server" ID="Address" Rows="3" TextMode="MultiLine" CssClass="txtblock" />
+						</td>
+					</tr>
+					<tr>
+						<td class="formlabel">
+							<label for="City">
+								עיר:</label>
+						</td>
+						<td class="formvalue">
+							<asp:TextBox runat="server" ID="City" CssClass="txtfield" />
+							<asp:RequiredFieldValidator ControlToValidate="City" ErrorMessage="עיר נדרש."
+								ID="RequiredFieldValidator6" runat="server" ToolTip="עיר נדרש."
+								ValidationGroup="CreateUserForm">*</asp:RequiredFieldValidator>
+						</td>
+					</tr>		
+					<tr>
+						<td class="formlabel">
+							<label for="Region">
+								איזור:</label>
+						</td>
+						<td class="formvalue">
+							<asp:TextBox runat="server" ID="Region" CssClass="txtfield" />
+							<asp:RequiredFieldValidator ControlToValidate="Region" ErrorMessage="איזור נדרש."
+								ID="RequiredFieldValidator7" runat="server" ToolTip="איזור נדרש."
+								ValidationGroup="CreateUserForm">*</asp:RequiredFieldValidator>
+						</td>
+					</tr>														
+					<tr>
+						<td class="formlabel">
+							<label for="PostalCode">
+								תיבת דואר:</label>
+						</td>
+						<td class="formvalue">
+							<asp:TextBox runat="server" ID="PostalCode" CssClass="txtfield" />
+							<asp:RequiredFieldValidator ControlToValidate="PostalCode" ErrorMessage="תיבת דואר נדרש."
+								ID="RequiredFieldValidator8" runat="server" ToolTip="תיבת דואר נדרש."
+								ValidationGroup="CreateUserForm">*</asp:RequiredFieldValidator>
+						</td>
+					</tr>														
+					<tr>
+						<td class="formlabel">
+							<label for="Country">
+								ארץ:</label>
+						</td>
+						<td class="formvalue">
+							<asp:TextBox runat="server" ID="Country" CssClass="txtfield" />
+							<asp:RequiredFieldValidator ControlToValidate="Country" ErrorMessage="מדינה נדרשת."
+								ID="RequiredFieldValidator9" runat="server" ToolTip="מדינה נדרשת."
+								ValidationGroup="CreateUserForm">*</asp:RequiredFieldValidator>
+						</td>
+					</tr>																						
+					<tr>
+						<td class="formlabel">
+							<label for="Phone1">
+								טלפון</label>
+						</td>
+						<td class="formvalue">
+							<asp:TextBox runat="server" ID="Phone1" CssClass="txtfield" />
+							<asp:RegularExpressionValidator ID="Phone1RegularExpression" runat="server" ErrorMessage="פורמט טלפון הוא לא חוקי-דוגמה: 03-3333333,077-3333333" ValidationGroup="CreateUserForm" ControlToValidate="Phone1" ValidationExpression="^(\d{2}|\d{3})-\d{7}$"></asp:RegularExpressionValidator>
+						</td>
+					</tr>
+					<tr>
+						<td class="formlabel">
+							<label for="Fax1">
+								פקס</label>
+						</td>
+						<td class="formvalue">
+							<asp:TextBox runat="server" ID="Fax1" CssClass="txtfield" />
+						</td>
+					</tr>								
+					<tr>
+						<td class="formlabel">
+							<label for="HomePage1">
+								דף בית</label>
+						</td>
+						<td class="formvalue">
+							<asp:TextBox runat="server" ID="HomePage1" CssClass="txtfield" />
+						</td>
+					</tr>								
+				</table>
+				<p>
+					<Club:RolloverButton ID="updateSupplier" runat="server" Text="עדכן רישום ספק" OnClick="updateSupplier_Click" />
+					&nbsp;&nbsp;&nbsp;
+					<Club:RolloverButton ID="UpdateDupplierInfr" runat="server" Text="ערוך פריסת עסק ועובדים" OnClientClick="window.location='Member_Supplier_Infrastructure.aspx'; return false;"  />
+				</p>
+			</div>			
+			</asp:PlaceHolder>
+			<div class="rightblock">
+				<h2>
+					תמונה אישית
+				</h2>
+				<div class="dashedline">
+				</div>
+				<p>
+					אתה יכול להעלות תמונה שתוצג ברשימת החברים. התמונה הנוכחית היא:
 				</p>
 				<asp:Image runat="server" ID="avatarimage" CssClass="photo" />
 				<p>

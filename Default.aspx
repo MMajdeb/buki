@@ -1,5 +1,5 @@
 <%@ Page Language="C#" MasterPageFile="~/Default.master" AutoEventWireup="true" CodeFile="Default.aspx.cs"
-	Inherits="_Default" Title="My User Group" %>
+	Inherits="_Default" Title="בוקי! - ניהול הזמנות אונליין" %>
 
 <%@ Register Src="WebPartControls/MemberAppendingAprove.ascx" TagName="MemberAppendingAprove" TagPrefix="uc5" %>
 

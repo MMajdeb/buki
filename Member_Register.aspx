@@ -277,7 +277,7 @@
 									</td>
 									<td class="formvalue">
 										<asp:TextBox runat="server" ID="Phone1" CssClass="txtfield" />
-										<asp:RegularExpressionValidator ID="Phone1RegularExpression" runat="server" ErrorMessage="פורמט טלפון הוא לא חוקי-דוגמה: 03-3333333,077-3333333" ValidationGroup="CreateUserForm" ControlToValidate="Phone1" ValidationExpression="(\d{2})|(\d{3})-(\d{7})"></asp:RegularExpressionValidator>
+										<asp:RegularExpressionValidator ID="Phone1RegularExpression" runat="server" ErrorMessage="פורמט טלפון הוא לא חוקי-דוגמה: 03-3333333,077-3333333" ValidationGroup="CreateUserForm" ControlToValidate="Phone1" ValidationExpression="^(\d{2}|\d{3})-\d{7}$"></asp:RegularExpressionValidator>
 									</td>
 								</tr>
 								<tr>

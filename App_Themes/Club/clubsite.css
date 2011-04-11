@@ -771,4 +771,10 @@ fieldset
     width:300px;
 }
 
+/* extra */
+.tblDynmic td.tableCell
+{
+padding: 5px;
+}
+
 
