@@ -17,6 +17,7 @@ public partial class Member_Details : DevCowThemePage
 			InitPageData();
 		}
     }
+
 	protected void update_Click(object sender, System.EventArgs e)
 	{
 		MembershipUser user = Membership.GetUser();
@@ -27,7 +28,7 @@ public partial class Member_Details : DevCowThemePage
 		}
 		try
 		{
-			da.Update((Guid)user.ProviderUserKey, Addr.Text, Phone.Text, fname.Text, lname.Text, (Guid)user.ProviderUserKey);
+			da.Update((Guid)user.ProviderUserKey, Addr.Text, Phone.Text, fname.Text, lname.Text, 0,(Guid)user.ProviderUserKey);
 			ContactStatus.Text = "Details have been updated sucessfully.";
 			ContactStatus.ControlStyle.ForeColor = Color.Black;
 		}
@@ -37,6 +38,23 @@ public partial class Member_Details : DevCowThemePage
 			ContactStatus.ControlStyle.ForeColor = Color.Red;
 		}
 	}
+
+    protected void updateSupplier_Click(object sender, System.EventArgs e)
+    {
+        MembershipUser user = Membership.GetUser();
+        BukiDataSetTableAdapters.SupplierzTableAdapter da = new BukiDataSetTableAdapters.SupplierzTableAdapter();
+        try
+        {
+            da.Update((Guid)user.ProviderUserKey, CompanyName.Text, ContactTitle.Text, ContactName.Text, Address.Text,City.Text, Region.Text, PostalCode.Text, Country.Text, Phone1.Text, Fax1.Text, HomePage1.Text, (Guid)user.ProviderUserKey);
+            ContactStatus.Text = "Details have been updated sucessfully.";
+            ContactStatus.ControlStyle.ForeColor = Color.Black;
+        }
+        catch (Exception ex)
+        {
+            ContactStatus.Text = "Error updating contact details: " + ex.Message;
+            ContactStatus.ControlStyle.ForeColor = Color.Red;
+        }
+    }
 	protected void InitPageData()
 	{
 		MembershipUser user = Membership.GetUser();
@@ -59,6 +77,32 @@ public partial class Member_Details : DevCowThemePage
 			{
 				avatarimage.ImageUrl = "images/nophoto.gif";
 			}
+
+            if (mr.memberType == 1)
+            {
+                // show suppliers panel
+                phSuppliers.Visible = true;
+
+                //update part 3
+                BukiDataSetTableAdapters.SupplierzTableAdapter sda = new BukiDataSetTableAdapters.SupplierzTableAdapter();
+                BukiDataSet.SupplierzRow sdr;
+
+                // get memeber
+                sdr = sda.GetDataByMemberID((Guid)(user.ProviderUserKey))[0];
+
+                CompanyName.Text = sdr.CompanyName;
+                ContactName.Text = sdr.ContactName;
+                ContactTitle.Text = sdr.ContactTitle;
+                Address.Text = sdr.Address;
+                City.Text = sdr.City;
+                Region.Text = sdr.Region;
+                PostalCode.Text = sdr.PostalCode;
+                Country.Text = sdr.Country;
+                Phone1.Text = sdr.Phone;
+                Fax1.Text = sdr.Fax;
+                HomePage1.Text = sdr.HomePage;                
+
+            }
 		}
 	}
 	protected void uploadimage_Click(object sender, System.EventArgs e)

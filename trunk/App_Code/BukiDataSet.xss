@@ -13,7 +13,7 @@
     <Shape ID="DesignTable:MemberInfo" ZOrder="1" X="872" Y="460" Height="224" Width="212" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="160" />
     <Shape ID="DesignTable:SiteSettings" ZOrder="4" X="879" Y="289" Height="90" Width="158" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="0" />
     <Shape ID="DesignTable:MemberInfo1" ZOrder="3" X="867" Y="129" Height="90" Width="158" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="0" />
-    <Shape ID="DesignTable:Supplierz" ZOrder="2" X="494" Y="350" Height="275" Width="194" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="228" />
+    <Shape ID="DesignTable:Supplierz" ZOrder="2" X="494" Y="350" Height="292" Width="273" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="228" />
   </Shapes>
   <Connectors>
     <Connector ID="DesignRelation:FK_Orders_Events" ZOrder="9" LineWidth="11">
