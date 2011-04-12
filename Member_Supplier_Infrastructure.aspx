@@ -2,6 +2,8 @@
 	Inherits="Member_Supplier_Infrastructure" Title="Modify Membership Details" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
+<%@ Register Assembly="Anthem" Namespace="Anthem" TagPrefix="anthem" %>
+<%@ Register Assembly="AnthemExtensions" Namespace="AnthemExtensions" TagPrefix="anthemext" %>
 <%@ Register TagPrefix="Club" Namespace="ClubSite" %>
 <asp:Content ID="Header1" ContentPlaceHolderID="HeaderPlaceHolder1" runat="Server">
 
@@ -22,7 +24,7 @@
 				trow.appendTo(tbody);
 			}
 		}
-
+		
 		$(document).ready(function() {
 			//createDynamicTable($("#tbl"), 10, 5);
 			$("#tbl td.tableCell")
@@ -30,12 +32,12 @@
             	alert("Clicked Col=" + $(this).data("col"));
             });
 
-			$('.target').bind('click',function() {
+			$('.target').one('click',function() {
 				$('#trTable').fadeIn(200);
-				createDynamicTable($("#tbl"), $("#ctl00_ContentPlaceHolder1_tbRows").val(), $("#ctl00_ContentPlaceHolder1_tbCols").val());
+				//createDynamicTable($("#tbl"), $("#ctl00_ContentPlaceHolder1_tbRows").val(), $("#ctl00_ContentPlaceHolder1_tbCols").val());
 			});
 
-			$('#ctl00_ContentPlaceHolder1_ddlCategory').change(function() {
+			$('#ctl00_ContentPlaceHolder1_ddlCategory').one('change',function() {
 				$('#trRows,#trCols').fadeIn(200);
 			});
 
@@ -45,7 +47,11 @@
 </asp:Content>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
 	<ajaxToolkit:ToolkitScriptManager runat="Server" EnablePartialRendering="true" ID="ScriptManager1"
-		CombineScripts="true" />
+		CombineScripts="true">
+	<Scripts>
+		<asp:ScriptReference Path="~/Scripts/AnthemGlobalProgress.js" />
+	</Scripts>	
+	</ajaxToolkit:ToolkitScriptManager>
 	<div id="body">
 		<!--Start of left column-->
 		<div id="columnleft">
@@ -115,10 +121,15 @@
 								טבלה:</label>
 						</td>
 						<td class="formvalue">
-							<table id="tbl" class="tblDynmic" border="1">
+							<anthem:LinkButton ID="btnUpdateTblMain" runat="server" Text="עדכן טבלת נתונים" 
+								onclick="btnUpdateTblMain_Click"></anthem:LinkButton>
+							<%--change tbl to datalist	--%>
+							<%--<table id="tbl" class="tblDynmic" border="1">
 								<tbody>
 								</tbody>
-							</table>
+							</table>--%>
+							<anthem:Table style="border:solid 1px gray" border="1" runat="server" ID="tblMain">
+							</anthem:Table>
 						</td>
 					</tr>
 				</table>
