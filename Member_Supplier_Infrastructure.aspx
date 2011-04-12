@@ -6,8 +6,8 @@
 <asp:Content ID="Header1" ContentPlaceHolderID="HeaderPlaceHolder1" runat="Server">
 
 	<script type="text/javascript">
-		function createDynamicTable(tbody, rows, cols) {
-			if (tbody == null || tbody.length < 1) return;
+		function createDynamicTable(tbody, rows, cols) {	
+			if (tbody == null || tbody.length < 1) return;			
 			tbody.find("tr").remove();
 			for (var r = 1; r <= rows; r++) {
 				var trow = $("<tr>");
@@ -30,7 +30,7 @@
             	alert("Clicked Col=" + $(this).data("col"));
             });
 
-			$('.target').change(function() {
+			$('.target').bind('click',function() {
 				$('#trTable').fadeIn(200);
 				createDynamicTable($("#tbl"), $("#ctl00_ContentPlaceHolder1_tbRows").val(), $("#ctl00_ContentPlaceHolder1_tbCols").val());
 			});
@@ -83,10 +83,10 @@
 								מספר עמודות:</label>
 						</td>
 						<td class="formvalue">
-							<asp:TextBox ID="tbCols" runat="server" class="target" Text="0" Width="60" Style="text-align: center" />
-							<asp:ImageButton ID="img1" runat="server" ImageUrl="~/images/updown/down.gif" AlternateText="Down"
+							<asp:TextBox ID="tbCols" runat="server" Text="0" Width="60" Style="text-align: center" />
+							<asp:ImageButton ID="img1" runat="server" class="target" ImageUrl="~/images/updown/down.gif" AlternateText="Down"
 								Width="12" Height="7" />
-							<asp:ImageButton ID="img2" runat="server" ImageUrl="~/images/updown/up.gif" AlternateText="Up"
+							<asp:ImageButton ID="img2" runat="server" class="target" ImageUrl="~/images/updown/up.gif" AlternateText="Up"
 								Width="12" Height="7" />
 							<ajaxToolkit:NumericUpDownExtender ID="NumericUpDownExtender1" runat="server" TargetControlID="tbCols"
 								Width="80" TargetButtonDownID="img1" TargetButtonUpID="img2" RefValues="" ServiceDownMethod=""
@@ -99,10 +99,10 @@
 								מספר שורות:</label>
 						</td>
 						<td class="formvalue">
-							<asp:TextBox ID="tbRows" runat="server" class="target" Text="0" Width="60" Style="text-align: center" />
-							<asp:ImageButton ID="img3" runat="server" ImageUrl="~/images/updown/down.gif" AlternateText="Down"
+							<asp:TextBox ID="tbRows" runat="server" Text="0" Width="60" Style="text-align: center" />
+							<asp:ImageButton ID="img3" runat="server" class="target" ImageUrl="~/images/updown/down.gif" AlternateText="Down"
 								Width="12" Height="7" />
-							<asp:ImageButton ID="img4" runat="server" ImageUrl="~/images/updown/up.gif" AlternateText="Up"
+							<asp:ImageButton ID="img4" runat="server" class="target" ImageUrl="~/images/updown/up.gif" AlternateText="Up"
 								Width="12" Height="7" />
 							<ajaxToolkit:NumericUpDownExtender ID="NumericUpDownExtender2" runat="server" TargetControlID="tbRows"
 								Width="80" TargetButtonDownID="img3" TargetButtonUpID="img4" RefValues="" ServiceDownMethod=""
