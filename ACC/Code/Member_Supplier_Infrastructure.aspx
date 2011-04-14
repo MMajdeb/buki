@@ -7,11 +7,6 @@
 <%@ Register TagPrefix="Club" Namespace="ClubSite" %>
 <asp:Content ID="Header1" ContentPlaceHolderID="HeaderPlaceHolder1" runat="Server">
 
-<style type="text/css">
-	.textNormal{}
-	.textAccept{ background-color:Lime; border-style:none;}
-</style>
-
 <script type="text/javascript">
 	function createDynamicTable(tbody, rows, cols) {
 		if (tbody == null || tbody.length < 1) return;
@@ -25,14 +20,11 @@
 			for (var r = 0; r < rows; r++) {
 				var lRow = tbody.find("tr:eq(" + r + ")");
 				for (var c = lCols; c < cols; c++) {
-					var cellText = "Cell " + r + "." + c;
-					var btnClone = $('#cellDynamicTemplate .buttonAddContainer').clone();
-					
+					var cellText = "Cell " + r + "." + c
 					$("<td>")
 					.addClass("tableCell")
 					.text(cellText)
 					.data("col", c)
-					.append(btnClone)					
 					.appendTo(lRow);
 				}
 			}
@@ -52,14 +44,11 @@
 			for (var r = lRows; r < rows; r++) {
 				var trow = $("<tr>");
 				for (var c = 1; c <= cols; c++) {
-					var cellText = "Cell " + r + "." + c;
-					var btnClone = $('#cellDynamicTemplate .buttonAddContainer').clone();
-					
+					var cellText = "Cell " + r + "." + c
 					$("<td>")
 					.addClass("tableCell")
 					.text(cellText)
 					.data("col", c)
-					.append(btnClone)
 					.appendTo(trow);
 				}
 				trow.appendTo(tbody);
@@ -92,38 +81,6 @@
 		$('#ctl00_ContentPlaceHolder1_ddlCategory').one('change', function() {
 			$('#trRows,#trCols').fadeIn(200);
 		});
-		
-		//functions to control events when adding and removing
-		$("#tbl").delegate('.buttonAdd','click', function () {				
-				var template = $('#cellDynamicTemplate');
-				var containerAdd = $('.containerAdd:eq(0)', template);
-                var containerAddClone = containerAdd.clone();                                
-                //phonesDiv.append('<div style="clear:both;" />')                
-                $(this).parent().parent().append(containerAddClone);             
-                containerAddClone.show();			
-		});
-		        
-        $("#tbl").delegate('.removeAdd','click', function (e) {
-			$(this).parents('.containerAdd').remove();
-        });
-        
-        $("#tbl").delegate('.acceptAdd','click', function (e) {
-			$(this).parents('.containerAdd').find('.textNormal').addClass('textAccept');
-			$(this).hide();
-        });   
-        
-        $('#Button1').click(function (e) {
-			//build json
-			var $table = $('#tbl');
-			$('tr', $table).each(function(i, item){			
-				//for each tr
-				$('td',$(this)).each(function(i,item){				
-				});
-			});
-			//aspnetForms
-			var  o = $('#aspnetForm').serializeArray();
-			var o = null;
-        });        
 
 	});
 </script>
@@ -136,24 +93,6 @@
 			<asp:ScriptReference Path="~/Scripts/AnthemGlobalProgress.js" />
 		</Scripts>
 	</ajaxToolkit:ToolkitScriptManager>
-	
-	<input id="Button1" type="button" value="button" />
-	
-	<div id="cellDynamicTemplate" style="display:none;">
-		<div class="buttonAddContainer">
-			<input type="button" class="buttonAdd" value="+" />
-		</div>
-		<div class="containerAdd" style="display:none;">
-			<div class="textAdd">
-				<input type="text" class="textNormal" maxlength="15" value="עמדה" />
-			</div>
-			<div>
-				<input type="button" class="acceptAdd" value="V" />
-				<input type="button" class="removeAdd" value="X" />
-			</div>
-		</div>
-	</div>	
-	
 	<div id="body">
 		<!--Start of left column-->
 <%--		<div id="columnleft">
@@ -163,14 +102,13 @@
 		</div>--%>
 		<!--end columnleft-->
 		<!--Start of right column-->
-		<div id="fullwidth">
-			<div class="fullwidth">
+		<div id="columnright">
+			<div class="rightblock">
 				<h2>
 					עריכת פריסת עסק
 				</h2>
 				<div class="dashedline">
-				</div>			
-				
+				</div>
 				<table border="0">
 					<tr>
 						<td class="formlabel">
@@ -227,7 +165,30 @@
 							<table id="tbl" class="tblDynmic" border="1">
 								<tbody>
 								</tbody>
-							</table>							
+							</table>
+							<asp:Button runat="server" ID="btn1" />
+							<asp:UpdatePanel ID="UpdatePanel1" runat="server">
+								<ContentTemplate>
+									<asp:GridView runat="server" ID="gv1" BorderStyle="None" BorderWidth="1px" ondatabinding="gv1_DataBinding" 
+										onrowdatabound="gv1_RowDataBound" BackColor="White" BorderColor="#3366CC" CellPadding="4">
+										<RowStyle BackColor="White" ForeColor="#003399" />
+									<Columns>
+										<asp:TemplateField>
+											<ItemTemplate>
+												<asp:Panel runat="server" ID="p1"></asp:Panel>
+											</ItemTemplate>
+										</asp:TemplateField>
+									</Columns>										
+										<FooterStyle BackColor="#99CCCC" ForeColor="#003399" />
+										<PagerStyle BackColor="#99CCCC" ForeColor="#003399" HorizontalAlign="Left" />
+										<SelectedRowStyle BackColor="#009999" Font-Bold="True" ForeColor="#CCFF99" />
+										<HeaderStyle BackColor="#003399" Font-Bold="True" ForeColor="#CCCCFF" />
+									</asp:GridView>
+								</ContentTemplate>
+								<Triggers>
+									<asp:AsyncPostBackTrigger ControlID="btn1" EventName="Click" />
+								</Triggers>
+							</asp:UpdatePanel>
 						</td>
 					</tr>
 				</table>
