@@ -12,7 +12,8 @@ public partial class MasterPage1 : System.Web.UI.MasterPage
     
     protected void Page_Init(object sender, EventArgs e)
     {
-        
+        this.ContentPlaceHolder1.ID = "C";
+        this.HeaderPlaceHolder1.ID = "H";
 
         if (HttpContext.Current.User.Identity.IsAuthenticated)
         {
