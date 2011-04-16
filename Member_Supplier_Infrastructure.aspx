@@ -10,134 +10,23 @@
 <style type="text/css">
 	.textNormal{}
 	.textAccept{ background-color:Lime; border-style:none;}
+	.tableCell{width:125px; min-width:125px;}
+	.tblScroll{overflow-x:scroll; width:600px;}
 </style>
-
+<script src="Scripts/Pages/Member_Supplier_Infrastructure.js" type="text/javascript"></script>
 <script type="text/javascript">
-	function createDynamicTable(tbody, rows, cols) {
-		if (tbody == null || tbody.length < 1) return;
-		//tbody.find("tr").remove();
-
-		var lRows = tbody.find("tr").length;
-		var lCols = tbody.find("tr:first td").length;
-
-		// add cols
-		if (cols > lCols) {
-			for (var r = 0; r < rows; r++) {
-				var lRow = tbody.find("tr:eq(" + r + ")");
-				for (var c = lCols; c < cols; c++) {
-					var cellText = "Cell " + r + "." + c;
-					var btnClone = $('#cellDynamicTemplate .buttonAddContainer').clone();
-					
-					$("<td>")
-					.addClass("tableCell")
-					.text(cellText)
-					.data("col", c)
-					.append(btnClone)					
-					.appendTo(lRow);
-				}
-			}
-		}
-
-		//remove cols
-		if (cols < lCols) {
-			for (var r = 0; r < rows; r++) {
-				for (var c = lCols; c > cols; c--) {
-					tbody.find("tr:eq(" + r + ") td:last").remove();
-				}
-			}
-		}
-
-		// add rows
-		if (rows > lRows) {
-			for (var r = lRows; r < rows; r++) {
-				var trow = $("<tr>");
-				for (var c = 1; c <= cols; c++) {
-					var cellText = "Cell " + r + "." + c;
-					var btnClone = $('#cellDynamicTemplate .buttonAddContainer').clone();
-					
-					$("<td>")
-					.addClass("tableCell")
-					.text(cellText)
-					.data("col", c)
-					.append(btnClone)
-					.appendTo(trow);
-				}
-				trow.appendTo(tbody);
-			}
-		}
-		// remove rows
-		if (rows < lRows) {
-			for (var r = lRows; r > rows; r--) {
-				tbody.find("tr:last").remove();
-			}
-		}
-
-	}
-
-	$(document).ready(function() {
-		//createDynamicTable($("#tbl"), 10, 5);
-		$("#tbl td.tableCell")
-        .click(function() {
-        	alert("Clicked Col=" + $(this).data("col"));
-        });
-
-		$('.target').one('click', function() {
-			$('#trTable').fadeIn(200);
-		});
-
-		$('.target').bind('click', function() {
-			createDynamicTable($("#tbl"), $("#ctl00_ContentPlaceHolder1_tbRows").val(), $("#ctl00_ContentPlaceHolder1_tbCols").val());
-		});
-
-		$('#ctl00_ContentPlaceHolder1_ddlCategory').one('change', function() {
-			$('#trRows,#trCols').fadeIn(200);
-		});
-		
-		//functions to control events when adding and removing
-		$("#tbl").delegate('.buttonAdd','click', function () {				
-				var template = $('#cellDynamicTemplate');
-				var containerAdd = $('.containerAdd:eq(0)', template);
-                var containerAddClone = containerAdd.clone();                                
-                //phonesDiv.append('<div style="clear:both;" />')                
-                $(this).parent().parent().append(containerAddClone);             
-                containerAddClone.show();			
-		});
-		        
-        $("#tbl").delegate('.removeAdd','click', function (e) {
-			$(this).parents('.containerAdd').remove();
-        });
-        
-        $("#tbl").delegate('.acceptAdd','click', function (e) {
-			$(this).parents('.containerAdd').find('.textNormal').addClass('textAccept');
-			$(this).hide();
-        });   
-        
-        $('#Button1').click(function (e) {
-			//build json
-			var $table = $('#tbl');
-			$('tr', $table).each(function(i, item){			
-				//for each tr
-				$('td',$(this)).each(function(i,item){				
-				});
-			});
-			//aspnetForms
-			var  o = $('#aspnetForm').serializeArray();
-			var o = null;
-        });        
-
-	});
+    $(document).ready(function() {
+        LoadPage();         
+    });       
 </script>
-
 </asp:Content>
-<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">
-	<ajaxToolkit:ToolkitScriptManager runat="Server" EnablePartialRendering="true" ID="ScriptManager1"
+<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">    
+    <ajaxToolkit:ToolkitScriptManager runat="Server" EnablePartialRendering="true" ID="ScriptManager1"
 		CombineScripts="true">
 		<Scripts>
-			<asp:ScriptReference Path="~/Scripts/AnthemGlobalProgress.js" />
+			<%--<asp:ScriptReference Path="~/Scripts/AnthemGlobalProgress.js" />--%>
 		</Scripts>
-	</ajaxToolkit:ToolkitScriptManager>
-	
-	<input id="Button1" type="button" value="button" />
+	</ajaxToolkit:ToolkitScriptManager>		
 	
 	<div id="cellDynamicTemplate" style="display:none;">
 		<div class="buttonAddContainer">
@@ -178,12 +67,8 @@
 								קטגוריה:</label>
 						</td>
 						<td class="formvalue">
-							<asp:DropDownList ID="ddlCategory" runat="server">
-								<asp:ListItem Text=""></asp:ListItem>
-								<asp:ListItem Text="מסעדה"></asp:ListItem>
-								<asp:ListItem Text="ספר"></asp:ListItem>
-								<asp:ListItem Text="מוסך"></asp:ListItem>
-							</asp:DropDownList>
+							<asp:DropDownList ID="ddlCategory" runat="server">								
+							</asp:DropDownList>							
 						</td>
 					</tr>
 					<tr id="trCols" style="display: none;">
@@ -224,10 +109,17 @@
 								טבלה:</label>
 						</td>
 						<td class="formvalue">
+						    <div class="tblScroll">
 							<table id="tbl" class="tblDynmic" border="1">
 								<tbody>
 								</tbody>
 							</table>							
+							</div>
+							<div>
+                                <asp:Button ID="btnAddRecord" runat="server" Text="בוצע" 
+                                    onclick="btnAddRecord_Click" OnClientClick="CollectLayoutData();" />
+                                    <asp:HiddenField ID="txtLayoutdata" runat="server" />
+							</div>							
 						</td>
 					</tr>
 				</table>
@@ -235,5 +127,5 @@
 		</div>
 		<div class="clear2column">
 		</div>
-	</div>
+	</div>    
 </asp:Content>

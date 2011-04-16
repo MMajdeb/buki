@@ -75,10 +75,10 @@
 		});
 
 		$('.target').bind('click', function() {
-			createDynamicTable($("#tbl"), $("#ctl00_ContentPlaceHolder1_tbRows").val(), $("#ctl00_ContentPlaceHolder1_tbCols").val());
+			createDynamicTable($("#tbl"), $("#ctl00_C_tbRows").val(), $("#ctl00_C_tbCols").val());
 		});
 
-		$('#ctl00_ContentPlaceHolder1_ddlCategory').one('change', function() {
+		$('#ctl00_C_ddlCategory').one('change', function() {
 			$('#trRows,#trCols').fadeIn(200);
 		});
 
