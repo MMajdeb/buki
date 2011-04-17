@@ -116,6 +116,7 @@
 							</table>							
 							</div>
 							<div>
+								<br />
                                 <asp:Button ID="btnAddRecord" runat="server" Text="בוצע" 
                                     onclick="btnAddRecord_Click" OnClientClick="CollectLayoutData();" />
                                     <asp:HiddenField ID="txtLayoutdata" runat="server" />
@@ -123,6 +124,9 @@
 						</td>
 					</tr>
 				</table>
+				<div id="waitTbl">
+					העמוד נטען אנא המתן...<img src="images/Icons/wait18trans.gif" />
+				</div>
 			</div>
 		</div>
 		<div class="clear2column">

@@ -7,6 +7,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Web.UI.HtmlControls;
+using Microsoft.Practices.EnterpriseLibrary.Caching;
 
 /// <summary>
 /// Summary description for SiteSettings
@@ -45,16 +46,38 @@ public class DevCowSiteSettings
 
     public static DevCowSiteSettings GetSiteSettings()
     {
-        BukiDataSetTableAdapters.SiteSettingsTableAdapter daSiteSettings = new BukiDataSetTableAdapters.SiteSettingsTableAdapter();
-        BukiDataSet.SiteSettingsDataTable sitesettings = daSiteSettings.GetSiteSettings();
-        if (sitesettings.Count > 0)
+        const string BUKI_DEVCOWSITESETTINGS = "Buki.DevCowSiteSettings";
+
+        // Attempt to retrieve from cache
+        ICacheManager cache = CacheFactory.GetCacheManager();
+        DevCowSiteSettings sitesettings = (DevCowSiteSettings)cache[BUKI_DEVCOWSITESETTINGS];        
+
+        // Retrieve from dataProvider if not in Cache
+        if (sitesettings == null)
         {
-            return new DevCowSiteSettings(sitesettings[0]);
+            BukiDataSetTableAdapters.SiteSettingsTableAdapter daSiteSettings = new BukiDataSetTableAdapters.SiteSettingsTableAdapter();
+            BukiDataSet.SiteSettingsDataTable ssdt = daSiteSettings.GetSiteSettings();
+
+            if (ssdt.Count > 0)
+            {
+                sitesettings = new DevCowSiteSettings(ssdt[0]);
+            }
+            else
+            {
+                sitesettings = new DevCowSiteSettings();
+            }
+
+            cache.Add(BUKI_DEVCOWSITESETTINGS, sitesettings);
         }
-        else
-        {
-            return new DevCowSiteSettings();
-        }
-        
+
+        return sitesettings;        
     }
+
+    public static void ClearCache()
+    {
+        // TODO: Clear Cache
+        ICacheManager cache = CacheFactory.GetCacheManager();
+        cache.Flush();
+    }
+
 }

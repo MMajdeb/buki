@@ -1,4 +1,5 @@
-﻿function LoadPage() {           
+﻿/// <reference path="../jquery-1.5.2.js"/>
+function LoadPage() {           
             //createDynamicTable($("#tbl"), 10, 5);
     $("#tbl td.tableCell")
         .click(function() {
@@ -47,9 +48,12 @@
         $(this).hide();
     });
 
-    if ($('#ctl00_C_txtLayoutdata').val() != "") {
-        FillLayoutData();
+    if ($('#ctl00_C_txtLayoutdata').val() != "") {        
+        FillLayoutData();        
     }  
+    
+    //hide message
+    $("#waitTbl").fadeOut(200);
 }
 
 function createDynamicTable(tbody, rows, cols) {    
