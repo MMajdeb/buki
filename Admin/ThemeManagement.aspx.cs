@@ -25,6 +25,10 @@ public partial class Admin_ThemeManagement : DevCowThemePage
     {
         SqlDataSource1.UpdateParameters["SiteName"].DefaultValue = "DevCow.com";
         SqlDataSource1.Update();
+
+        //clear theme cache
+        DevCowSiteSettings.ClearCache();
+
         Response.Redirect(Request.Url.ToString());
     }
 }
