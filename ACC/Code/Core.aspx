@@ -74,12 +74,15 @@
 
         {
             accept: "#zzz div",
-            tolerance:"fit",            
+            tolerance:"fit",              
             drop: function (ev, ui) {            
                 var droppedItem = ui.draggable.clone(); 
                 droppedItem.draggable(
                     {
                      containment: "parent",
+                     opacity: 0.65, 
+                     scroll: true,
+                     snap: true,      
                      cursor: "move"      
                     }
                 );                
@@ -87,7 +90,7 @@
                 droppedItem.css("left",ui.position.left);
                 droppedItem.css("top",ui.position.top);
                 droppedItem.css("position","absolute");
-                $(this).append(droppedItem);                
+                $(this).append(droppedItem);                    
                 
             }
         });
@@ -96,7 +99,6 @@
    </script>
    
    <div id="aa" style="border:solid 1px red; height:400px; clear:both; margin:0px; padding:0px;">
-
    </div>
    
    <DotNetAge:Droppable ID="GalleryViewDroppable" runat="server" ActiveCssClass="custom-state-active" HoverCssClass="aas" OnClientDrop="ggg" Tolerance="Touch"
