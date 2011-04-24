@@ -10,8 +10,13 @@
 <style type="text/css">
 	.textNormal{}
 	.textAccept{ background-color:Lime; border-style:none;}
-	.tableCell{width:125px; min-width:125px;}
+	.tableCell{width:125px; min-width:125px; vertical-align:top;}
 	.tblScroll{overflow-x:scroll; width:600px;}
+	.btnBase{border-style: none; background-repeat: no-repeat; background-color: #FFFFFF; width:16px;}
+	.buttonAdd{background-image: url('images/led-icons/add.png');}
+	.acceptAdd{background-image: url('images/led-icons/accept.png');}
+	.removeAdd{background-image: url('images/led-icons/cancel.png');}
+	
 </style>
 <script src="Scripts/Pages/Member_Supplier_Infrastructure.js" type="text/javascript"></script>
 <script type="text/javascript">
@@ -29,16 +34,16 @@
 	</ajaxToolkit:ToolkitScriptManager>		
 	
 	<div id="cellDynamicTemplate" style="display:none;">
-		<div class="buttonAddContainer">
-			<input type="button" class="buttonAdd" value="+" />
+		<div class="buttonAddContainer" style="margin:0 0 2px 0">
+			<input type="button" class="buttonAdd btnBase" value=" " />
 		</div>
 		<div class="containerAdd" style="display:none;">
 			<div class="textAdd">
 				<input type="text" class="textNormal" maxlength="15" value="тогд" />
 			</div>
-			<div>
-				<input type="button" class="acceptAdd" value="V" />
-				<input type="button" class="removeAdd" value="X" />
+			<div style="margin:2px 0 2px 0">
+				<input type="button" class="acceptAdd btnBase" value=" " />
+				<input type="button" class="removeAdd btnBase" value=" " />
 			</div>
 		</div>
 	</div>	
