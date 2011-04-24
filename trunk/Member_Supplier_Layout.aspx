@@ -6,48 +6,37 @@
 <%@ Register Assembly="AnthemExtensions" Namespace="AnthemExtensions" TagPrefix="anthemext" %>
 <%@ Register TagPrefix="Club" Namespace="ClubSite" %>
 <asp:Content ID="Header1" ContentPlaceHolderID="HeaderPlaceHolder1" runat="Server">
-
 <style type="text/css">
-	.textNormal{}
-	.textAccept{ background-color:Lime; border-style:none;}
-	.tableCell{width:125px; min-width:125px; vertical-align:top;}
-	.tblScroll{overflow-x:scroll; width:600px;}
-	.btnBase{border-style: none; background-repeat: no-repeat; background-color: #FFFFFF; width:16px;}
-	.buttonAdd{background-image: url('images/led-icons/add.png');}
-	.acceptAdd{background-image: url('images/led-icons/accept.png');}
-	.removeAdd{background-image: url('images/led-icons/cancel.png');}
-	
+    .divItem{width:128px;float:right;direction:rtl;}
+    .btnBase{border-style: none; background-repeat: no-repeat; background-color: #FFFFFF; width:16px;}
+	.buttonRemove{background-image: url('images/led-icons/cancel.gif');float:left;display:none;}  
+	.buttonAdd{background-image: url('images/led-icons/add.png');}  
+	.inputHeaderText{float:right;}	  
 </style>
-<script src="Scripts/Pages/Member_Supplier_Infrastructure.js" type="text/javascript"></script>
-<script type="text/javascript">
-    $(document).ready(function() {
-        LoadPage();         
-    });       
-</script>
 </asp:Content>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">    
-    <ajaxToolkit:ToolkitScriptManager runat="Server" EnablePartialRendering="true" ID="ScriptManager1"
-		CombineScripts="true">
-		<Scripts>
-			<%--<asp:ScriptReference Path="~/Scripts/AnthemGlobalProgress.js" />--%>
-		</Scripts>
-	</ajaxToolkit:ToolkitScriptManager>		
-	
-	<div id="cellDynamicTemplate" style="display:none;">
-		<div class="buttonAddContainer" style="margin:0 0 2px 0">
-			<input type="button" class="buttonAdd btnBase" value=" " />
-		</div>
-		<div class="containerAdd" style="display:none;">
-			<div class="textAdd">
-				<input type="text" class="textNormal" maxlength="15" value="עמדה" />
-			</div>
-			<div style="margin:2px 0 2px 0">
-				<input type="button" class="acceptAdd btnBase" value=" " />
-				<input type="button" class="removeAdd btnBase" value=" " />
-			</div>
-		</div>
-	</div>	
-	
+    <asp:ScriptManager ID="sm" runat="server">
+    </asp:ScriptManager>  
+    
+   <DotNetAge:JQueryPlugin ID="JQueryPlugin2" runat="server" Name="draggable">
+        <Target TargetID="vbvb" />
+        <PlugInScripts>
+            <asp:ScriptReference Assembly="jQuery" Name="jQuery.ui.core.js" />
+            <asp:ScriptReference Assembly="jQuery" Name="jQuery.ui.widget.js" />
+            <asp:ScriptReference Assembly="jQuery" Name="jQuery.ui.mouse.js" />            
+            <asp:ScriptReference Assembly="jQuery" Name="jQuery.ui.draggable.js" />
+        </PlugInScripts>
+    </DotNetAge:JQueryPlugin>
+   <DotNetAge:JQueryPlugin ID="JQueryPlugin1" runat="server" Name="droppable">
+        <Target TargetID="vbvb" />
+        <PlugInScripts>
+            <asp:ScriptReference Assembly="jQuery" Name="jQuery.ui.core.js" />
+            <asp:ScriptReference Assembly="jQuery" Name="jQuery.ui.widget.js" />
+            <asp:ScriptReference Assembly="jQuery" Name="jQuery.ui.mouse.js" />                        
+            <asp:ScriptReference Assembly="jQuery" Name="jQuery.ui.droppable.js" />
+        </PlugInScripts>
+    </DotNetAge:JQueryPlugin>    
+
 	<div id="body">
 		<!--Start of left column-->
 <%--		<div id="columnleft">
@@ -65,70 +54,74 @@
 				<div class="dashedline">
 				</div>			
 				
+				<%--content here--%>
+				<div>
+							הוראות הפעלה:
+							<br />
+							רשום את שם העמדה בתוך תיבת הרשימה, לאחר מכן שמות העמדות ישתנו בהתאם.							
+							משוך/גרור את אחת מהצורות לתוך המלבן משטח העבודה והיא תתווסף לתוך המלבן.							
+							מקם את הצורה ע"י גרירת הצורה.
+							להגדלת משטח העבודה משוך את הצורה כלפי מטה או לצד ימין והמשטח יגדל.
+							להסרת עמדה לחץ על כפתור סגירה ליד הצורה שהתווספה
+				</div>
+				<br />
 				<table border="0">
 					<tr>
 						<td class="formlabel">
-							<label for="ddlCategory">
-								קטגוריה:</label>
+							<label for="txtPosition">
+								עמדה:</label>
 						</td>
 						<td class="formvalue">
-							<asp:DropDownList ID="ddlCategory" runat="server">								
-							</asp:DropDownList>							
+                            <input id="txtPosition" type="text" value="עמדה" />							
 						</td>
 					</tr>
-					<tr id="trCols" style="display: none;">
+                    <%--<tr>
 						<td class="formlabel">
-							<label for="tbCol">
-								מספר עמודות:</label>
+							<label for="btnAdd">
+								הוסף:</label>
 						</td>
-						<td class="formvalue">
-							<asp:TextBox ID="tbCols" runat="server" Text="0" Width="60" Style="text-align: center" />
-							<asp:ImageButton ID="img1" runat="server" class="target" ImageUrl="~/images/updown/down.gif"
-								AlternateText="Down" Width="12" Height="7" />
-							<asp:ImageButton ID="img2" runat="server" class="target" ImageUrl="~/images/updown/up.gif"
-								AlternateText="Up" Width="12" Height="7" />
-							<ajaxToolkit:NumericUpDownExtender ID="NumericUpDownExtender1" runat="server" TargetControlID="tbCols"
-								Width="80" TargetButtonDownID="img1" TargetButtonUpID="img2" RefValues="" ServiceDownMethod=""
-								Minimum="0" Maximum="100" ServiceUpMethod="" />
+						<td>
+                            <input id="btnAdd" class="buttonAdd btnBase" type="button" />                            
 						</td>
-					</tr>
-					<tr id="trRows" style="display: none;">
-						<td class="formlabel">
-							<label for="tbCol">
-								מספר שורות:</label>
-						</td>
-						<td class="formvalue">
-							<asp:TextBox ID="tbRows" runat="server" Text="0" Width="60" Style="text-align: center" />
-							<asp:ImageButton ID="img3" runat="server" class="target" ImageUrl="~/images/updown/down.gif"
-								AlternateText="Down" Width="12" Height="7" />
-							<asp:ImageButton ID="img4" runat="server" class="target" ImageUrl="~/images/updown/up.gif"
-								AlternateText="Up" Width="12" Height="7" />
-							<ajaxToolkit:NumericUpDownExtender ID="NumericUpDownExtender2" runat="server" TargetControlID="tbRows"
-								Width="80" TargetButtonDownID="img3" TargetButtonUpID="img4" RefValues="" ServiceDownMethod=""
-								Minimum="0" Maximum="100" ServiceUpMethod="" />
-						</td>
-					</tr>
-					<tr id="trTable" style="display: none;">
-						<td class="formlabel">
-							<label for="tbCol">
-								טבלה:</label>
-						</td>
-						<td class="formvalue">
-						    <div class="tblScroll">
-							<table id="tbl" class="tblDynmic" border="1">
-								<tbody>
-								</tbody>
-							</table>							
-							</div>
-							<div>
-								<br />
-                                <asp:Button ID="btnAddRecord" runat="server" Text="בוצע" 
-                                    onclick="btnAddRecord_Click" OnClientClick="CollectLayoutData();" />
-                                    <asp:HiddenField ID="txtLayoutdata" runat="server" />
-							</div>							
-						</td>
-					</tr>
-				</table>
+					</tr>--%>
+					</table>
+				
+			   <div id="divItems">	
+                    <div id="item0" runat="server"  class="divItem" >
+                        <div class="ui-state-active ui-corner-top" style="padding: 5px; height: 20px;">
+                        <span class="inputHeaderText">עמדה</span><input type="button" class="btnBase buttonRemove" /></div>
+                        <div style="height: auto;" class="ui-widget-content ui-corner-bottom">
+                             <img src="images/icons-basic/circle.png" alt="" /></div>
+                    </div>		
+                    <div id="item1" runat="server" class="divItem">
+                        <div class="ui-state-active ui-corner-top" style="padding: 5px; height: 20px;">
+                            <span class="inputHeaderText">עמדה</span><input type="button" class="btnBase buttonRemove" /></div>
+                        <div style="height: auto;" class="ui-widget-content ui-corner-bottom">
+                            <img src="images/icons-basic/squre.png" alt="" /></div>
+                    </div>	 
+                    <div id="Div1" runat="server" class="divItem">
+                        <div class="ui-state-active ui-corner-top" style="padding: 5px; height: 20px;">
+                            <span class="inputHeaderText">עמדה</span><input type="button" class="btnBase buttonRemove" /></div>
+                        <div style="height: auto;" class="ui-widget-content ui-corner-bottom">
+                            <img src="images/icons-basic/round-rect.png" alt="" /></div>
+                    </div>	                                       	   			   
+			   </div>
+			   <div style="clear:both"></div>	
+			   <div id="divContainer" dir="ltr" style="border:solid 1px red; height:400px; clear:both; margin:0px; padding:0px; width:auto;overflow:scroll;position:relative;">
+               <%--<div style='height: 400px; width: 1px; position:relative;'></div>--%>
+                </div>  
+				
+				
+				<div>
+					<br />
+                    <asp:Button ID="btnAddRecord" runat="server" Text="בוצע" 
+                        onclick="btnAddRecord_Click" OnClientClick="CollectLayoutData();" />
+                        <asp:HiddenField ID="txtLayoutdata" runat="server" />
+				</div>				
+				
+				<%--content here end--%>
+				
+				
 				<div id="waitTbl">
 					העמוד נטען אנא המתן...<img src="images/Icons/wait18trans.gif" />
 				</div>
@@ -137,4 +130,109 @@
 		<div class="clear2column">
 		</div>
 	</div>    
+<script type="text/javascript"> 
+$(document).ready(function () { 
+
+    $('#divItems>div').each(function(i, item) {
+        $(this).draggable({ helper: 'clone', cursor: "move", revert: "invalid"});
+    });
+
+   // loadProductsFromUser();
+    //$(".block").draggable({ helper: 'clone' });
+    // drag zone 
+
+    $("#divContainer").droppable(
+    {
+        accept: "#divItems>div",
+        tolerance:"fit",              
+        drop: function (ev, ui) {                   
+            var droppedItem = ui.draggable.clone(); 
+            droppedItem.draggable(
+                {
+                 containment: "parent",
+                 opacity: 0.65, 
+                 scroll: true,
+                 snap: true,      
+                 cursor: "move"      
+                }
+            );    
+            //debugger;                            
+            droppedItem.css("left",ui.position.left + $(this).scrollLeft() - $(this).position().left);
+            droppedItem.css("top",ui.position.top + $(this).scrollTop() - $(this).position().top);
+            droppedItem.css("position","absolute");
+            //droppedItem.css("left",0);
+            //droppedItem.css("top",0);                
+            $('.buttonRemove', droppedItem).show("fast");
+            $(this).append(droppedItem);                                                     
+        }
+    });
+    
+    $('#divContainer').delegate('input:button', 'click', function() {
+        $(this).parents(".divItem").remove();
+    });        
+    
+    $("#txtPosition").bind("change", function() {          
+        var txtPositionvalue = $('#txtPosition').val();
+        $('#divItems .inputHeaderText').each(function(i, item) {
+            $(this).text(txtPositionvalue);
+        });    
+    }); 
+    
+    //hide message
+    $("#waitTbl").fadeOut(200);
+
+}); 
+        
+function CollectLayoutData() {
+    //build json collect table data
+
+    var $table = $('#divContainer');
+    var sb = new Sys.StringBuilder();
+
+    sb.appendLine('{');
+    sb.appendLine('"data":{');
+
+    var rows = $('>div', $table).length;      
+
+    $('tr', $table).each(function(i, item) {
+        sb.appendLine('"row_' + i + '":{');
+
+        //for each tr
+        $('td', $(this)).each(function(i, item) {
+            sb.appendLine('"col_' + i + '":{');
+
+            //get length of textboxs
+            var valuesCount = $('.textNormal', $(this)).length;
+
+            sb.appendLine('"textValues":[');
+            //collect array values data
+            $('.textNormal', $(this)).each(function(i, item) {
+                sb.appendLine('"' + $(this).val() + '"');
+
+                if (valuesCount > i + 1) sb.appendLine(',');
+            });
+            sb.appendLine(']');
+
+            sb.appendLine('}');
+            if (cols > i + 1) sb.appendLine(',');
+        });
+
+        sb.appendLine('}');
+
+        if (rows > i + 1) sb.appendLine(',');
+    });
+    //aspnetForms
+    var o = $('#aspnetForm').serializeArray();
+    var o = null;
+
+    //close data
+    sb.appendLine('}');
+    //close main
+    sb.appendLine('}');
+
+    $('#ctl00_C_txtLayoutdata').val(sb.toString());
+
+    alert(sb.toString());    
+}               
+   </script>     
 </asp:Content>

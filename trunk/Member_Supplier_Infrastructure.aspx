@@ -16,8 +16,10 @@
 	.buttonAdd{background-image: url('images/led-icons/add.png');}
 	.acceptAdd{background-image: url('images/led-icons/accept.png');}
 	.removeAdd{background-image: url('images/led-icons/cancel.png');}
-	
 </style>
+<%--<script src="Scripts/jquery-1.5.2.min.js" type="text/javascript"></script>--%>
+<script src="Scripts/jquery-1.5.2.js" type="text/javascript"></script>
+	
 <script src="Scripts/Pages/Member_Supplier_Infrastructure.js" type="text/javascript"></script>
 <script type="text/javascript">
     $(document).ready(function() {
