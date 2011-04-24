@@ -68,7 +68,8 @@ function createDynamicTable(tbody, rows, cols) {
         for (var r = 0; r < rows; r++) {
             var lRow = tbody.find("tr:eq(" + r + ")");
             for (var c = lCols; c < cols; c++) {
-                var cellText = "Cell " + r + "." + c;
+                //var cellText = "Cell " + r + "." + c;
+                var cellText = "";
                 var btnClone = $('#cellDynamicTemplate .buttonAddContainer').clone();
 
                 $("<td>")
@@ -95,7 +96,8 @@ function createDynamicTable(tbody, rows, cols) {
         for (var r = lRows; r < rows; r++) {
             var trow = $("<tr>");
             for (var c = 1; c <= cols; c++) {
-                var cellText = "Cell " + r + "." + c;
+                //var cellText = "Cell " + r + "." + c;
+                var cellText = "";
                 var btnClone = $('#cellDynamicTemplate .buttonAddContainer').clone();
 
                 $("<td>")
@@ -134,7 +136,8 @@ function FillLayoutData() {
     for (var r = 0; r < rows; r++) {
         var lRow = tbody.find("tr:eq(" + r + ")");
         for (var c = 0; c < cols; c++) {
-            var cellText = "Cell " + r + "." + c;
+            //var cellText = "Cell " + r + "." + c;
+            var cellText = "";
             var lCol = lRow.find("td:eq(" + c + ")");
 
             var arrTextValues = obj.data["row_" + r]["col_" + c].textValues;
