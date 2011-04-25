@@ -1,4 +1,14 @@
 {
+    "data":[
+    {
+        left:276,top:131,headerContent:"тогд",bodyContentImgSrc:"http://localhost:3353/bukiWeb/images/icons-basic/round-rect.png"}
+    ,
+    {
+        left:453,top:108,headerContent:"тогд",bodyContentImgSrc:"http://localhost:3353/bukiWeb/images/icons-basic/squre.png"}
+    ]
+}
+
+{
 	"data": 
 	{
 		"row_1":{

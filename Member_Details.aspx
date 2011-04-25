@@ -230,7 +230,7 @@
 				<p>
 					<Club:RolloverButton ID="updateSupplier" runat="server" Text="עדכן רישום ספק" OnClick="updateSupplier_Click" />
 					&nbsp;&nbsp;&nbsp;
-					<Club:RolloverButton ID="UpdateDupplierInfr" runat="server" Text="ערוך פריסת עסק ועובדים" OnClientClick="window.location='Member_Supplier_Infrastructure.aspx'; return false;"  />
+					<Club:RolloverButton ID="UpdateDupplierInfr" runat="server" Text="ערוך פריסת עסק ועובדים" OnClientClick="window.location='Member_Supplier_Layout.aspx'; return false;"  />
 				</p>
 			</div>			
 			</asp:PlaceHolder>

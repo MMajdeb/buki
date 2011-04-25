@@ -66,6 +66,16 @@
 				</div>
 				<br />
 				<table border="0">
+				    <tr>
+						<td class="formlabel">
+							<label for="ddlCategory">
+								קטגוריה:</label>
+						</td>
+						<td class="formvalue">
+							<asp:DropDownList ID="ddlCategory" runat="server">								
+							</asp:DropDownList>							
+						</td>
+					</tr>
 					<tr>
 						<td class="formlabel">
 							<label for="txtPosition">
@@ -123,7 +133,7 @@
 				
 				
 				<div id="waitTbl">
-					העמוד נטען אנא המתן...<img src="images/Icons/wait18trans.gif" />
+					העמוד נטען אנא המתן...<img src="images/Icons/wait18trans.gif" alt="" />
 				</div>
 			</div>
 		</div>
@@ -177,6 +187,10 @@ $(document).ready(function () {
             $(this).text(txtPositionvalue);
         });    
     }); 
+
+    if ($('#ctl00_C_txtLayoutdata').val() != "") {        
+        FillLayoutData();        
+    } 
     
     //hide message
     $("#waitTbl").fadeOut(200);
@@ -190,33 +204,22 @@ function CollectLayoutData() {
     var sb = new Sys.StringBuilder();
 
     sb.appendLine('{');
-    sb.appendLine('"data":{');
+    sb.appendLine('"data":[');
 
-    var rows = $('>div', $table).length;      
+    var $divs = $('>div', $table);
+    var rows = $divs.length;      
 
-    $('tr', $table).each(function(i, item) {
-        sb.appendLine('"row_' + i + '":{');
-
-        //for each tr
-        $('td', $(this)).each(function(i, item) {
-            sb.appendLine('"col_' + i + '":{');
-
-            //get length of textboxs
-            var valuesCount = $('.textNormal', $(this)).length;
-
-            sb.appendLine('"textValues":[');
-            //collect array values data
-            $('.textNormal', $(this)).each(function(i, item) {
-                sb.appendLine('"' + $(this).val() + '"');
-
-                if (valuesCount > i + 1) sb.appendLine(',');
-            });
-            sb.appendLine(']');
-
-            sb.appendLine('}');
-            if (cols > i + 1) sb.appendLine(',');
-        });
-
+    $divs.each(function(i, item) {
+        sb.appendLine('{');              
+        
+        sb.append('"left":' + ($(this).position().left + $table.scrollLeft()));   
+        sb.append(',');             
+        sb.append('"top":' + ($(this).position().top + $table.scrollTop()));        
+        sb.append(',');             
+        sb.append('"headerContent":"' + $(this).find(".inputHeaderText").text() + '"');        
+        sb.append(',');             
+        sb.append('"bodyContentImgSrc":"' + $(this).find(".ui-widget-content img").attr("src") + '"');        
+        
         sb.appendLine('}');
 
         if (rows > i + 1) sb.appendLine(',');
@@ -226,13 +229,49 @@ function CollectLayoutData() {
     var o = null;
 
     //close data
-    sb.appendLine('}');
+    sb.appendLine(']');
     //close main
     sb.appendLine('}');
 
     $('#ctl00_C_txtLayoutdata').val(sb.toString());
 
-    alert(sb.toString());    
-}               
+    //debugger;
+    //alert(sb.toString());    
+}         
+
+function FillLayoutData() {
+    var $divContainer = $('#divContainer');
+    var $divItems = $('#divItems');
+        
+    var $itemTemplate = $(">div:eq(0)" ,$divItems);
+    
+    //add values
+    var obj = $.parseJSON($('#ctl00_C_txtLayoutdata').val());
+    var rows = obj.data.length;  
+        
+    for (var r = 0; r < rows; r++) {
+        var droppedItem = $itemTemplate.clone();
+        
+        // make div clone draggble        
+        droppedItem.draggable(
+            {
+             containment: "parent",
+             opacity: 0.65, 
+             scroll: true,
+             snap: true,      
+             cursor: "move"      
+            }
+        );    
+                          
+        droppedItem.css("left",obj.data[r].left);
+        droppedItem.css("top",obj.data[r].top);
+        droppedItem.css("position","absolute");
+        droppedItem.find(".ui-widget-content img").attr("src",obj.data[r].bodyContentImgSrc);
+        droppedItem.find(".inputHeaderText").text(obj.data[r].headerContent);
+        $('.buttonRemove', droppedItem).show("fast");        
+        
+        $divContainer.append(droppedItem);
+    }
+}      
    </script>     
 </asp:Content>
