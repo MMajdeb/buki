@@ -11,14 +11,17 @@
     .btnBase{border-style: none; background-repeat: no-repeat; background-color: #FFFFFF; width:16px;height:16px;}
 	.buttonRemove{background-image: url('images/led-icons/cancel.gif');float:left;display:none;}  
 	.buttonAdd{background-image: url('images/led-icons/add.png');}  
-	.inputHeaderText{float:right;}	  
+	.buttonEdit{background-image: url('images/led-icons/pencil.gif');float:left;display:none;}  
+	.inputHeaderText{float:right;}
+	.txtHide{display:none;width:60px;}
+	.buttonAccept{background-image: url('images/led-icons/accept.gif');float:none;display:none;}  	
 </style>
 </asp:Content>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">    
     <asp:ScriptManager ID="sm" runat="server">
-    <Scripts>
-		<asp:ScriptReference Path="~/Member_Supplier_Layout.js" />
-    </Scripts>
+		<Scripts>
+			<asp:ScriptReference Path="~/Member_Supplier_Layout.js" />
+		</Scripts>
     </asp:ScriptManager>  
     
    <DotNetAge:JQueryPlugin ID="JQueryPlugin2" runat="server" Name="draggable">
@@ -98,31 +101,33 @@
 						</td>
 					</tr>--%>
 					</table>
-				
+			   
 			   <div id="divItems">	
                     <div id="item0" runat="server"  class="divItem" >
                         <div class="ui-state-active ui-corner-top" style="padding: 5px; height: 20px;">
-                        <span class="inputHeaderText">тогд</span><input type="button" class="btnBase buttonRemove" /></div>
+                        <span class="inputHeaderText">тогд</span><input type="text" class="txtHide" /><input type="button" class="btnBase buttonAccept" /><input type="button" class="btnBase buttonRemove" /><input type="button" class="btnBase buttonEdit" /></div>
                         <div style="height: auto;" class="ui-widget-content ui-corner-bottom">
                              <img src="images/icons-basic/circle.png" alt="" /></div>
                     </div>		
                     <div id="item1" runat="server" class="divItem">
                         <div class="ui-state-active ui-corner-top" style="padding: 5px; height: 20px;">
-                            <span class="inputHeaderText">тогд</span><input type="button" class="btnBase buttonRemove" /></div>
+                            <span class="inputHeaderText">тогд</span><input type="text" class="txtHide" /><input type="button" class="btnBase buttonAccept" /><input type="button" class="btnBase buttonRemove" /><input type="button" class="btnBase buttonEdit" /></div>
                         <div style="height: auto;" class="ui-widget-content ui-corner-bottom">
                             <img src="images/icons-basic/squre.png" alt="" /></div>
                     </div>	 
-                    <div id="Div1" runat="server" class="divItem">
+                    <div id="item2" runat="server" class="divItem">
                         <div class="ui-state-active ui-corner-top" style="padding: 5px; height: 20px;">
-                            <span class="inputHeaderText">тогд</span><input type="button" class="btnBase buttonRemove" /></div>
+                            <span class="inputHeaderText">тогд</span><input type="text" class="txtHide" /><input type="button" class="btnBase buttonAccept" /><input type="button" class="btnBase buttonRemove" /><input type="button" class="btnBase buttonEdit" /></div>
                         <div style="height: auto;" class="ui-widget-content ui-corner-bottom">
                             <img src="images/icons-basic/round-rect.png" alt="" /></div>
                     </div>	                                       	   			   
-			   </div>
+			   </div>			   
 			   <div style="clear:both"></div>	
+			   <asp:Panel ID="pnlZoom" runat="server">			
 			   <div id="divContainer" dir="ltr" style="border:solid 1px red; height:400px; clear:both; margin:0px; padding:0px; width:auto;overflow:scroll;position:relative;">
                <%--<div style='height: 400px; width: 1px; position:relative;'></div>--%>
                 </div>  
+                </asp:Panel>
 				
 				
 				<div>
@@ -145,7 +150,7 @@
 	</div>    
 <script type="text/javascript"> 
 $(document).ready(function () { 
-	LoadPage();	
+	LoadPage();		
 }); 
 </script>     
 </asp:Content>

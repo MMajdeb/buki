@@ -1,4 +1,4 @@
-﻿/// <reference path="../jquery-1.5.2.js"/>
+﻿/// <reference path="Scripts/jquery-1.5.2.js"/>
 function LoadPage() {           
             //createDynamicTable($("#tbl"), 10, 5);
     $("#tbl td.tableCell")

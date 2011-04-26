@@ -1,4 +1,4 @@
-﻿/// <reference path="../jquery-1.5.2-vsdoc.js"/>
+﻿/// <reference path="Scripts/jquery-1.5.2-vsdoc.js"/>
 function LoadPage() {           
     $('#divItems>div').each(function(i, item) {
         $(this).draggable({ helper: 'clone', cursor: "move", revert: "invalid"});
@@ -27,17 +27,49 @@ function LoadPage() {
             droppedItem.css("left",ui.position.left + $(this).scrollLeft() - $(this).position().left);
             droppedItem.css("top",ui.position.top + $(this).scrollTop() - $(this).position().top);
             droppedItem.css("position","absolute");
-            droppedItem.find(".ui-widget-content").css("background","none repeat scroll 0 0 transparent");
+            droppedItem.find(".ui-widget-content").css("background","none repeat scroll 0 0 transparent");            
             //droppedItem.css("left",0);
             //droppedItem.css("top",0);                
             $('.buttonRemove', droppedItem).show("fast");
+            $('.buttonEdit', droppedItem).show("fast");
             $(this).append(droppedItem);                                                     
         }
-    });
+    });        
     
-    $('#divContainer').delegate('input:button', 'click', function() {
+    $('#divContainer').delegate('input:button.buttonRemove', 'click', function() {
         $(this).parents(".divItem").remove();
     });        
+
+    $('#divContainer').delegate('input:button.buttonEdit', 'click', function() {
+        var $inputHeaderText = $(this).parent().find(".inputHeaderText");        
+        var inputHeaderTextValue = $inputHeaderText.text();        
+        $inputHeaderText.hide();
+        
+        var $txtHide = $(this).parent().find(".txtHide");
+        $txtHide.show();
+        $txtHide.val(inputHeaderTextValue);
+        $(this).parent().find(".buttonAccept").show();        
+    });        
+
+    $('#divContainer').delegate('input:button.buttonAccept', 'click', function() {        
+        var $txtHide = $(this).parent().find(".txtHide");
+        $txtHide.hide();
+        var txtHideVal = $txtHide.val();
+        
+        $(this).parent().find(".buttonAccept").hide();        
+        
+        var $inputHeaderText = $(this).parent().find(".inputHeaderText");        
+        $inputHeaderText.text(txtHideVal);        
+        $inputHeaderText.show();        
+    });   
+    
+    /*
+    $('#divContainer').delegate('.ui-widget-content', 'hover', function() {        
+        $(this).parent().find(".ui-state-active").toggle(
+            function(){alert(1);},
+            function(){alert(2);}
+        );
+    });*/
     
     $("#txtPosition").bind("change", function() {          
         var txtPositionvalue = $('#txtPosition').val();
@@ -126,6 +158,7 @@ function FillLayoutData() {
         droppedItem.find(".ui-widget-content img").attr("src",obj.data[r].bodyContentImgSrc);
         droppedItem.find(".inputHeaderText").text(obj.data[r].headerContent);        
         droppedItem.find(".ui-widget-content").css("background","none repeat scroll 0 0 transparent");
+        $('.buttonEdit', droppedItem).show("fast");
         $('.buttonRemove', droppedItem).show("fast");        
         
         $divContainer.append(droppedItem);
