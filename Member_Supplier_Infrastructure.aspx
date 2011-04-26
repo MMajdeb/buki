@@ -20,7 +20,7 @@
 <%--<script src="Scripts/jquery-1.5.2.min.js" type="text/javascript"></script>--%>
 <script src="Scripts/jquery-1.5.2.js" type="text/javascript"></script>
 	
-<script src="Scripts/Pages/Member_Supplier_Infrastructure.js" type="text/javascript"></script>
+<script src="Member_Supplier_Infrastructure.js" type="text/javascript"></script>
 <script type="text/javascript">
     $(document).ready(function() {
         LoadPage();         
