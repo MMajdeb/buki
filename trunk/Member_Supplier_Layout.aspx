@@ -7,14 +7,20 @@
 <%@ Register TagPrefix="Club" Namespace="ClubSite" %>
 <asp:Content ID="Header1" ContentPlaceHolderID="HeaderPlaceHolder1" runat="Server">
 <style type="text/css">
-    .divItem{width:128px;float:right;direction:rtl;}
+    .divItem{width:128px;float:right;direction:ltr;}
     .btnBase{border-style: none; background-repeat: no-repeat; background-color: #FFFFFF; width:16px;height:16px;}
 	.buttonRemove{background-image: url('images/led-icons/cancel.gif');float:left;display:none;}  
 	.buttonAdd{background-image: url('images/led-icons/add.png');}  
 	.buttonEdit{background-image: url('images/led-icons/pencil.gif');float:left;display:none;}  
-	.inputHeaderText{float:right;}
-	.txtHide{display:none;width:60px;}
-	.buttonAccept{background-image: url('images/led-icons/accept.gif');float:none;display:none;}  	
+	.buttonTime{background-image: url('images/led-icons/clock.gif');float:left;display:none;}
+	.inputHeaderText{float:right;color:#EB8F00;font-weight:bold;}
+	.txtHide{display:none;width:60px;float:right;direction:rtl;}
+	.buttonAccept{background-image: url('images/led-icons/accept.gif');float:right;display:none;}  	
+	.fitBox{width:100%;height:100%}	
+	.ui-resizable-helper { border: 2px dotted #00F; }
+	.itemContent{}
+	.itemHeader{direction:rtl;}
+	.itemIcons{white-space:nowrap;widows:132px;display:none;}
 </style>
 </asp:Content>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">    
@@ -42,6 +48,15 @@
             <asp:ScriptReference Assembly="jQuery" Name="jQuery.ui.droppable.js" />
         </PlugInScripts>
     </DotNetAge:JQueryPlugin>    
+   <DotNetAge:JQueryPlugin ID="JQueryPlugin3" runat="server" Name="resizable">
+        <Target TargetID="vbvb" />
+        <PlugInScripts>
+            <asp:ScriptReference Assembly="jQuery" Name="jQuery.ui.core.js" />
+            <asp:ScriptReference Assembly="jQuery" Name="jQuery.ui.widget.js" />
+            <asp:ScriptReference Assembly="jQuery" Name="jQuery.ui.mouse.js" />                        
+            <asp:ScriptReference Assembly="jQuery" Name="jQuery.ui.resizable.js" />
+        </PlugInScripts>
+    </DotNetAge:JQueryPlugin>    
 
 	<div id="body">
 		<!--Start of left column-->
@@ -67,8 +82,9 @@
 							רשום את שם העמדה בתוך תיבת הרשימה, לאחר מכן שמות העמדות ישתנו בהתאם.							
 							משוך/גרור את אחת מהצורות לתוך המלבן משטח העבודה והיא תתווסף לתוך המלבן.							
 							מקם את הצורה ע"י גרירת הצורה.
+							שנה את גודל הצורה בעזרת גרירת המשולש הקטן בתחתית הצורה.
 							להגדלת משטח העבודה משוך את הצורה כלפי מטה או לצד ימין והמשטח יגדל.
-							להסרת עמדה לחץ על כפתור סגירה ליד הצורה שהתווספה
+							להסרת עמדה עלה עם העכבר על הצורה ולחץ על כפתור סגירה ליד הצורה שהתווספה
 				</div>
 				<br />
 				<table border="0">
@@ -103,32 +119,29 @@
 					</table>
 			   
 			   <div id="divItems">	
-                    <div id="item0" runat="server"  class="divItem" >
-                        <div class="ui-state-active ui-corner-top" style="padding: 5px; height: 20px;">
-                        <span class="inputHeaderText">עמדה</span><input type="text" class="txtHide" /><input type="button" class="btnBase buttonAccept" /><input type="button" class="btnBase buttonRemove" /><input type="button" class="btnBase buttonEdit" /></div>
-                        <div style="height: auto;" class="ui-widget-content ui-corner-bottom">
-                             <img src="images/icons-basic/circle.png" alt="" /></div>
-                    </div>		
-                    <div id="item1" runat="server" class="divItem">
-                        <div class="ui-state-active ui-corner-top" style="padding: 5px; height: 20px;">
-                            <span class="inputHeaderText">עמדה</span><input type="text" class="txtHide" /><input type="button" class="btnBase buttonAccept" /><input type="button" class="btnBase buttonRemove" /><input type="button" class="btnBase buttonEdit" /></div>
-                        <div style="height: auto;" class="ui-widget-content ui-corner-bottom">
-                            <img src="images/icons-basic/squre.png" alt="" /></div>
-                    </div>	 
-                    <div id="item2" runat="server" class="divItem">
-                        <div class="ui-state-active ui-corner-top" style="padding: 5px; height: 20px;">
-                            <span class="inputHeaderText">עמדה</span><input type="text" class="txtHide" /><input type="button" class="btnBase buttonAccept" /><input type="button" class="btnBase buttonRemove" /><input type="button" class="btnBase buttonEdit" /></div>
-                        <div style="height: auto;" class="ui-widget-content ui-corner-bottom">
-                            <img src="images/icons-basic/round-rect.png" alt="" /></div>
-                    </div>	                                       	   			   
+			   <asp:Repeater runat="server" ID="rptItems">
+					<ItemTemplate>
+						<div runat="server" class="divItem" >
+							<div class="ui-state-active ui-corner-top itemHeader" style="padding: 5px; height: 20px;">
+								<span class="inputHeaderText">עמדה</span>
+							</div>
+							<div style="height:auto;" class="ui-widget-content ui-corner-bottom itemContent">
+								 <img src='<%# Eval("Image") %>' class="fitBox" alt="" /></div>
+							<div class="ui-state-active ui-corner-bottom itemIcons" style="padding: 2px; height: 20px;">
+								<input type="text" class="txtHide" />
+								<input type="button" class="btnBase buttonAccept" />
+								<input type="button" class="btnBase buttonRemove" />								
+								<input type="button" class="btnBase buttonTime" />	
+								<input type="button" class="btnBase buttonEdit" />						
+							</div>														 
+						</div>		
+                    </ItemTemplate>
+                </asp:Repeater>
 			   </div>			   
-			   <div style="clear:both"></div>	
-			   <asp:Panel ID="pnlZoom" runat="server">			
+			   <div style="clear:both"></div>				   	
 			   <div id="divContainer" dir="ltr" style="border:solid 1px red; height:400px; clear:both; margin:0px; padding:0px; width:auto;overflow:scroll;position:relative;">
                <%--<div style='height: 400px; width: 1px; position:relative;'></div>--%>
-                </div>  
-                </asp:Panel>
-				
+                </div>                 				
 				
 				<div>
 					<br />

@@ -23,8 +23,22 @@ public partial class Member_Supplier_Layout : DevCowThemePage
         if (!Page.IsPostBack)
         {
             //load layout of table
+            LoadItems();
             LoadLayout();
         }
+    }
+
+    private void LoadItems()
+    {
+        DataTable dt = new DataTable();
+        dt.Columns.Add("Image");
+
+        dt.Rows.Add(new object[] { "images/icons-basic/circle.png" });
+        dt.Rows.Add(new object[] { "images/icons-basic/squre.png" });
+        dt.Rows.Add(new object[] { "images/icons-basic/round-rect.png" });
+
+        rptItems.DataSource = dt;
+        rptItems.DataBind();
     }
 
     private void LoadLayout()
