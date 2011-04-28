@@ -21,11 +21,18 @@
 	.itemContent{}
 	.itemHeader{direction:rtl;}
 	.itemIcons{white-space:nowrap;widows:132px;display:none;}
+	#tblDialogTime{width:100%;border:solid 1px gray;border-collapse:collapse;}	
+	#tblDialogTime td{border:solid 1px gray;border-collapse:collapse;white-space:nowrap;}
+	.txtDialogInput{width:45px;border:none;background-color:White;}
+	.txtDialogInputSelected{width:45px;border:none;background-color:#FFBF08;}
+	.txtDialogTableDynamicBtn{}
 </style>
 </asp:Content>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="Server">    
     <asp:ScriptManager ID="sm" runat="server">
-		<Scripts>
+		<Scripts>		
+		    <asp:ScriptReference Path="~/Scripts/jquery.json-2.2.min.js" />
+		    <asp:ScriptReference Path="~/Scripts/jquery.maskedinput-1.3.min.js" />
 			<asp:ScriptReference Path="~/Member_Supplier_Layout.js" />
 		</Scripts>
     </asp:ScriptManager>  
@@ -56,7 +63,18 @@
             <asp:ScriptReference Assembly="jQuery" Name="jQuery.ui.mouse.js" />                        
             <asp:ScriptReference Assembly="jQuery" Name="jQuery.ui.resizable.js" />
         </PlugInScripts>
-    </DotNetAge:JQueryPlugin>    
+    </DotNetAge:JQueryPlugin> 
+       
+   <DotNetAge:JQueryPlugin ID="JQueryPlugin4" runat="server" Name="dialog">
+        <Target TargetID="vbvb" />
+        <PlugInScripts>
+            <asp:ScriptReference Assembly="jQuery" Name="jQuery.ui.core.js" />
+            <asp:ScriptReference Assembly="jQuery" Name="jQuery.ui.position.js" />            
+            <asp:ScriptReference Assembly="jQuery" Name="jQuery.ui.widget.js" />
+            <asp:ScriptReference Assembly="jQuery" Name="jQuery.ui.mouse.js" />                        
+            <asp:ScriptReference Assembly="jQuery" Name="jQuery.ui.dialog.js" />
+        </PlugInScripts>
+    </DotNetAge:JQueryPlugin>       
 
 	<div id="body">
 		<!--Start of left column-->
@@ -121,19 +139,19 @@
 			   <div id="divItems">	
 			   <asp:Repeater runat="server" ID="rptItems">
 					<ItemTemplate>
-						<div runat="server" class="divItem" >
+						<div runat="server" class="divItem" >												
 							<div class="ui-state-active ui-corner-top itemHeader" style="padding: 5px; height: 20px;">
 								<span class="inputHeaderText">עמדה</span>
 							</div>
 							<div style="height:auto;" class="ui-widget-content ui-corner-bottom itemContent">
-								 <img src='<%# Eval("Image") %>' class="fitBox" alt="" /></div>
-							<div class="ui-state-active ui-corner-bottom itemIcons" style="padding: 2px; height: 20px;">
+								 <img src='<%# Eval("Image") %>' class="fitBox" alt="" /></div>				
+            				<div class="ui-state-active ui-corner-bottom itemIcons" style="padding: 2px; height: 20px;">
 								<input type="text" class="txtHide" />
 								<input type="button" class="btnBase buttonAccept" />
 								<input type="button" class="btnBase buttonRemove" />								
 								<input type="button" class="btnBase buttonTime" />	
 								<input type="button" class="btnBase buttonEdit" />						
-							</div>														 
+							</div>								 									 
 						</div>		
                     </ItemTemplate>
                 </asp:Repeater>
@@ -150,6 +168,43 @@
                         <asp:HiddenField ID="txtLayoutdata" runat="server" />
 				</div>				
 				
+                <div id="dialog-modal" title="עריכת זמנים של עמדה">
+	                <p>לחץ על כפתור '+' כדי להוסיף שורות.
+	                הוסף זמנים לדוגמא משעה 07:00 עד 17:00</p>	                
+	                <table id="tblDialogTime">
+	                    <tr>	 
+	                    <td></td>                   
+	                    <td colspan="2">א</td>
+	                    <td colspan="2">ב</td>
+	                    <td colspan="2">ג</td>
+	                    <td colspan="2">ד</td>
+	                    <td colspan="2">ה</td>
+	                    <td colspan="2">ו</td>
+	                    <td colspan="2">ש</td>
+	                    </tr>
+	                    <tr>	     
+	                    <td><input type="button" value="-" class="txtDialogTableDynamicBtn" style="display:none;" /></td>               
+	                    <td>משעה</td>
+	                    <td>עד שעה</td>
+	                    <td>משעה</td>
+	                    <td>עד שעה</td>
+	                    <td>משעה</td>
+	                    <td>עד שעה</td>
+	                    <td>משעה</td>
+	                    <td>עד שעה</td>
+	                    <td>משעה</td>
+	                    <td>עד שעה</td>
+	                    <td>משעה</td>
+	                    <td>עד שעה</td>
+	                    <td>משעה</td>
+	                    <td>עד שעה</td>	                    
+	                    </tr>	                    
+	                </table>
+                    <input id="btnDialogAddRow" type="button" value="+" />
+                </div>
+                
+                <%--<input id="btnd" type="button" value="dialog" />--%>
+				
 				<%--content here end--%>
 				
 				
@@ -163,7 +218,8 @@
 	</div>    
 <script type="text/javascript"> 
 $(document).ready(function () { 
-	LoadPage();		
+	LoadPage();	
 }); 
+
 </script>     
 </asp:Content>
