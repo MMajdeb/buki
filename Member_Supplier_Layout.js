@@ -34,6 +34,7 @@ function LoadPage() {
             //debugger;                            
             droppedItem.css("left",ui.position.left + $(this).scrollLeft() - $(this).position().left);
             droppedItem.css("top",ui.position.top + $(this).scrollTop() - $(this).position().top);
+            droppedItem.data("time",'{\"data\":[]}');            
             droppedItem.css("position","absolute");
             droppedItem.find(".itemContent").css("background","none repeat scroll 0 0 transparent");            
             droppedItem.find('.itemHeader').removeClass("ui-state-active"); 
@@ -73,6 +74,39 @@ function LoadPage() {
         $inputHeaderText.text(txtHideVal);        
         //$inputHeaderText.show();        
     });   
+    
+    $('#divContainer').delegate('input:button.buttonTime', 'click', function() {
+        //$(this).parents(".divItem").remove();        
+         var $tbl = $("#tblDialogTime");
+         $("tr:gt(1)",$tbl).remove();
+         
+         var $item = $(this).parents(".divItem");
+         var dataTds = $item.data("time");
+         
+         if(dataTds != null && dataTds != "undefined"){ 
+            if(typeof(dataTds) == "string")
+                dataTds = $.parseJSON(dataTds);
+                                                                  
+            for(var j=0; j < dataTds.data.length; j++)
+            {                  
+	            var $rowClone = $("tr:eq(1)",$tbl).clone();	   	    	    	   
+    	        //add ro
+	            $("td", $rowClone).each(function(i, item) {
+	                if(i==0)
+	                {	      
+	                    $(this).find(":button").show();              
+	                    return;
+	                }	            
+                    $(this).text("");            
+                    $(this).append($('<input type="text" value="' + dataTds.data[j][i] + '" class="txtDialogInput" />').mask("99:99"));                    
+                });     
+                
+                $tbl.append($rowClone);           
+            }   
+         }                           
+         
+         $( "#dialog-modal" ).data('item', $(this).parents(".divItem")).dialog( "open" );
+    });      
         
     // icons hide show on move    
     $('#divContainer').delegate('.divItem', 'mouseenter', function() {                
@@ -90,13 +124,85 @@ function LoadPage() {
         $(this).find('.itemHeader').removeClass("ui-state-active");       
         $(this).find('.itemIcons').removeClass("ui-state-active").hide(); 
     });
+
+    /*    
+    // dialog table change row table color
+    $('#tblDialogTime').delegate('.txtDialogInput', 'focus', function() {                
+        var $rowClone = $(this).parents("tr");
+	    $("td", $rowClone).each(function(i, item) {            
+            $(this).addClass("txtDialogInputSelected");
+            $(this).find(":text").addClass("txtDialogInputSelected");
+        });         
+    });    
+    $('#tblDialogTime').delegate('.txtDialogInput', 'blur', function() {                
+        var $rowClone = $(this).parents("tr");
+	    $("td", $rowClone).each(function(i, item) {            
+            $(this).removeClass("txtDialogInputSelected");
+            $(this).find(":text").removeClass("txtDialogInputSelected");
+        });                 
+    });    
+    */
+
+    $('#tblDialogTime').delegate('.txtDialogTableDynamicBtn', 'click', function() {                
+        $(this).parents("tr").remove();
+    });            
     
+    // main text box change items text title
     $("#txtPosition").bind("change", function() {          
         var txtPositionvalue = $('#txtPosition').val();
         $('#divItems .inputHeaderText').each(function(i, item) {
             $(this).text(txtPositionvalue);
         });    
     }); 
+    
+    // a workaround for a flaw in the demo system (http://dev.jqueryui.com/ticket/4375), ignore!
+	$( "#dialog:ui-dialog" ).dialog( "destroy" );
+
+	$( "#dialog-modal" ).dialog({
+	    autoOpen: false,
+		height: 300,
+		width: 730,
+		modal: false,
+        buttons: {
+			Ok: function() {			    
+			    var item = $( this ).data("item");	
+			        
+			    item.data("time", CollectDataFromTimeTable());
+			    
+				$( this ).dialog( "close" );
+			},
+			Cancel: function() {
+				$( this ).dialog( "close" );
+			}			
+		}		
+	});		
+		
+	$("#btnDialogAddRow").click(function(){
+	    var $tbl = $("#tblDialogTime");
+	    var $rowClone = $("tr:eq(1)",$tbl).clone();	   	    	    	   
+	    
+	    $("td", $rowClone).each(function(i, item) {
+            if(i==0)
+	        {	   
+                $(this).find(":button").show();
+                return;
+	        }	
+            $(this).text("");            
+            $(this).append($('<input type="text" value="" class="txtDialogInput" />').mask("99:99"));
+            
+        });                    
+        
+        $tbl.append($rowClone);                
+	});
+	
+	$("#btnDialogAddRow").click(function(){
+	    var $tbl = $("#tblDialogTime .txtDialogInputSelected").remove();	    	    
+	});	
+	
+	$("#btnd").click(function(){
+	    $( "#dialog-modal" ).data('link', this).dialog( "open" );
+	});
+    
 
     if ($('#ctl00_C_txtLayoutdata').val() != "") {        
         FillLayoutData();        
@@ -132,6 +238,8 @@ function CollectLayoutData() {
         sb.append('"headerContent":"' + $(this).find(".inputHeaderText").text() + '"');        
         sb.append(',');             
         sb.append('"bodyContentImgSrc":"' + $(this).find(".itemContent img").attr("src") + '"');        
+        sb.append(',');                   
+        sb.append('"time":' + $(this).data("time"));
         
         sb.appendLine('}');
 
@@ -152,13 +260,43 @@ function CollectLayoutData() {
     //alert(sb.toString());    
 }         
 
+function CollectDataFromTimeTable()
+{
+    var $tbl = $("#tblDialogTime");
+    var $rows = $("tr:gt(1)",$tbl);	   	            
+    
+    var result = new Sys.StringBuilder();
+    result.append("{\"data\":");           
+    result.append("[");
+     
+    $rows.each(function(i, item) {
+        result.append("[");
+        
+        var $tds = $("td", $(this));
+        $tds.each(function(j, item) {            
+            var val = $(this).find(":text").val();
+            
+            result.append("\"" + val + "\"");                        
+            if ($tds.length > j + 1) result.appendLine(',');                
+        });  
+        
+        result.append("]");
+        if ($rows.length > i + 1) result.appendLine(',');                
+    });                
+    
+    result.append("]");
+    result.append("}");                 
+    
+    return result.toString();              
+}
+
 function FillLayoutData() {
     var $divContainer = $('#divContainer');
     var $divItems = $('#divItems');
         
     var $itemTemplate = $(">div:eq(0)" ,$divItems);
     
-    //add values
+    //add values parse main conternt
     var obj = $.parseJSON($('#ctl00_C_txtLayoutdata').val());
     var rows = obj.data.length;  
         
@@ -171,6 +309,7 @@ function FillLayoutData() {
              containment: "parent",
              opacity: 0.65, 
              scroll: true,
+             scrollSensitivity: 100,
              snap: true,      
              cursor: "move"      
             }
@@ -187,6 +326,8 @@ function FillLayoutData() {
         droppedItem.css("left",obj.data[r].left);
         droppedItem.css("top",obj.data[r].top);
         droppedItem.css("position","absolute");
+        //debugger
+        droppedItem.data("time",$.toJSON(obj.data[r].time));
         if(obj.data[r].width != null)
         {
             droppedItem.find(".itemContent").width(obj.data[r].width);
