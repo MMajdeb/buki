@@ -33,9 +33,15 @@ public partial class Member_Supplier_Layout : DevCowThemePage
         DataTable dt = new DataTable();
         dt.Columns.Add("Image");
 
-        dt.Rows.Add(new object[] { "images/icons-basic/circle.png" });
-        dt.Rows.Add(new object[] { "images/icons-basic/squre.png" });
-        dt.Rows.Add(new object[] { "images/icons-basic/round-rect.png" });
+        dt.Rows.Add(new object[] { "images/icons-basic/circleh.png" });
+        dt.Rows.Add(new object[] { "images/icons-basic/squreh.png" });
+        dt.Rows.Add(new object[] { "images/icons-basic/round-recth.png" });
+        dt.Rows.Add(new object[] { "images/icons-basic/diamondh.png" });
+        dt.Rows.Add(new object[] { "images/icons-basic/hexagonh.png" });
+        dt.Rows.Add(new object[] { "images/icons-basic/parallelogramh.png" });
+        dt.Rows.Add(new object[] { "images/icons-basic/trapezoid2h.png" });
+        dt.Rows.Add(new object[] { "images/icons-basic/trapezoidh.png" });
+        dt.Rows.Add(new object[] { "images/icons-basic/triangleh.png" });
 
         rptItems.DataSource = dt;
         rptItems.DataBind();

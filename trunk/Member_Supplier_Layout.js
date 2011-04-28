@@ -19,6 +19,7 @@ function LoadPage() {
                  containment: "parent",
                  opacity: 0.65, 
                  scroll: true,
+                 scrollSensitivity: 100,
                  snap: true,      
                  cursor: "move"      
                 }
@@ -28,7 +29,7 @@ function LoadPage() {
                 grid: 5,
                 helper: "ui-resizable-helper",
                 stop: function(event, ui) {
-                    
+                  $(this).parent().find('.itemHeader').width(ui.size.width - 10);          
                 }
             });  
             //debugger;                            
@@ -52,23 +53,24 @@ function LoadPage() {
         $(this).parents(".divItem").remove();
     });        
 
-    $('#divContainer').delegate('input:button.buttonEdit', 'click', function() {
+    $('#divContainer').delegate(':button.buttonEdit', 'click', function() {        
         var $inputHeaderText = $(this).parents(".divItem").find(".inputHeaderText");        
         var inputHeaderTextValue = $inputHeaderText.text();        
         //$inputHeaderText.hide();
         
-        var $txtHide = $(this).parent().find(".txtHide");
+        var $txtHide = $(this).parents(".itemIcons").find(".txtHide");
         $txtHide.show();
         $txtHide.val(inputHeaderTextValue);
-        $(this).parent().find(".buttonAccept").show();        
+        $txtHide.focus();
+        $(this).parents(".itemIcons").find(".buttonAccept").show();        
     });        
 
-    $('#divContainer').delegate('input:button.buttonAccept', 'click', function() {        
-        var $txtHide = $(this).parent().find(".txtHide");
+    $('#divContainer').delegate(':button.buttonAccept', 'click', function() {        
+        var $txtHide = $(this).parents(".itemIcons").find(".txtHide");
         $txtHide.hide();
         var txtHideVal = $txtHide.val();
         
-        $(this).parent().find(".buttonAccept").hide();        
+        $(this).parents(".itemIcons").find(".buttonAccept").hide();        
         
         var $inputHeaderText = $(this).parents(".divItem").find(".inputHeaderText");        
         $inputHeaderText.text(txtHideVal);        
@@ -318,8 +320,8 @@ function FillLayoutData() {
         droppedItem.find(".itemContent").resizable({
             grid: 5,
             helper: "ui-resizable-helper",
-            stop: function(event, ui) {
-                $(this).parent().find('.itemHeader').css("width",ui.size.width - 10);                
+            stop: function(event, ui) {                
+                $(this).parent().find('.itemHeader').width(ui.size.width - 10);                
             }
         });          
                

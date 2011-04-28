@@ -7,7 +7,7 @@
 <%@ Register TagPrefix="Club" Namespace="ClubSite" %>
 <asp:Content ID="Header1" ContentPlaceHolderID="HeaderPlaceHolder1" runat="Server">
 <style type="text/css">
-    .divItem{width:128px;float:right;direction:ltr;}
+    .divItem{width:64px;float:right;direction:ltr;}
     .btnBase{border-style: none; background-repeat: no-repeat; background-color: #FFFFFF; width:16px;height:16px;}
 	.buttonRemove{background-image: url('images/led-icons/cancel.gif');float:left;display:none;}  
 	.buttonAdd{background-image: url('images/led-icons/add.png');}  
@@ -18,7 +18,7 @@
 	.buttonAccept{background-image: url('images/led-icons/accept.gif');float:right;display:none;}  	
 	.fitBox{width:100%;height:100%}	
 	.ui-resizable-helper { border: 2px dotted #00F; }
-	.itemContent{}
+	.itemContent{width:64px;height:64px;}
 	.itemHeader{direction:rtl;}
 	.itemIcons{white-space:nowrap;widows:132px;display:none;}
 	#tblDialogTime{width:100%;border:solid 1px gray;border-collapse:collapse;}	
@@ -143,21 +143,25 @@
 							<div class="ui-state-active ui-corner-top itemHeader" style="padding: 5px; height: 20px;">
 								<span class="inputHeaderText">тогд</span>
 							</div>
-							<div style="height:auto;" class="ui-widget-content ui-corner-bottom itemContent">
+							<div class="ui-widget-content ui-corner-bottom itemContent">
 								 <img src='<%# Eval("Image") %>' class="fitBox" alt="" /></div>				
             				<div class="ui-state-active ui-corner-bottom itemIcons" style="padding: 2px; height: 20px;">
-								<input type="text" class="txtHide" />
-								<input type="button" class="btnBase buttonAccept" />
-								<input type="button" class="btnBase buttonRemove" />								
-								<input type="button" class="btnBase buttonTime" />	
-								<input type="button" class="btnBase buttonEdit" />						
+            				    <table cellpadding="0" cellspacing="0">
+            				    <tr>
+            				    <td><input type="button" class="btnBase buttonAccept" /></td>
+								<td><input type="text" class="txtHide" /></td>								
+								<td><input type="button" class="btnBase buttonRemove" /></td>								
+								<td><input type="button" class="btnBase buttonTime" /></td>	
+								<td><input type="button" class="btnBase buttonEdit" /></td>						
+								</tr>
+								</table>
 							</div>								 									 
 						</div>		
                     </ItemTemplate>
                 </asp:Repeater>
 			   </div>			   
 			   <div style="clear:both"></div>				   	
-			   <div id="divContainer" dir="ltr" style="border:solid 1px red; height:400px; clear:both; margin:0px; padding:0px; width:auto;overflow:scroll;position:relative;">
+			   <div id="divContainer" dir="ltr" style="border:solid 1px red; height:450px; clear:both; margin:0px; padding:0px; width:auto;overflow:scroll;position:relative;">
                <%--<div style='height: 400px; width: 1px; position:relative;'></div>--%>
                 </div>                 				
 				
