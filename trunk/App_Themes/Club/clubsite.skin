@@ -15,7 +15,8 @@ Default skin template. The following skins are provided as examples only.
 --%>
 <asp:WebPartZone runat="server" BorderColor="#CCCCCC" Font-Names="Verdana"
     Padding="6" WebPartVerbRenderMode="TitleBar" Width="100%">
-    <PartChromeStyle BackColor="#fefdad" BorderColor="#FFCC66" Font-Names="Verdana" ForeColor="#333333" />
+    <%--<PartChromeStyle BackColor="#fefdad" BorderColor="#FFCC66" Font-Names="Verdana" ForeColor="#333333" />--%>
+    <PartChromeStyle BackColor="#ffffff" BorderColor="#FFCC66" Font-Names="Verdana" ForeColor="#333333" />
     <MenuLabelHoverStyle ForeColor="#FFCC66" />
     <EmptyZoneTextStyle Font-Size="0.8em" />
     <MenuLabelStyle ForeColor="White" />
@@ -27,7 +28,8 @@ Default skin template. The following skins are provided as examples only.
     <TitleBarVerbStyle Font-Size="1.0em" Font-Underline="False" ForeColor="Black" />
     <MenuPopupStyle BackColor="#990000" BorderColor="#CCCCCC" BorderWidth="1px" Font-Names="Verdana"
         Font-Size="0.6em" />
-    <PartTitleStyle BackColor="#fefdad" Font-Bold="True" Font-Size="0.8em" ForeColor="#fefdad" />
+    <PartTitleStyle BackColor="#ffffff" Font-Bold="True" Font-Size="0.8em" ForeColor="#fefdad" />
+    <%--<PartTitleStyle BackColor="#fefdad" Font-Bold="True" Font-Size="0.8em" ForeColor="#fefdad" />--%>
 </asp:WebPartZone>
     
 <asp:Menu runat="server" Orientation="Horizontal"

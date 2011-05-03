@@ -13,29 +13,56 @@
 	<form id="form1" runat="server">
         <asp:WebPartManager ID="WebPartManager1" runat="server">
         </asp:WebPartManager>
-        <div id="webpartmenu" >
-        	<asp:DropDownList ID="drpDisplayModes" runat="server" AutoPostBack="True" OnSelectedIndexChanged="drpDisplayModes_SelectedIndexChanged">
-        </asp:DropDownList>
-        </div>
-		<div id="poster">
-			<h1>
-				<a runat="server" href="default.aspx">בוקי!</a></h1>
-			<h2>
-				בוקי - האתר בבנייה
-			</h2>
-		</div>
+        
 		<div class="none">
 			<a href="#content_start">Skip Repetitive Navigational Links</a></div>
 		<div id="navtop">
 			<asp:Menu runat="server" ID="ClubMenu" CssSelectorClass="SimpleEntertainmentMenu" DataSourceID="SiteMapDataSource1">
 			</asp:Menu>
 		</div>
+		<div id="poster">
+			<h1>
+				<a id="A1" runat="server" href="default.aspx">בוקי!</a></h1>
+			<h2>
+				בוקי - האתר בבנייה
+			</h2>
+		</div>     
+		<div class="searchbar">
+		<table class="searchbarTable">
+		<tr>
+		<td style="width:50%"></td>
+		<td>
+		<table cellspacing="0" cellpadding="0" class="searchbarTableLeft">
+				<tr>
+					<td style="white-space:nowrap;">
+						חפש בלוח:
+					</td>
+					<td>
+						<asp:DropDownList ID="ddlCategory" runat="server" style="width:150px;">						
+						</asp:DropDownList>
+					</td>					
+					<td>
+						<asp:TextBox ID="tbFreeText" runat="server"></asp:TextBox>						
+					</td>
+					<td>
+						<asp:Button ID="btnSearch" runat="server" Text="חפש" PostBackUrl="~/Suppliers.aspx" />						
+					</td>															
+				</tr>	
+			</table>				
+		</td>
+		</tr>
+		</table>
+		</div>   
+        <div id="webpartmenu" >
+        	<asp:DropDownList ID="drpDisplayModes" runat="server" AutoPostBack="True" OnSelectedIndexChanged="drpDisplayModes_SelectedIndexChanged">
+        </asp:DropDownList>
+        </div>
 		<asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
 		</asp:ContentPlaceHolder>
-		<div id="navbottom">
+		<%--<div id="navbottom">
 			<asp:Menu runat="server" ID="Menu1" CssSelectorClass="SimpleEntertainmentMenu" DataSourceID="SiteMapDataSource1">
 			</asp:Menu>
-		</div>
+		</div>--%>
 		<div id="footer">
 			<p>
 				Club Address here

@@ -39,7 +39,7 @@ h1, h2, h3, h4, h5, h6
 
 h1
 {
-    font-size: 28px;
+    font-size: 36px;
     font-weight: bold;
    margin: 5px 0 5px 0;
 }
@@ -109,7 +109,7 @@ h1 a:link, h1 a:visited, h1 a:hover, h1 a:active
     margin-right: auto;
     margin-left: auto;
     width: 998px;
-    height: 139px;
+    height: 95px;
     margin-top: 17px;
 }
 
@@ -777,4 +777,29 @@ fieldset
 padding: 5px;
 }
 
+.searchbar
+{
+    background-image: url(../../images/roundrect/menusearch.jpg);
+    margin-right: auto;
+    margin-left: auto;    
+    height: 36px;
+    width: 996px;
+    font-family: arial;
+    font-size: 16px;
+    font-weight: bold;    
+}
+
+.searchbarTable
+{
+    width:980px;
+    border: 0 none;
+    border-collapse: collapse;    
+    height: 36px;
+}
+
+.searchbarTableLeft
+{
+    float:left;
+    margin-left:10px;
+}
 
