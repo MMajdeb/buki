@@ -12,8 +12,8 @@ using System.Web.UI.HtmlControls;
 public partial class WebPartControls_MemberLogin : System.Web.UI.UserControl, System.Web.UI.WebControls.WebParts.IWebPart
 {
     protected void Page_Load(object sender, EventArgs e)
-    {
-
+    {        
+        //Page.RegisterHiddenField("__EVENTTARGET", LoginControl.UniqueID);        
     }
 
     protected void logout_click(object sender, EventArgs e)

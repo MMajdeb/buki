@@ -114,6 +114,7 @@
 						<td class="formvalue">
 							<asp:DropDownList ID="ddlCategory" runat="server">								
 							</asp:DropDownList>							
+							<asp:RequiredFieldValidator ID="ddlCategoryRequiredFieldValidator1" runat="server" ErrorMessage="אנא בחר קטגוריה שהעסק שלכם משתייך." ControlToValidate="ddlCategory" InitialValue="-1"></asp:RequiredFieldValidator>
 						</td>
 					</tr>
 					<tr>
