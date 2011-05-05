@@ -299,7 +299,20 @@ function FillLayoutData() {
     var $itemTemplate = $(">div:eq(0)" ,$divItems);
     
     //add values parse main conternt
-    var obj = $.parseJSON($('#ctl00_C_txtLayoutdata').val());
+    var obj;
+    try
+    {    
+        obj = $.parseJSON($('#ctl00_C_txtLayoutdata').val());
+    }
+    catch(ex)
+    {
+        $('#ctl00_C_txtLayoutdata').val("");
+        var msg = "בעיה בטעינת הנתונים,";
+        msg+="לחץ - Ctrl+F5";
+        msg+="לכענון הדף וטעינתו מחדש";
+        alert(msg);
+        return;
+    }
     var rows = obj.data.length;  
         
     for (var r = 0; r < rows; r++) {
