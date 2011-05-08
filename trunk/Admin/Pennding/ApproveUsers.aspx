@@ -61,7 +61,7 @@
 							<br />
 							<asp:Button ID="btnUpdateA" runat="server" Text="עדכן משתמש" 
 								onclick="btnUpdateA_Click" />							
-							<input type="reset" />							
+							<input type="reset" value="נקה טופס" />							
 						</td>
 					</tr>
 				</table>
@@ -115,7 +115,7 @@
 							<br />
 							<asp:Button ID="btnUpdateB" runat="server" Text="עדכן פרטי משתמש מורחב" 
 								onclick="btnUpdateB_Click" />							
-							<input type="reset" />							
+							<input type="reset" value="נקה טופס" />							
 						</td>
 					</tr>
 				</table>				
@@ -242,7 +242,7 @@
 						<td colspan="2" class="formvalue">
 							<br />
 							<asp:Button ID="btnUpdateC" runat="server" Text="עדכן ספק/משתמש" onclick="btnUpdateC_Click" />							
-							<input type="reset" />							
+							<input type="reset" value="נקה טופס" />							
 						</td>
 					</tr>
 				</table>				

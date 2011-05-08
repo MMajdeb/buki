@@ -42,5 +42,8 @@
 			<asp:SessionParameter DefaultValue="0" Name="CategoryID" SessionField="fgf" 
 				Type="Int32" />
 		</SelectParameters>--%>
+		<SelectParameters>
+		<asp:Parameter Name="CategoryID"  Type="Int32" DefaultValue="0" />
+		</SelectParameters>
 	</asp:ObjectDataSource>
 </asp:Content>

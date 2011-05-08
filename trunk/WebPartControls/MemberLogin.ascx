@@ -11,6 +11,7 @@
 								<h3 class="none">
 									התחברות לאתר</h3>
 								<fieldset>
+									<asp:Panel ID="pl" runat="server" DefaultButton="LoginButton"> 
 									<legend class="none">התחברות לאתר</legend>
 									<asp:Label runat="server" AssociatedControlID="UserName" ID="UserNameLabel">User name:</asp:Label>
 									<br />
@@ -28,12 +29,13 @@
 									</p>
 									<asp:CheckBox runat="server" ID="RememberMe" Text="Remember me next time." />
 									<p>
-									</p>
+									</p>									
 									<Club:RolloverButton runat="server" ValidationGroup="Login1" Text="Login" ID="LoginButton"
-										CommandName="Login" />
+										CommandName="Login" />									
 									<p>
 									</p>
 									<asp:Literal runat="server" ID="FailureText" EnableViewState="False"></asp:Literal>
+									</asp:Panel>	
 								</fieldset>
 							</LayoutTemplate>
 						</asp:Login>
