@@ -17,7 +17,8 @@
 		<div class="none">
 			<a href="#content_start">Skip Repetitive Navigational Links</a></div>
 		<div id="navtop">
-			<asp:Menu runat="server" ID="ClubMenu" CssSelectorClass="SimpleEntertainmentMenu" DataSourceID="SiteMapDataSource1">
+			<asp:Menu runat="server" ID="ClubMenu" 
+				CssSelectorClass="SimpleEntertainmentMenu" DataSourceID="SiteMapDataSource1" OnMenuItemDataBound="ClubMenu_MenuItemDataBound">
 			</asp:Menu>
 		</div>
 		<div id="poster">
@@ -72,7 +73,8 @@
 				<br />
 				euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
 		</div>
-		<asp:SiteMapDataSource ID="SiteMapDataSource1" runat="server" ShowStartingNode="false" />
+		<asp:SiteMapDataSource ID="SiteMapDataSource1" runat="server" 
+			ShowStartingNode="false" />
         &nbsp;
 	</form>
 

@@ -62,4 +62,33 @@ public partial class MasterPage1 : System.Web.UI.MasterPage
     {
         WebPartManager1.DisplayMode = WebPartManager1.SupportedDisplayModes[drpDisplayModes.SelectedValue.ToString()];
     }
+    protected void ClubMenu_MenuItemDataBound(object sender, MenuEventArgs e)
+    {        
+        const string user_propile = "רישום משתמש";
+        const string user_propile_logged = "פרופיל משתמש";
+
+        SiteMapNode node = e.Item.DataItem as SiteMapNode;
+        Menu menu = sender as Menu;
+        MenuItem item = menu.FindItem(node.Title);        
+
+        if (Page.User.Identity.IsAuthenticated)
+        {
+            if (node.Title.Equals(user_propile))
+            {
+                //node.ReadOnly = false;
+                //node.Title = user_propile_logged;
+                item.Text = user_propile_logged;
+            }
+        }
+        else
+        {
+            if (node.Title.Equals(user_propile_logged))
+            {
+                //node.ReadOnly = false;
+                //node.Title = user_propile;
+                item.Text = user_propile;
+            }
+        }
+    }
+
 }
