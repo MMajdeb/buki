@@ -54,9 +54,9 @@
 		</tr>
 		</table>
 		</div>   
-        <div id="webpartmenu" >
+        <%--<div id="webpartmenu">
         	<asp:DropDownList ID="drpDisplayModes" runat="server" AutoPostBack="True" OnSelectedIndexChanged="drpDisplayModes_SelectedIndexChanged">
-        </asp:DropDownList>
+        </asp:DropDownList>--%>
         </div>
 		<asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
 		</asp:ContentPlaceHolder>

@@ -2,7 +2,7 @@
 <siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0">
   <siteMapNode url="/" title="top" description="top" roles="*">
     <siteMapNode url="default.aspx" title="דף הבית" description="Welcome page"></siteMapNode>
-    <siteMapNode url="suppliers.aspx" title="ספקים" description="Suppliers work"></siteMapNode>
+    <!--<siteMapNode url="suppliers.aspx" title="ספקים" description="Suppliers work"></siteMapNode>-->
     <siteMapNode url="events_calendar.aspx" title="אירועים" description="Calendar of events" />
     <siteMapNode url="photoalbum_list.aspx" title="תמונות" description="Photo album" />
     <siteMapNode url="news_list.aspx" title="חדשות" description="Recent News"></siteMapNode>
