@@ -196,4 +196,11 @@ public partial class ApproveUsers : DevCowThemePage
 
         lblResult.Text = "מידע ספק עודכן בהצלחה";
     }
+
+    protected void btnUpdate_Click(object sender, EventArgs e)
+    {
+        btnUpdateA_Click(this, null);
+        btnUpdateB_Click(this, null);
+        btnUpdateC_Click(this, null);
+    }
 }

@@ -7,6 +7,7 @@ public partial class MasterPage1 : System.Web.UI.MasterPage
 {
 
     public int ddlCategorySelectedIndex { get; set; }
+    public string tbFreeTextText { get; set; }
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -35,7 +36,8 @@ public partial class MasterPage1 : System.Web.UI.MasterPage
         ddlCategory.DataBind();
 
         //set index that filled from suppliers page
-        ddlCategory.SelectedIndex = ddlCategorySelectedIndex;        
+        ddlCategory.SelectedIndex = ddlCategorySelectedIndex;
+        tbFreeText.Text = tbFreeTextText;
     }
     
     protected void Page_Init(object sender, EventArgs e)
@@ -43,24 +45,24 @@ public partial class MasterPage1 : System.Web.UI.MasterPage
         this.ContentPlaceHolder1.ID = "C";
         this.HeaderPlaceHolder1.ID = "H";
 
-        if (HttpContext.Current.User.Identity.IsAuthenticated)
-        {
-            foreach (WebPartDisplayMode wpdmDisplayMode in WebPartManager1.SupportedDisplayModes)
-            {
-                if (wpdmDisplayMode.IsEnabled(WebPartManager1))
-                {
-                    drpDisplayModes.Items.Add(new ListItem(wpdmDisplayMode.Name, wpdmDisplayMode.Name));
-                }
-            }
-        }
-        else
-        {
-            drpDisplayModes.Visible = false;
-        }
+        //if (HttpContext.Current.User.Identity.IsAuthenticated)
+        //{
+        //    foreach (WebPartDisplayMode wpdmDisplayMode in WebPartManager1.SupportedDisplayModes)
+        //    {
+        //        if (wpdmDisplayMode.IsEnabled(WebPartManager1))
+        //        {
+        //            drpDisplayModes.Items.Add(new ListItem(wpdmDisplayMode.Name, wpdmDisplayMode.Name));
+        //        }
+        //    }
+        //}
+        //else
+        //{
+        //    drpDisplayModes.Visible = false;
+        //}
     }
     protected void drpDisplayModes_SelectedIndexChanged(object sender, EventArgs e)
     {
-        WebPartManager1.DisplayMode = WebPartManager1.SupportedDisplayModes[drpDisplayModes.SelectedValue.ToString()];
+        //WebPartManager1.DisplayMode = WebPartManager1.SupportedDisplayModes[drpDisplayModes.SelectedValue.ToString()];
     }
     protected void ClubMenu_MenuItemDataBound(object sender, MenuEventArgs e)
     {        

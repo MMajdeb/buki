@@ -56,14 +56,14 @@
 							<asp:TextBox ID="comment" runat="server"></asp:TextBox>
 						</td>
 					</tr>
-					<tr>
+					<%--<tr>
 						<td colspan="2" class="formvalue">
 							<br />
 							<asp:Button ID="btnUpdateA" runat="server" Text="עדכן משתמש" 
 								onclick="btnUpdateA_Click" />							
 							<input type="reset" value="נקה טופס" />							
 						</td>
-					</tr>
+					</tr>--%>
 				</table>
 				<div class="dashedline">
 				</div>
@@ -110,14 +110,14 @@
 							<asp:TextBox runat="server" ID="Phone" CssClass="txtfield" />
 						</td>
 					</tr>
-					<tr>
+					<%--<tr>
 						<td colspan="2" class="formvalue">
 							<br />
 							<asp:Button ID="btnUpdateB" runat="server" Text="עדכן פרטי משתמש מורחב" 
 								onclick="btnUpdateB_Click" />							
 							<input type="reset" value="נקה טופס" />							
 						</td>
-					</tr>
+					</tr>--%>
 				</table>				
 				<asp:PlaceHolder runat="server" ID="phSuppliers">
 				<div class="dashedline">
@@ -241,7 +241,7 @@
 					<tr>
 						<td colspan="2" class="formvalue">
 							<br />
-							<asp:Button ID="btnUpdateC" runat="server" Text="עדכן ספק/משתמש" onclick="btnUpdateC_Click" />							
+							<asp:Button ID="btnUpdate" runat="server" Text="עדכן ספק/משתמש" onclick="btnUpdate_Click" />							
 							<input type="reset" value="נקה טופס" />							
 						</td>
 					</tr>
