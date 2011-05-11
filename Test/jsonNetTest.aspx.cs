@@ -10,6 +10,55 @@ public partial class Test_jsonNetTest : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+
+        string json1 = @"{
+
+  ""Name"": ""Apple"",
+
+  ""Expiry"": new Date(1230422400000),
+
+  ""Price"": 3.99,
+
+  ""Sizes"": [
+
+    ""Small"",
+
+    ""Medium"",
+
+    ""Large""
+
+  ]
+
+}";
+
+string json2 =  "{\r\n  \"Name\": \"Apple\",\r\n  \"Expiry\": new Date(\r\n    1230422400000\r\n  ),\r\n  \"Price\": 3.99,\r\n  \"Sizes\": [\r\n    \"Small\",\r\n    \"Medium\",\r\n    \"Large\"\r\n  ]\r\n}";
+
+
+
+
+        JObject o = JObject.Parse(json2);
+
+        string tt6 = o.ToString() + " ";
+
+        JObject to = JObject.Parse(tt6);
+
+
+        string name = (string)o["Name"];
+
+        // Apple
+
+
+
+        JArray sizes = (JArray)o["Sizes"];
+
+
+
+        string smallest = (string)sizes[0];
+
+        // Small
+
+
+
         string json = @"{
   CPU: 'Intel',
   Drives: [
@@ -51,7 +100,7 @@ public partial class Test_jsonNetTest : System.Web.UI.Page
         }
         }";
 
-        JObject o = JObject.Parse(lay);
+        //JObject o = JObject.Parse(lay);
 
         var postTitles =
     from p in o["data"].Children()
