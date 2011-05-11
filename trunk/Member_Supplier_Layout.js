@@ -33,6 +33,7 @@ function LoadPage() {
                 }
             });  
             //debugger;                            
+            droppedItem.data("id","");
             droppedItem.css("left",ui.position.left + $(this).scrollLeft() - $(this).position().left);
             droppedItem.css("top",ui.position.top + $(this).scrollTop() - $(this).position().top);
             droppedItem.data("time",'{\"data\":[]}');            
@@ -226,9 +227,10 @@ function CollectLayoutData() {
     var $divs = $('>div', $table);
     var rows = $divs.length;      
 
-    $divs.each(function(i, item) {
-        //debugger
-        sb.appendLine('{');                      
+    $divs.each(function(i, item) {            
+        sb.appendLine('{');         
+        sb.append('"id":' + $(this).data("id"));   
+        sb.append(',');                          
         sb.append('"left":' + ($(this).position().left + $table.scrollLeft()));   
         sb.append(',');             
         sb.append('"top":' + ($(this).position().top + $table.scrollTop()));        
@@ -342,7 +344,18 @@ function FillLayoutData() {
         droppedItem.css("top",obj.data[r].top);
         droppedItem.css("position","absolute");
         //debugger
-        droppedItem.data("time",$.toJSON(obj.data[r].time));
+        //set id on item
+        if(obj.data[r].id != null && obj.data[r].id != undefined)
+        {
+            droppedItem.data("id",'"' + obj.data[r].id + '"');            
+        }
+        else
+        {
+            droppedItem.data("id","");            
+        }        
+        
+        droppedItem.data("time",$.toJSON(obj.data[r].time));        
+                
         if(obj.data[r].width != null)
         {
             droppedItem.find(".itemContent").width(obj.data[r].width);
