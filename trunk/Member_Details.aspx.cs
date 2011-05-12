@@ -28,7 +28,9 @@ public partial class Member_Details : DevCowThemePage
 		}
 		try
 		{
-			da.Update((Guid)user.ProviderUserKey, Addr.Text, Phone.Text, fname.Text, lname.Text, 0,(Guid)user.ProviderUserKey);
+            byte lMemberType = Convert.ToByte(ViewState["MemberInfo!MemberType"]);
+            //membertype 0 - normal user, 1 - supplier
+            da.Update((Guid)user.ProviderUserKey, Addr.Text, Phone.Text, fname.Text, lname.Text, lMemberType, (Guid)user.ProviderUserKey);
 			ContactStatus.Text = "Details have been updated sucessfully.";
 			ContactStatus.ControlStyle.ForeColor = Color.Black;
 		}
@@ -100,8 +102,11 @@ public partial class Member_Details : DevCowThemePage
                 Country.Text = sdr.Country;
                 Phone1.Text = sdr.Phone;
                 Fax1.Text = sdr.Fax;
-                HomePage1.Text = sdr.HomePage;                
+                HomePage1.Text = sdr.HomePage;
 
+
+                // save data if user update details
+                ViewState["MemberInfo!MemberType"] = 1;
             }
 		}
 	}

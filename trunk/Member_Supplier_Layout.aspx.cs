@@ -141,7 +141,7 @@ public partial class Member_Supplier_Layout : DevCowThemePage
             int index = results.IndexOf(itemResource);
 
             //id of resource
-            string id = oLayout["data"][index]["id"].ToString();
+            string id = oLayout["data"][index]["id"].Value<string>();
             string time = oLayout["data"][index]["time"].ToString();
 
             JObject itemTime = JObject.Parse(time);
@@ -172,7 +172,10 @@ public partial class Member_Supplier_Layout : DevCowThemePage
                     DateTime dtStart = Convert.ToDateTime("2011-01-01 " + valueTimeStart);
                     DateTime dtEnd = Convert.ToDateTime("2011-01-01 " + valueTimeEnd);
 
-                    prta.Insert(new Guid(id), productID, day, null, null);
+                    TimeSpan tsStart = new TimeSpan(dtStart.Hour, dtStart.Minute, dtStart.Second);
+                    TimeSpan tsEnd = new TimeSpan(dtEnd.Hour, dtEnd.Minute, dtEnd.Second);
+
+                    prta.Insert(new Guid(id), productID, day, tsStart, tsEnd);
                 } // resultsTimeValues
             } //resultsTime
 
