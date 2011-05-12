@@ -173,7 +173,7 @@
 			<asp:ScriptReference Assembly="jQuery" Name="jQuery.ui.draggable.js" />
 		</PlugInScripts>
 	</DotNetAge:JQueryPlugin>
-	<%--   <DotNetAge:JQueryPlugin ID="JQueryPlugin1" runat="server" Name="droppable">
+	<DotNetAge:JQueryPlugin ID="JQueryPlugin1" runat="server" Name="droppable">
         <Target TargetID="vbvb" />
         <PlugInScripts>
             <asp:ScriptReference Assembly="jQuery" Name="jQuery.ui.core.js" />
@@ -190,8 +190,7 @@
             <asp:ScriptReference Assembly="jQuery" Name="jQuery.ui.mouse.js" />                        
             <asp:ScriptReference Assembly="jQuery" Name="jQuery.ui.resizable.js" />
         </PlugInScripts>
-    </DotNetAge:JQueryPlugin> 
-    --%>   
+    </DotNetAge:JQueryPlugin>    
    <DotNetAge:JQueryPlugin ID="JQueryPlugin4" runat="server" Name="dialog">
         <Target TargetID="vbvb" />
         <PlugInScripts>
