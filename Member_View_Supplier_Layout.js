@@ -221,27 +221,27 @@ function InitCalendar()
         //events:'JsonResponse.ashx',
         eventDrop: eventDropped,
         eventResize: eventResized
-        //,
-//        eventRender: function(event, element) {
-//            //alert(event.title);
-//            element.qtip({
-//                content: event.description,
-//                position: { corner: { tooltip: 'bottomLeft', target: 'topRight'} },
-//                style: {
-//                    border: {
-//                        width: 1,
-//                        radius: 3,
-//                        color: '#2779AA'
+        ,
+        eventRender: function(event, element) {
+            //alert(event.title);
+            element.qtip({
+                content: event.description,
+                position: { corner: { tooltip: 'bottomLeft', target: 'topRight'} },
+                style: {
+                    border: {
+                        width: 1,
+                        radius: 3,
+                        color: '#2779AA'
 
-//                    },
-//                    padding: 10,
-//                    textAlign: 'center',
-//                    tip: true, // Give it a speech bubble tip with automatic corner detection
-//                    name: 'cream' // Style it according to the preset 'cream' style
-//                }
+                    },
+                    padding: 10,
+                    textAlign: 'center',
+                    tip: true, // Give it a speech bubble tip with automatic corner detection
+                    name: 'cream' // Style it according to the preset 'cream' style
+                }
 
-//            });
-//        }
+            });
+        }
 
     });
     

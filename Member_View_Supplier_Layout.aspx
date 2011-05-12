@@ -158,7 +158,7 @@
 	<asp:ScriptManager ID="sm" runat="server" EnablePageMethods="true">
 		<Scripts>
 			<asp:ScriptReference Path="~/Scripts/jquery.json-2.2.min.js" />
-			<%--<asp:ScriptReference Path="~/Scripts/jquery.qtip-1.0.0-rc3.min.js" />--%>
+			<asp:ScriptReference Path="~/Scripts/jquery.qtip-1.0.0-rc3.min.js" />
 			<asp:ScriptReference Path="~/Scripts/fullcalendar.min.js" />
 			<%--<asp:ScriptReference Path="~/Scripts/jquery-ui-timepicker-addon-0.6.2.min.js" />--%>
 			<asp:ScriptReference Path="~/Member_View_Supplier_Layout.js" />
