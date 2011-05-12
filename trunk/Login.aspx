@@ -58,7 +58,7 @@
 									<td>
 									</td>
 									<td>
-										<asp:CheckBox runat="server" ID="RememberMe" Text="Remember me next time." /></td>
+										<asp:CheckBox runat="server" ID="RememberMe" Text="זכור אותי בפעם הבאה." /></td>
 								</tr>
 							</table>
 							<Club:RolloverButton ID="LoginButton" runat="server" Text="Login" CommandName="Login" />

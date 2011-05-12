@@ -17,7 +17,7 @@
 									<br />
 									<asp:TextBox runat="server" ID="UserName"></asp:TextBox>
 									<asp:RequiredFieldValidator runat="server" ControlToValidate="UserName" ValidationGroup="Login1"
-										ErrorMessage="User Name is required." ToolTip="User Name is required." ID="UserNameRequired">*</asp:RequiredFieldValidator>
+										ErrorMessage="User Name is required." ToolTip="User Name is required." ID="UserNameRequired" Display="Dynamic">*</asp:RequiredFieldValidator>
 									<p>
 									</p>
 									<asp:Label runat="server" AssociatedControlID="Password" ID="PasswordLabel">Password:</asp:Label>
@@ -27,7 +27,7 @@
 										ErrorMessage="Password is required." ToolTip="Password is required." ID="PasswordRequired">*</asp:RequiredFieldValidator>
 									<p>
 									</p>
-									<asp:CheckBox runat="server" ID="RememberMe" Text="Remember me next time." />
+									<asp:CheckBox runat="server" ID="RememberMe" Text="זכור אותי בפעם הבאה." />
 									<p>
 									</p>									
 									<Club:RolloverButton runat="server" ValidationGroup="Login1" Text="Login" ID="LoginButton"
