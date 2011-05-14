@@ -80,35 +80,39 @@ function FillLayoutData() {
             var timeObj = $.parseJSON($(this).data("time"));            
             
             var eventSource2 = {
-                events: function(start, end, callback) {
+                events: function(start, end, callback) {                
                     var events = [];                                        
                     var timeStart,timeEnd;
-                    var date = new Date();
+                    var date = cloneDate(start);
                     var d = date.getDate();
                     var m = date.getMonth();
                     var y = date.getFullYear();
+                    var beginOfWeek = start.getDate();
+                    
                     //var tes = date.format("dd-MM-yyyy hh:mm:ss tt")                                            
-
-                    var unAvailibleTime =[];
-                    for(var k=0;k<24;k++)
-                    {                        
-                        unAvailibleTime.push({
-                            'date': new Date(String.format("{0} {1}", date.format("MM/dd/yyyy"),zeroPad(k,2) + ":00")),
-                            'active': true
-                        });
-                        unAvailibleTime.push({
-                            'date': new Date(String.format("{0} {1}", date.format("MM/dd/yyyy"),zeroPad(k,2) + ":30")),
-                            'active': true
-                        });
-                    }                    
 
                     //loop days
                     for(var j=0;j<7;j++)
-                    {                                                  
+                    {                                                            
+                        //var counterDay = zeroPad(date.getDate(),2);
+                    
+                        var unAvailibleTime =[];
+                        for(var k=0;k<24;k++)
+                        {                        
+                            unAvailibleTime.push({
+                                'date': new Date(String.format("{0} {1}", date.format("MM/dd/yyyy"),zeroPad(k,2) + ":00")),
+                                'active': true
+                            });
+                            unAvailibleTime.push({
+                                'date': new Date(String.format("{0} {1}", date.format("MM/dd/yyyy"),zeroPad(k,2) + ":30")),
+                                'active': true
+                            });
+                        }                    
+                                                                 
                         //reset dates struct 
-                        $.each(unAvailibleTime, function(i, item) {
-                            item.active = true;
-                        });
+                        //$.each(unAvailibleTime, function(i, item) {
+                        //    item.active = true;
+                        //});
                                           
                         //loop on time data rows
                         for(var i=0;i < timeObj.data.length; i++)
@@ -133,11 +137,11 @@ function FillLayoutData() {
                                     item.active = false;
                                 }
                             });
-                        }//loop on time data rows
-                        
-                        var eventsdates=[];
+                        }//loop on time data rows                        
+                             
                         var eventsdatesStart="";
                         var eventsdatesEnd="";
+                        var midnight = new Date(date.format("MM/dd/yyyy 23:30"));
                         //create date for events calendar
                         $.each(unAvailibleTime, function(i, item) {                                
                             //var startDate = item.date.format("yyyy-MM-dd HH:mm");
@@ -145,19 +149,52 @@ function FillLayoutData() {
                             {
                                 if(eventsdatesStart == "")
                                 {
-                                    eventsdatesStart = item.date.format("yyyy-MM-dd HH:mm");
-                                }
+                                    eventsdatesStart = item.date.format("yyyy-MM-dd HH:mm");                                    
+                                }     
+                                
+                                
+                                if(item.date >= midnight)
+                                {
+                                    eventsdatesEnd = item.date.format("yyyy-MM-dd HH:59"); 
+                                
+                                    events.push({
+                                        title  : 'לא זמין', 
+                                        description: 'נותן השירות הגדיר זמן זה לא זמין',                       
+                                        start  : eventsdatesStart,
+                                        end  : eventsdatesEnd,
+                                        allDay : false                        
+                                    }); 
+                                    
+                                    //reset params after add
+                                    eventsdatesStart="";
+                                    eventsdatesEnd="";                                                                                           
+                                }                                                          
                             }
+                            
+                            if(item.active == false)
+                            {
+                                if(eventsdatesStart == "") return;
+                                
+                                eventsdatesEnd = item.date.format("yyyy-MM-dd HH:mm"); 
+                                
+                                events.push({
+                                    title  : 'לא זמין',  
+                                    description: 'נותן השירות הגדיר זמן זה לא זמין',                        
+                                    start  : eventsdatesStart,
+                                    end  : eventsdatesEnd,
+                                    allDay : false                        
+                                });                      
+                                
+                                //reset params after add
+                                eventsdatesStart="";
+                                eventsdatesEnd="";                                                                                                    
+                            } 
+                                                       
                         });                        
-                        
+                      
+                        //add days an loop
+                        addDays(date,1,true);                                              
                     }//loop days
-/*
-                            events.push({
-                                title  : 'לא זמין',                        
-                                start  : String.format("{0} {1}", date.format("yyyy-MM-dd"),timeStart),
-                                end  : String.format("{0} {1}", date.format("yyyy-MM-dd"),timeEnd),
-                                allDay : false                        
-                            });                      */
                     
                     callback(events);
                 },
@@ -468,4 +505,48 @@ function zeroPad(num,count)
         numZeropad = "0" + numZeropad;
     }
     return numZeropad;
+}
+
+var dayIDs = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'],
+	DAY_MS = 86400000,
+	HOUR_MS = 3600000,
+	MINUTE_MS = 60000;
+
+function addDays(d, n, keepTime) { // deals with daylight savings
+	if (+d) {
+		var dd = d.getDate() + n,
+			check = cloneDate(d);
+		check.setHours(9); // set to middle of day
+		check.setDate(dd);
+		d.setDate(dd);
+		if (!keepTime) {
+			clearTime(d);
+		}
+		fixDate(d, check);
+	}
+	return d;
+}
+
+function fixDate(d, check) { // force d to be on check's YMD, for daylight savings purposes
+	if (+d) { // prevent infinite looping on invalid dates
+		while (d.getDate() != check.getDate()) {
+			d.setTime(+d + (d < check ? 1 : -1) * HOUR_MS);
+		}
+	}
+}
+
+function clearTime(d) {
+	d.setHours(0);
+	d.setMinutes(0);
+	d.setSeconds(0); 
+	d.setMilliseconds(0);
+	return d;
+}
+
+
+function cloneDate(d, dontKeepTime) {
+	if (dontKeepTime) {
+		return clearTime(new Date(+d));
+	}
+	return new Date(+d);
 }
