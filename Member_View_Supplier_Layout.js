@@ -51,18 +51,21 @@ function FillLayoutData() {
         
         $divContainer.append(droppedItem);
                        
-        // icons hide show on move    
+        // icons hide show on move   
+        // div item mouse enter event 
         $('#divContainer').delegate('.divItem', 'mouseenter', function() {                
             $(this).find('.itemHeader').addClass("ui-state-active"); 
             $(this).find('.itemIcons').addClass("ui-state-active").show(); 
         });    
 
+        // div item mouse leave event
         $('#divContainer').delegate('.divItem', 'mouseleave', function() {                
             $(this).find('.itemHeader').removeClass("ui-state-active");       
             $(this).find('.itemIcons').removeClass("ui-state-active").hide(); 
         });              
         
-        $('#divContainer').delegate('.divItem', 'click', function() {  
+        // div item click event
+        $('#divContainer').delegate('.divItem', 'click', function(e) {  
             var eventSource = {
                 url: 'JsonResponse.ashx',
                 type: 'POST',
@@ -74,37 +77,112 @@ function FillLayoutData() {
                 //textColor: 'black' // a non-ajax option
             };                        
             
+            var timeObj = $.parseJSON($(this).data("time"));            
+            
             var eventSource2 = {
                 events: function(start, end, callback) {
-                    var events = [];
-                    events.push({
-                        title  : 'event1',                        
-                        start  : '2011-05-12 06:30:00',
-                        end  : '2011-05-12 08:30:00',
-                        allDay : false                        
-                    });
-                    events.push({
-                        title  : 'event3',
-                        start  : '2011-05-12 09:30:00',
-                        end  : '2011-05-12 12:30:00',
-                        allDay : false
-                    });                    
+                    var events = [];                                        
+                    var timeStart,timeEnd;
+                    var date = new Date();
+                    var d = date.getDate();
+                    var m = date.getMonth();
+                    var y = date.getFullYear();
+                    //var tes = date.format("dd-MM-yyyy hh:mm:ss tt")                                            
+
+                    var unAvailibleTime =[];
+                    for(var k=0;k<24;k++)
+                    {                        
+                        unAvailibleTime.push({
+                            'date': new Date(String.format("{0} {1}", date.format("MM/dd/yyyy"),zeroPad(k,2) + ":00")),
+                            'active': true
+                        });
+                        unAvailibleTime.push({
+                            'date': new Date(String.format("{0} {1}", date.format("MM/dd/yyyy"),zeroPad(k,2) + ":30")),
+                            'active': true
+                        });
+                    }                    
+
+                    //loop days
+                    for(var j=0;j<7;j++)
+                    {                                                  
+                        //reset dates struct 
+                        $.each(unAvailibleTime, function(i, item) {
+                            item.active = true;
+                        });
+                                          
+                        //loop on time data rows
+                        for(var i=0;i < timeObj.data.length; i++)
+                        {                                                           
+                            //j*2+1 start time 
+                            //j*2+2 end time
+                            var startTime = timeObj.data[i][j+1];
+                            var endTime = timeObj.data[i][j+2];
+                            
+                            if(startTime == "") continue;
+                            if(endTime == "") continue;
+                                                                                    
+                            startTime=new Date(String.format("{0} {1}", date.format("MM/dd/yyyy"),startTime));
+                            endTime=new Date(String.format("{0} {1}", date.format("MM/dd/yyyy"),endTime));
+                            
+                            if(startTime > endTime) continue;
+
+                            //check in slots if date active
+                            $.each(unAvailibleTime, function(i, item) {                                
+                                if(item.date >= startTime && item.date <= endTime)
+                                {                                                                                                                              
+                                    item.active = false;
+                                }
+                            });
+                        }//loop on time data rows
+                        
+                        var eventsdates=[];
+                        var eventsdatesStart="";
+                        var eventsdatesEnd="";
+                        //create date for events calendar
+                        $.each(unAvailibleTime, function(i, item) {                                
+                            //var startDate = item.date.format("yyyy-MM-dd HH:mm");
+                            if(item.active == true)
+                            {
+                                if(eventsdatesStart == "")
+                                {
+                                    eventsdatesStart = item.date.format("yyyy-MM-dd HH:mm");
+                                }
+                            }
+                        });                        
+                        
+                    }//loop days
+/*
+                            events.push({
+                                title  : 'לא זמין',                        
+                                start  : String.format("{0} {1}", date.format("yyyy-MM-dd"),timeStart),
+                                end  : String.format("{0} {1}", date.format("yyyy-MM-dd"),timeEnd),
+                                allDay : false                        
+                            });                      */
+                    
                     callback(events);
-                }
+                },
+                backgroundColor: 'gray'
                 //color: 'yellow',   // an option!
                 //textColor: 'black' // an option!
-            };            
+            };                                   
                                                                            
-            $('#calendar').fullCalendar( 'removeEventSource', eventSource )
-            $('#calendar').fullCalendar( 'removeEventSource', eventSource2 )
-            $('#calendar').fullCalendar( 'addEventSource', eventSource2 );
+            //$('#calendar').fullCalendar( 'removeEventSource', eventSource )
+            //$('#calendar').fullCalendar( 'removeEventSource', eventSource2 )            
+            $('#calendar').fullCalendar( 'removeEvents', filter);
             $('#calendar').fullCalendar( 'addEventSource', eventSource );
+            $('#calendar').fullCalendar( 'addEventSource', eventSource2 );
             //$('#calendar').fullCalendar( 'refetchEvents' );
             $('#calendarDialog').dialog('open');            
             window.scrollTo(10,0);
             //$("window").scrollTop(0);
-            event.stopPropagation();            
-        });     
+            e.stopPropagation();
+            return false;            
+        });  
+        
+        // remove all events
+        function filter(elem,i) {            
+            return true;
+        }                 
         
     }
 }      
@@ -381,4 +459,13 @@ function eventResized(event, dayDelta, minuteDelta, revertFunc) {
 function checkForSpecialChars(stringToCheck) {
     var pattern = /[^A-Za-z0-9 ]/;
     return pattern.test(stringToCheck); 
+}
+
+function zeroPad(num,count)
+{
+    var numZeropad = num + '';
+    while(numZeropad.length < count) {
+        numZeropad = "0" + numZeropad;
+    }
+    return numZeropad;
 }
